@@ -37,14 +37,38 @@
     };
   }])
 
+.factory('localstorage', ['$window', function($window) {
+  return {
+    set: function(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || '{}');
+    }
+  }
+}])
+
   /**
    * $http interceptor.
    * On 401 response (without 'ignoreAuthModule' option) stores the request
    * and broadcasts 'event:angular-auth-loginRequired'.
    */
   .config(['$httpProvider', function($httpProvider) {
-    $httpProvider.interceptors.push(['$rootScope', '$q', 'httpBuffer', function($rootScope, $q, httpBuffer) {
+    $httpProvider.interceptors.push(['$rootScope', '$q', 'httpBuffer', function($rootScope, $q, httpBuffer, localstorage) {
       return {
+        request: function(config) {
+          config.headers = config.headers || {};
+          if (localStorage.token) {
+            config.headers.token = localStorage.token;
+          }
+          return config;
+        },
         responseError: function(rejection) {
           if (rejection.status === 401 && !rejection.config.ignoreAuthModule) {
             var deferred = $q.defer();

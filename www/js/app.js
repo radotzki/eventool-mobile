@@ -24,46 +24,46 @@ angular.module('eventool', ['ionic', 'ngResource', 'eventool.services', 'eventoo
 
   $stateProvider
   
-    .state('app', {
-      url: "/app",
-      abstract: true,
-      templateUrl: "templates/menu.html",
-      controller: 'AppCtrl'
-    })
-    .state('app.home', {
-      url: "/home",
-	  views: {
-	      'menuContent' :{
-	          controller:  "HomeCtrl",
-	          templateUrl: "templates/home.html"            	
-	      }
-	  }      	  
-    })
-    .state('app.customers', {
-      url: "/customers",
-	  views: {
-	      'menuContent' :{
-	          controller:  "CustomerCtrl",
-	          templateUrl: "templates/customers.html"            	
-	      }
-	  }      	  
-    })
-    .state('app.resources', {
-      url: "/resources",
+  .state('app', {
+    url: "/app",
+    abstract: true,
+    templateUrl: "templates/menu.html",
+    controller: 'AppCtrl'
+  })
+  .state('app.home', {
+    url: "/home",
     views: {
-        'menuContent' :{
-            controller:  "ResourceCtrl",
-            templateUrl: "templates/resources.html"             
-        }
+     'menuContent' :{
+       controller:  "HomeCtrl",
+       templateUrl: "templates/home.html"            	
+     }
+   }      	  
+ })
+  .state('app.customers', {
+    url: "/customers",
+    views: {
+     'menuContent' :{
+       controller:  "CustomerCtrl",
+       templateUrl: "templates/customers.html"            	
+     }
+   }      	  
+ })
+  .state('app.resources', {
+    url: "/resources",
+    views: {
+      'menuContent' :{
+        controller:  "ResourceCtrl",
+        templateUrl: "templates/resources.html"             
+      }
     }         
-    })
-    .state('app.logout', {
-      url: "/logout",
-      views: {
-    	   'menuContent' :{
-    		   controller: "LogoutCtrl"
-    	    }
-      } 
-    });
+  })
+  .state('app.logout', {
+    url: "/logout",
+    views: {
+      'menuContent' :{
+       controller: "LogoutCtrl"
+     }
+   } 
+ });
   $urlRouterProvider.otherwise("/app/home");
 });
