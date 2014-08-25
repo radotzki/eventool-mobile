@@ -1,5 +1,5 @@
 angular.module('eventool.controllers', []);
-angular.module('eventool.services', ['http-auth-interceptor']);
+angular.module('eventool.services', ['http-auth-interceptor', 'restangular']);
 
 angular.module('eventool', ['ionic', 'ngResource', 'eventool.services', 'eventool.controllers'])
 
@@ -66,4 +66,9 @@ angular.module('eventool', ['ionic', 'ngResource', 'eventool.services', 'eventoo
    } 
  });
   $urlRouterProvider.otherwise("/app/home");
+})
+
+.config(function(RestangularProvider) {
+    RestangularProvider.setBaseUrl('http://localhost:3000/api/v1');
+
 });
