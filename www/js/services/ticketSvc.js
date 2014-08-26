@@ -1,6 +1,6 @@
 angular.module('eventool.services')
 
-.factory('Ticket', function($resource, Restangular) {
+.factory('Ticket', function(Restangular) {
 	var factory = {}
 
 	factory.index = function(clientId) {

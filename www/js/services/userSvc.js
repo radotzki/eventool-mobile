@@ -1,6 +1,6 @@
 angular.module('eventool.services')
 
-.factory('User', function($resource, Restangular) {
+.factory('User', function(Restangular) {
 	var factory = {}
 
 	var base = Restangular.all('users');

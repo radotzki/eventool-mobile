@@ -1,6 +1,8 @@
 angular.module('eventool.controllers')
 
-.controller('EventsCtrl', function($scope, Client) {
+.controller('EventsCtrl', function($scope, Event, Restangular) {
+ 
+
   // Get tickets
   Event.show(2).then(function (responseData) {
     Event.getTickets(responseData).then(function (responseData) {

@@ -1,6 +1,6 @@
 angular.module('eventool.services')
 
-.factory('ClientComment', function($resource, Restangular) {
+.factory('ClientComment', function(Restangular) {
 	var factory = {}
 
 	factory.index = function(clientId) {

@@ -1,8 +1,8 @@
 angular.module('eventool.services')
-.factory('AuthenticationService', function($rootScope, $http, authService, hostUrl) {
+.factory('AuthenticationService', function($rootScope, $http, authService, Restangular) {
   var service = {
     login: function(user) {
-      $http.post(hostUrl + '/login', { email: user.email, password: user.password}, { ignoreAuthModule: true })
+      $http.post(Restangular.configuration.baseUrl + '/login', { email: user.email, password: user.password}, { ignoreAuthModule: true })
       .success(function (data, status, headers, config) {
        $http.defaults.headers.common.token = data.auth_token;
        localStorage.setItem('token', data.auth_token);

@@ -1,6 +1,6 @@
 angular.module('eventool.services')
 
-.factory('ClientFriendship', function($resource, Restangular) {
+.factory('ClientFriendship', function(Restangular) {
 	var factory = {}
 
 	factory.index = function(clientId) {
