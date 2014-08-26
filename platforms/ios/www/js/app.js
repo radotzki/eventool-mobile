@@ -1,14 +1,18 @@
 angular.module('eventool.controllers', []);
-angular.module('eventool.services', ['http-auth-interceptor']);
+angular.module('eventool.services', ['http-auth-interceptor', 'restangular']);
 
 angular.module('eventool', ['ionic', 'ngResource', 'eventool.services', 'eventool.controllers'])
 
-// define an host url
-// localhost: http://localhost:3000/api/v1
-// dev: http://eventool-dev.herokuapp.com/api/v1
-// test: http://eventool-test.herokuapp.com/api/v1
-// prod: http://eventool.herokuapp.com/api/v1
-.constant('hostUrl', 'http://localhost:3000/api/v1')
+
+.config(function(RestangularProvider) {
+  // define an host url
+  // localhost: http://localhost:3000/api/v1
+  // dev: http://eventool-dev.herokuapp.com/api/v1
+  // test: http://eventool-test.herokuapp.com/api/v1
+  // prod: http://eventool.herokuapp.com/api/v1
+
+    RestangularProvider.setBaseUrl('http://localhost:3000/api/v1');
+})
 
 .run(function($rootScope, $ionicPlatform, $http) {
 
@@ -39,21 +43,30 @@ angular.module('eventool', ['ionic', 'ngResource', 'eventool.services', 'eventoo
      }
    }      	  
  })
-  .state('app.customers', {
-    url: "/customers",
+  .state('app.events', {
+    url: "/events",
     views: {
      'menuContent' :{
-       controller:  "CustomerCtrl",
-       templateUrl: "templates/customers.html"            	
+       controller:  "EventsCtrl",
+       templateUrl: "templates/events.html"            	
      }
    }      	  
  })
-  .state('app.resources', {
-    url: "/resources",
+  .state('app.workers', {
+    url: "/workers",
     views: {
       'menuContent' :{
-        controller:  "ResourceCtrl",
-        templateUrl: "templates/resources.html"             
+        controller:  "UsersCtrl",
+        templateUrl: "templates/workers.html"             
+      }
+    }         
+  })
+  .state('app.clients', {
+    url: "/clients",
+    views: {
+      'menuContent' :{
+        controller:  "ClientsCtrl",
+        templateUrl: "templates/clients.html"             
       }
     }         
   })
@@ -66,4 +79,4 @@ angular.module('eventool', ['ionic', 'ngResource', 'eventool.services', 'eventoo
    } 
  });
   $urlRouterProvider.otherwise("/app/home");
-});
+})

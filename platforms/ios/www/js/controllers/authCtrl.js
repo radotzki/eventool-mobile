@@ -1,21 +1,4 @@
 angular.module('eventool.controllers')
-.controller('AppCtrl', function($scope, $state, $ionicModal) {
-   
-  $ionicModal.fromTemplateUrl('templates/login.html', function(modal) {
-      $scope.loginModal = modal;
-    },
-    {
-      scope: $scope,
-      animation: 'slide-in-up',
-      focusFirstInput: true
-    }
-  );
-  //Be sure to cleanup the modal by removing it from the DOM
-  $scope.$on('$destroy', function() {
-    $scope.loginModal.remove();
-  });
-})
-  
 .controller('LoginCtrl', function($scope, $http, $state, AuthenticationService) {
   $scope.message = "";
   
@@ -54,3 +37,4 @@ angular.module('eventool.controllers')
 .controller('LogoutCtrl', function($scope, AuthenticationService) {
     AuthenticationService.logout();
 })
+

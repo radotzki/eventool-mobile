@@ -1,20 +1,20 @@
 angular.module('eventool.controllers')
 
-.controller('UsersCtrl', function($scope, User) {
+.controller('ProductionsCtrl', function($scope, Production) {
 
-  User.index().then(function(responseData) {
-    $scope.workers = responseData;
+  Production.index().then(function(responseData) {
+    $scope.customers = responseData;
   }, function() {
     console.log("There was an error");
   });
 
-  User.show(1).then(function(responseData) {
-    $scope.workers = responseData;
+  Production.show(1).then(function(responseData) {
+    $scope.customers = responseData;
   }, function() {
     console.log("There was an error");
   });
 
-  // var userParams = {
+  // var params = {
   //   production_id: 1,
   //   first_name: "Test",
   //   last_name: "me",
@@ -23,7 +23,7 @@ angular.module('eventool.controllers')
   // };
 
   // // Create
-  // User.create(userParams).then(function() {
+  // Production.create(params).then(function() {
   //   console.log("entity created");
   // }, function() {
   //   console.log("There was an error");
@@ -31,28 +31,16 @@ angular.module('eventool.controllers')
 
   // // Update
   // someuser.first_name = "Edited";
-  // User.update(someuser).then(function() {
+  // Production.update(someuser).then(function() {
   //   console.log("user updated"); 
   // }, function() {
   //   console.log("There was an error");
   // });
 
   // // Delete
-  // User.delete(newUser).then(function() {
+  // Production.delete(newUser).then(function() {
   //   console.log("entity deleted");
   // }, function() {
   //   console.log("There was an error");
   // }); 
-
-  // User.show(7).then(function (responseData) {
-  //   User.getTickets(responseData);
-  // });
-
-  // User.show(7).then(function (responseData) {
-  //   User.unlock(responseData);
-  // });
-
-  // User.show(1).then(function (responseData) {
-  //     User.changeRole(responseData, "cashier");
-  //   });
 })

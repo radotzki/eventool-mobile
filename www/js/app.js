@@ -56,7 +56,7 @@ angular.module('eventool', ['ionic', 'ngResource', 'eventool.services', 'eventoo
     url: "/workers",
     views: {
       'menuContent' :{
-        controller:  "WorkersCtrl",
+        controller:  "UsersCtrl",
         templateUrl: "templates/workers.html"             
       }
     }         
