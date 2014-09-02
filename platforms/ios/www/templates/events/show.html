@@ -5,6 +5,7 @@
 		<h2>{{ event.name }}</h2>
 		<p>{{ event.when | date }} </p>
 		<p ng-if="eventPass">Male: {{maleArrived}}, Female: {{arrivedCount-maleArrived}}, Income: {{income | currency}} </p>
+		<p>Prices: <label ng-repeat="price in event.prices"> {{price.price | currency}}, </label> </p>
 	</div>
 
 	<label class="item item-input">
@@ -22,12 +23,12 @@
 		</li>
 	</ul>
 
-	<div class="item tabs tabs-secondary tabs-icon-left">
+	<div class="item tabs tabs-secondary tabs-icon-left" ng-if="curUser.role=='producer'">
 		<a class="tab-item" ui-sref="app.eventUpdate({ eventId:event.id })" ng-if="!eventPass">
 			<i class="icon ion-edit"></i>
 			Edit
 		</a>
-		<a class="tab-item" "app.eventDelete({ eventId:event.id })">
+		<a class="tab-item" ui-sref="app.eventDelete({ eventId:event.id })">
 			<i class="icon ion-trash-b"></i>
 			Delete
 		</a>

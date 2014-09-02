@@ -1,7 +1,10 @@
 angular.module('eventool.controllers', []);
 angular.module('eventool.services', ['http-auth-interceptor', 'restangular']);
+angular.module('eventool.directives', []);
 
-angular.module('eventool', ['ionic', 'ngResource', 'eventool.services', 'eventool.controllers'])
+angular.module('eventool', 
+  ['ionic','ui.bootstrap.datetimepicker',
+   'eventool.services', 'eventool.controllers', 'eventool.directives'])
 
 
 .config(function(RestangularProvider) {
@@ -11,7 +14,7 @@ angular.module('eventool', ['ionic', 'ngResource', 'eventool.services', 'eventoo
   // test: http://eventool-test.herokuapp.com/api/v1
   // prod: http://eventool.herokuapp.com/api/v1
 
-    RestangularProvider.setBaseUrl('http://localhost:3000/api/v1');
+    RestangularProvider.setBaseUrl('http://eventool-dev.herokuapp.com/api/v1');
 })
 
 .run(function($rootScope, $ionicPlatform, $http) {

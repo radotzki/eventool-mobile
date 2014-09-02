@@ -1,23 +1,33 @@
 <ion-view title="New Event">
 <ion-content class="has-header" padding="true">
 
-
 <div class="list">
 	<label class="item item-input item-stacked-label">
 		<span class="input-label">Name</span>
 		<input type="text" placeholder="awesome event" ng-model="event.name">
 	</label>
-	<label class="item item-input item-stacked-label">
+	<label class="item item-input" >
 		<span class="input-label">When</span>
-		<input placeholder="date" class="textbox-n" type="text" onfocus="(this.type='date')" ng-model="event.date">
+		<my-date-time-picker placeholder="Enter Date here" title="Select Date" ng-model="event.datetime" />
 	</label>
-	<label class="item item-input item-stacked-label">
-		<span class="input-label">Prices</span>
-		<input type="number" placeholder="0" ng-model="event.prices.1">
-		<input type="number" placeholder="10" ng-model="event.prices.2">
-		<input type="number" placeholder="20" ng-model="event.prices.3">
-	</label>
+
+	<div class="item item-input-inset">
+		<label class="item-input-wrapper">
+			<input type="text" placeholder="Price" ng-model="newPrice">
+		</label>
+		<button class="button button-small" ng-click="addPrice(newPrice)">
+			Add
+		</button>
+	</div>
+
+	<div class="list">
+		<div class="item  item-icon-right" ng-repeat="price in prices">
+			{{price | currency}}
+			<i class="icon ion-close-round" ng-click="deletePrice($index)"></i>
+		</div>
+	</div>	
 </div>
+
 
 <button class="button button-block button-outline button-positive" ng-click="createEvent(event)">
 	Create event

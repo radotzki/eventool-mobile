@@ -1,7 +1,10 @@
 angular.module('eventool.controllers', []);
 angular.module('eventool.services', ['http-auth-interceptor', 'restangular']);
+angular.module('eventool.directives', []);
 
-angular.module('eventool', ['ionic', 'ngResource', 'eventool.services', 'eventool.controllers'])
+angular.module('eventool', 
+  ['ionic','ui.bootstrap.datetimepicker',
+   'eventool.services', 'eventool.controllers', 'eventool.directives'])
 
 
 .config(function(RestangularProvider) {

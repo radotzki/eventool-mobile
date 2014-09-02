@@ -1,11 +1,11 @@
 angular.module('eventool.controllers')
 
-.controller('EventCreateCtrl', function($scope, Event, EventPrice, $state, $ionicPopup) {
+.controller('EventCreateCtrl', function($scope, Event, EventPrice, $state, $ionicPopup, $filter) {
 	$scope.prices = ["0", "10", "20"];
 
 	$scope.createEvent = function(event) {
 		Event.create
-		({when: new Date(event.datetime), name: event.name, prices: $scope.prices})
+		({when: event.when, name: event.name, prices: $scope.prices})
 		.then(function(eventId){
 			// Add prices
 			for (var i=0; i < $scope.prices.length; i++) {
@@ -39,3 +39,4 @@ angular.module('eventool.controllers')
 		$scope.prices.splice(index, 1);
 	};
 })
+

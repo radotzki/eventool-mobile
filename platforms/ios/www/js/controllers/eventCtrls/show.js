@@ -1,22 +1,5 @@
 angular.module('eventool.controllers')
 
-.controller('EventsIndexCtrl', function($scope, Event) {
-	Event.index().then(function(data){
-		$scope.events = data;	
-	});
-
-	$scope.eventPass = function(event) {
-		return (new Date(event.when)) < Date.now();
-	}
-
-})
-
-.controller('EventCreateCtrl', function($scope, Event) {
-	$scope.createEvent = function(event) {
-		console.log(event);
-	};
-})
-
 .controller('EventShowCtrl', function($scope, Event, $stateParams, EventPrice, Client) {
 	Event.show($stateParams.eventId).then(function(data){
 		$scope.event = data;
@@ -45,12 +28,4 @@ angular.module('eventool.controllers')
 			}
 
 		})});
-})
-
-.controller('EventUpdateCtrl', function($scope, Event) {
-
-})
-
-.controller('EventDeleteCtrl', function($scope, Event) {
-
 })

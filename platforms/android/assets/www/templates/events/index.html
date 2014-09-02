@@ -20,11 +20,11 @@
       <i class="icon ion-information-circled"></i>
       Show
     </a>
-    <a class="tab-item" ui-sref="app.eventUpdate({ eventId:event.id })" ng-if="!eventPass(event)">
+    <a class="tab-item" ui-sref="app.eventUpdate({ eventId:event.id })" ng-if="!eventPass(event) && curUser.role=='producer'">
       <i class="icon ion-edit"></i>
       Edit
     </a>
-    <a class="tab-item" "app.eventDelete({ eventId:event.id })">
+    <a class="tab-item" ui-sref="app.eventDelete({ eventId:event.id })" ng-if="curUser.role=='producer'">
       <i class="icon ion-trash-b"></i>
       Delete
     </a>
