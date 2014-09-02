@@ -43,15 +43,53 @@ angular.module('eventool', ['ionic', 'ngResource', 'eventool.services', 'eventoo
      }
    }      	  
  })
+  // Event
   .state('app.events', {
     url: "/events",
     views: {
      'menuContent' :{
-       controller:  "EventsCtrl",
-       templateUrl: "templates/events.html"            	
+       controller:  "EventsIndexCtrl",
+       templateUrl: "templates/events/index.html"            	
      }
    }      	  
  })
+  .state('app.eventShow', {
+    url: "/event/:eventId",
+    views: {
+     'menuContent' :{
+       controller:  "EventShowCtrl",
+       templateUrl: "templates/events/show.html"             
+     }
+   }          
+ }) 
+  .state('app.eventCreate', {
+    url: "/events/create",
+    views: {
+     'menuContent' :{
+       controller:  "EventCreateCtrl",
+       templateUrl: "templates/events/create.html"             
+     }
+   }          
+ })  
+ .state('app.eventUpdate', {
+    url: "/event/update/:eventId",
+    views: {
+     'menuContent' :{
+       controller:  "EventUpdateCtrl",
+       templateUrl: "templates/events/update.html"             
+     }
+   }          
+ }) 
+ .state('app.eventDelete', {
+    url: "/event/delete/:eventId",
+    views: {
+     'menuContent' :{
+       controller:  "EventDeleteCtrl",
+       templateUrl: "templates/events/delete.html"             
+     }
+   }          
+ }) 
+ // Workers
   .state('app.workers', {
     url: "/workers",
     views: {

@@ -13,24 +13,36 @@
     </header>
     <ion-content class="has-header">
       <ion-list>
-        <ion-item nav-clear item-input>
-          <input type="text" placeholder="Search..">
-        </ion-item>
+
+        <form ng-controller="ClientsCtrl">
+          <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+              <input type="text" placeholder="name or phone" ng-model="searchParam" required>
+            </label>
+            <button class="button button-small" menu-close ng-click="search()" ui-sref="app.clients">Search</button>
+          </div>
+        </form>
+
         <ion-item nav-clear menu-close ui-sref="app.home">
           Home
         </ion-item>
+
         <ion-item nav-clear menu-close ui-sref="app.events" ng-if="curUser.role!='cashier'">
           Events
         </ion-item>
+
         <ion-item nav-clear menu-close ui-sref="app.workers" ng-if="curUser.role=='producer'">
           Workers
         </ion-item>
+
         <ion-item nav-clear menu-close ui-sref="app.clients" ng-if="curUser.role!='cashier'">
           Clients
         </ion-item>
+
         <ion-item nav-clear menu-close ui-sref="app.logout">
           Logout
         </ion-item>
+
       </ion-list>
     </ion-content>
   </ion-side-menu>
