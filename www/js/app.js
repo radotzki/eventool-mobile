@@ -4,7 +4,7 @@ angular.module('eventool.directives', []);
 
 angular.module('eventool', 
   ['ionic','ui.bootstrap.datetimepicker',
-   'eventool.services', 'eventool.controllers', 'eventool.directives'])
+  'eventool.services', 'eventool.controllers', 'eventool.directives'])
 
 
 .config(function(RestangularProvider) {
@@ -14,7 +14,7 @@ angular.module('eventool',
   // test: http://eventool-test.herokuapp.com/api/v1
   // prod: http://eventool.herokuapp.com/api/v1
 
-    RestangularProvider.setBaseUrl('http://localhost:3000/api/v1');
+  RestangularProvider.setBaseUrl('http://localhost:3000/api/v1');
 })
 
 .run(function($rootScope, $ionicPlatform, $http) {
@@ -46,6 +46,15 @@ angular.module('eventool',
      }
    }      	  
  })
+  .state('app.signup', {
+    url: "/signup",
+    views: {
+     'menuContent' :{
+       controller:  "SignupCtrl",
+       templateUrl: "templates/signup.html"             
+     }
+   }          
+ })
   // Event
   .state('app.events', {
     url: "/events",
@@ -74,7 +83,7 @@ angular.module('eventool',
      }
    }          
  })  
- .state('app.eventUpdate', {
+  .state('app.eventUpdate', {
     url: "/event/update/:eventId",
     views: {
      'menuContent' :{
@@ -83,7 +92,7 @@ angular.module('eventool',
      }
    }          
  }) 
- .state('app.eventDelete', {
+  .state('app.eventDelete', {
     url: "/event/delete/:eventId",
     views: {
      'menuContent' :{
@@ -92,32 +101,42 @@ angular.module('eventool',
      }
    }          
  }) 
- // Workers
-  .state('app.workers', {
-    url: "/workers",
-    views: {
-      'menuContent' :{
-        controller:  "UsersCtrl",
-        templateUrl: "templates/workers.html"             
-      }
-    }         
-  })
-  .state('app.clients', {
-    url: "/clients",
-    views: {
-      'menuContent' :{
-        controller:  "ClientsCtrl",
-        templateUrl: "templates/clients.html"             
-      }
-    }         
-  })
-  .state('app.logout', {
-    url: "/logout",
-    views: {
-      'menuContent' :{
-       controller: "LogoutCtrl"
-     }
-   } 
- });
-  $urlRouterProvider.otherwise("/app/home");
+ // Users
+ .state('app.users', {
+  url: "/users",
+  views: {
+    'menuContent' :{
+      controller:  "UserIndexCtrl",
+      templateUrl: "templates/users/index.html"             
+    }
+  }         
+})
+ .state('app.showUser', {
+  url: "/user/show/:userId",
+  views: {
+    'menuContent' :{
+      controller:  "UserIndexCtrl",
+      templateUrl: "templates/users/index.html"             
+    }
+  }         
+})
+ // Clients
+ .state('app.clients', {
+  url: "/clients",
+  views: {
+    'menuContent' :{
+      controller:  "ClientsCtrl",
+      templateUrl: "templates/clients.html"             
+    }
+  }         
+})
+ .state('app.logout', {
+  url: "/logout",
+  views: {
+    'menuContent' :{
+     controller: "LogoutCtrl"
+   }
+ } 
+});
+ $urlRouterProvider.otherwise("/app/home");
 })
