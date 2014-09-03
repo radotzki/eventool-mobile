@@ -4,7 +4,7 @@
 </ion-nav-buttons>
 <ion-content padding="true">
 
-<button class="button button-block button-outline button-positive icon-left" ui-sref="app.eventCreate">
+<button class="button button-block button-outline button-positive icon-left" ui-sref="app.eventCreate" ng-if="curUser.role=='producer'">
   <i class="ion-plus-round"></i>
   Add new event
 </button>

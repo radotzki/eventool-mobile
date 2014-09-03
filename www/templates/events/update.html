@@ -13,21 +13,7 @@
 			<my-date-time-picker placeholder="{{event.when | date:'dd/MM/yyyy HH:mm'}}" title="Select Date" ng-model="event.when"></my-date-time-picker>
 		</label>
 
-		<div class="item item-input-inset">
-			<label class="item-input-wrapper">
-				<input type="text" placeholder="Price" ng-model="newPrice">
-			</label>
-			<button class="button button-small" ng-click="addPrice(newPrice)">
-				Add
-			</button>
-		</div>
-
-		<div class="list">
-			<div class="item  item-icon-right" ng-repeat="price in prices">
-				{{price | currency}}
-				<i class="icon ion-close-round" ng-click="deletePrice($index)"></i>
-			</div>
-		</div>	
+		<event-price-list prices="prices"> </event-price-list>	
 	</div>
 </form>
 

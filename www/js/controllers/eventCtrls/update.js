@@ -52,24 +52,6 @@ angular.module('eventool.controllers')
 		alertPopup.then(function(res) {
 			$state.go('app.events');
 		});
-	}
-
-	$scope.addPrice = function(newPrice) {
-		// Check if price exist
-		var addToArray = true;
-		for(var i = 0; i < $scope.prices.length; i++){
-			if($scope.prices[i] === newPrice){
-				addToArray = false;
-			}
-		}
-
-		if(addToArray){
-			$scope.prices.push(newPrice);
-		}
-	};
-
-	$scope.deletePrice = function  (index) {
-		$scope.prices.splice(index, 1);
-	};	
+	}	
 
 })
