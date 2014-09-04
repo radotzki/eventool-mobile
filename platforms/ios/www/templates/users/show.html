@@ -5,23 +5,23 @@
 		<h2>{{user.name}}</h2>
 		<p>{{user.role}}</p>
 	</div>
-	<div class="item item-body">
-		<p>Arrived {{arrivedSum}} | Not arrived {{tickets.length - arrivedSum}}</p>
+	<div class="item item-body" ng-if="user.role != 'cashier'">
+		<p>All events: Arrived {{arrivedSum}} , Not Arrived {{tickets.length - arrivedSum}}</p>
 	</div>
 
 	<div class="item tabs tabs-secondary tabs-icon-left">
-		<a class="tab-item" href="#">
+		<a class="tab-item" ui-sref="app.updateUser({ userId:user.id })">
 			<i class="icon ion-edit"></i>
 			Change Role
 		</a>
-		<a class="tab-item" href="#">
-			<i class="icon ion-trash-b"></i>
-			Delete
+		<a class="tab-item" ng-click="lockUser()">
+			<i class="icon ion-locked"></i>
+			Lock
 		</a>
 	</div>
 </div>
 
-<div class="list card">
+<div class="list card" ng-if="user.role != 'cashier'">
 	<label class="item item-input item-select">
 		<div class="input-label">Event </div>
 		<select ng-model="selectedEvent.id" ng-options="event.id as event.name for event in events" ng-change="changeEvent()">
@@ -31,6 +31,10 @@
 	<label class="item item-input">
 		<i class="icon ion-search placeholder-icon"></i>
 		<input type="text" placeholder="Search" ng-model="searchParam">
+	</label>
+
+	<label class="item item-input">
+		<p class="col col-offset-25"> Arrived {{EventArrived}} | Not Arrived {{EventNotArrived}} </p>
 	</label>
 
 	<ul class="list">

@@ -14,7 +14,7 @@ angular.module('eventool',
   // test: http://eventool-test.herokuapp.com/api/v1
   // prod: http://eventool.herokuapp.com/api/v1
 
-  RestangularProvider.setBaseUrl('http://eventool-dev.herokuapp.com/api/v1');
+  RestangularProvider.setBaseUrl('http://localhost:3000/api/v1');
 })
 
 .run(function($rootScope, $ionicPlatform, $http) {
@@ -60,7 +60,7 @@ angular.module('eventool',
     url: "/events",
     views: {
      'menuContent' :{
-       controller:  "EventsIndexCtrl",
+       controller:  "EventIndexCtrl",
        templateUrl: "templates/events/index.html"            	
      }
    }      	  
@@ -112,11 +112,20 @@ angular.module('eventool',
   }         
 })
  .state('app.showUser', {
-  url: "/user/show/:userId",
+  url: "/user/:userId",
   views: {
     'menuContent' :{
       controller:  "UserShowCtrl",
       templateUrl: "templates/users/show.html"             
+    }
+  }         
+})
+ .state('app.updateUser', {
+  url: "/user/update/:userId",
+  views: {
+    'menuContent' :{
+      controller:  "UserUpdateCtrl",
+      templateUrl: "templates/users/update.html"             
     }
   }         
 })
@@ -125,8 +134,17 @@ angular.module('eventool',
   url: "/clients",
   views: {
     'menuContent' :{
-      controller:  "ClientsCtrl",
-      templateUrl: "templates/clients.html"             
+      controller:  "ClientIndexCtrl",
+      templateUrl: "templates/clients/index.html"             
+    }
+  }         
+})
+ .state('app.showClient', {
+  url: "/client/:clientId",
+  views: {
+    'menuContent' :{
+      controller:  "ClientShowCtrl",
+      templateUrl: "templates/clients/show.html"             
     }
   }         
 })

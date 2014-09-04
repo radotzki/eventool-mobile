@@ -7,10 +7,10 @@
 <div class="list">
 
 	<div class="item item-divider"> Active Workers</div>
-	<div class="item" ui-sref="app.showUser({ userId:user.id })" ng-repeat="user in users | filter:{lock: false}"> {{user.name}} ({{user.role}}) </div>
+	<div class="item" ui-sref="app.showUser({ userId:user.id })" ng-repeat="user in users | filter:{lock: false} | orderBy:'-role'"> {{user.name}} ({{user.role}}) </div>
 
 	<div class="item item-divider"> Lock Workers</div>
-	<div class="item item-icon-right" ng-repeat="user in users | filter:{lock: true}"> 
+	<div class="item item-icon-right" ng-repeat="user in users | filter:{lock: true} | orderBy:'-role'"> 
 		{{user.name}} ({{user.role}}) 
 		<i class="icon ion-checkmark-round" ng-click="unlockUser(user)"></i>
 	</div>

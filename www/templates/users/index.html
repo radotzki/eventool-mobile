@@ -12,7 +12,7 @@
 	<div class="item item-divider"> Lock Workers</div>
 	<div class="item item-icon-right" ng-repeat="user in users | filter:{lock: true} | orderBy:'-role'"> 
 		{{user.name}} ({{user.role}}) 
-		<i class="icon ion-checkmark-round" ng-click="unlockUser(user)"></i>
+		<i class="icon ion-unlocked" ng-click="unlockUser(user)"></i>
 	</div>
 
 
