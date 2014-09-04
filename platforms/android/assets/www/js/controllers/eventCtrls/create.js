@@ -2,10 +2,11 @@ angular.module('eventool.controllers')
 
 .controller('EventCreateCtrl', function($scope, Event, EventPrice, $state, $ionicPopup, $filter) {
 	$scope.prices = ["0", "10", "20"];
+	$scope.event = {when: new Date()};
 
-	$scope.createEvent = function(event) {
+	$scope.createEvent = function(myForm) {
 		Event.create
-		({when: new Date(event.datetime), name: event.name, prices: $scope.prices})
+		({when: $scope.event.when, name: $scope.event.name, prices: $scope.prices})
 		.then(function(eventId){
 			// Add prices
 			for (var i=0; i < $scope.prices.length; i++) {
@@ -13,7 +14,7 @@ angular.module('eventool.controllers')
 			}
 
 			var alertPopup = $ionicPopup.alert({
-				title: 'Event \'' + event.name + '\' created! '
+				title: 'Event \'' + $scope.event.name + '\' created! '
 			});
 			alertPopup.then(function(res) {
 				$state.go('app.events');
@@ -21,22 +22,6 @@ angular.module('eventool.controllers')
 		});
 	};
 
-	$scope.addPrice = function(newPrice) {
-		// Check if price exist
-		var addToArray = true;
-		for(var i = 0; i < $scope.prices.length; i++){
-			if($scope.prices[i] === newPrice){
-				addToArray = false;
-			}
-		}
 
-		if(addToArray){
-			$scope.prices.push(newPrice);
-		}
-	};
-
-	$scope.deletePrice = function  (index) {
-		$scope.prices.splice(index, 1);
-	};
 })
 

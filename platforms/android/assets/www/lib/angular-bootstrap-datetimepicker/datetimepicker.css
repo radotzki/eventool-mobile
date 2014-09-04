@@ -3,9 +3,9 @@
  * (c) 2013 Knight Rider Consulting, Inc. http://www.knightrider.com
  * License: MIT
  */
-body {
+/*body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
-}
+}*/
 .popup-body .datetimepicker {
   min-height: 221px;
 }

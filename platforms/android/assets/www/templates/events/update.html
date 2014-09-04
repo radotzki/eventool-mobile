@@ -1,35 +1,24 @@
 <ion-view title="Update Event">
 <ion-content class="has-header" padding="true">    
 
+<form name="myForm" novalidate>
 	<div class="list">
 		<label class="item item-input item-stacked-label">
 			<span class="input-label">Name</span>
-			<input type="text" placeholder="awesome event" ng-model="event.name">
+			<input type="text" placeholder="awesome event" ng-model="event.name" name="name" required>
+			<p style="color: pink" ng-show="myForm.name.$invalid && !myForm.name.$pristine">name is required</p>
 		</label>
-		<label class="item item-input item-stacked-label">
+		<label class="item item-input" >
 			<span class="input-label">When</span>
-			<input type="text" ng-model="event.when" placeholder="14-12-2015 20:00">
+			<my-date-time-picker placeholder="{{event.when | date:'dd/MM/yyyy HH:mm'}}" title="Select Date" ng-model="event.when"></my-date-time-picker>
 		</label>
 
-		<div class="item item-input-inset">
-			<label class="item-input-wrapper">
-				<input type="text" placeholder="Price" ng-model="newPrice">
-			</label>
-			<button class="button button-small" ng-click="addPrice(newPrice)">
-				Add
-			</button>
-		</div>
-
-		<div class="list">
-			<div class="item  item-icon-right" ng-repeat="price in prices">
-				{{price | currency}}
-				<i class="icon ion-close-round" ng-click="deletePrice($index)"></i>
-			</div>
-		</div>	
+		<event-price-list prices="prices"> </event-price-list>	
 	</div>
+</form>
 
 
-<button class="button button-block button-outline button-positive" ng-click="updateEvent()">
+<button class="button button-block button-outline button-positive" ng-click="updateEvent()" ng-disabled="myForm.$invalid">
 	Save
 </button>
 

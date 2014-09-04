@@ -318,3 +318,100 @@ You could find it at the following address https://developer.apple.com/icloud/do
 2014-09-02 15:13:11.160 Eventool[3820:70b] [CDVTimer][TotalPluginStartup] 8.605003ms
 2014-09-02 15:13:11.269 Eventool[3820:70b] Resetting plugins due to page load.
 2014-09-02 15:13:11.421 Eventool[3820:70b] Finished load of: file:///Users/Itay/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/2EF95C73-634D-4580-83BB-5F9C792005DF/Eventool.app/www/index.html
+2014-09-03 18:22:10.381 Eventool[855:70b] Multi-tasking -> Device: YES, App: YES
+2014-09-03 18:22:10.407 Eventool[855:70b] Unlimited access to network resources
+2014-09-03 18:22:10.411 Eventool[855:70b] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2014-09-03 18:22:10.665 Eventool[855:70b] [CDVTimer][statusbar] 52.679002ms
+2014-09-03 18:22:10.666 Eventool[855:70b] [CDVTimer][TotalPluginStartup] 53.128004ms
+2014-09-03 18:22:10.747 Eventool[855:70b] Resetting plugins due to page load.
+2014-09-03 18:22:10.914 Eventool[855:70b] Finished load of: file:///Users/Itay/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/2EF95C73-634D-4580-83BB-5F9C792005DF/Eventool.app/www/index.html
+Terminating in response to SpringBoard's termination.
+2014-09-03 18:22:46.976 Eventool[1125:70b] Multi-tasking -> Device: YES, App: YES
+2014-09-03 18:22:46.985 Eventool[1125:70b] Unlimited access to network resources
+2014-09-03 18:22:46.988 Eventool[1125:70b] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2014-09-03 18:22:47.014 Eventool[1125:70b] [CDVTimer][statusbar] 7.695019ms
+2014-09-03 18:22:47.015 Eventool[1125:70b] [CDVTimer][TotalPluginStartup] 8.213997ms
+2014-09-03 18:22:47.165 Eventool[1125:70b] Resetting plugins due to page load.
+2014-09-03 18:22:47.336 Eventool[1125:70b] Finished load of: file:///Users/Itay/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/2EF95C73-634D-4580-83BB-5F9C792005DF/Eventool.app/www/index.html
+2014-09-04 09:44:02.696 Eventool[969:70b] Multi-tasking -> Device: YES, App: YES
+2014-09-04 09:44:02.719 Eventool[969:70b] Unlimited access to network resources
+2014-09-04 09:44:02.723 Eventool[969:70b] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2014-09-04 09:44:02.907 Eventool[969:70b] [CDVTimer][statusbar] 51.925004ms
+2014-09-04 09:44:02.908 Eventool[969:70b] [CDVTimer][TotalPluginStartup] 52.420020ms
+2014-09-04 09:44:03.015 Eventool[969:70b] Resetting plugins due to page load.
+2014-09-04 09:44:03.272 Eventool[969:70b] Finished load of: file:///Users/Itay/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/2EF95C73-634D-4580-83BB-5F9C792005DF/Eventool.app/www/index.html
+2014-09-04 09:44:31.199 Eventool[1421:70b] Multi-tasking -> Device: YES, App: YES
+2014-09-04 09:44:31.208 Eventool[1421:70b] Unlimited access to network resources
+2014-09-04 09:44:31.211 Eventool[1421:70b] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2014-09-04 09:44:31.234 Eventool[1421:70b] [CDVTimer][statusbar] 7.430017ms
+2014-09-04 09:44:31.235 Eventool[1421:70b] [CDVTimer][TotalPluginStartup] 7.950008ms
+2014-09-04 09:44:31.334 Eventool[1421:70b] Resetting plugins due to page load.
+2014-09-04 09:44:31.499 Eventool[1421:70b] Finished load of: file:///Users/Itay/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/2EF95C73-634D-4580-83BB-5F9C792005DF/Eventool.app/www/index.html
+2014-09-04 09:47:19.031 Eventool[1780:70b] Multi-tasking -> Device: YES, App: YES
+2014-09-04 09:47:19.043 Eventool[1780:70b] Unlimited access to network resources
+2014-09-04 09:47:19.047 Eventool[1780:70b] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2014-09-04 09:47:19.075 Eventool[1780:70b] [CDVTimer][statusbar] 11.831999ms
+2014-09-04 09:47:19.076 Eventool[1780:70b] [CDVTimer][TotalPluginStartup] 12.651980ms
+2014-09-04 09:47:19.188 Eventool[1780:70b] Resetting plugins due to page load.
+2014-09-04 09:47:19.361 Eventool[1780:70b] Finished load of: file:///Users/Itay/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/2EF95C73-634D-4580-83BB-5F9C792005DF/Eventool.app/www/index.html
+Terminating in response to SpringBoard's termination.
+2014-09-04 09:48:21.204 Eventool[2043:70b] Multi-tasking -> Device: YES, App: YES
+2014-09-04 09:48:21.213 Eventool[2043:70b] Unlimited access to network resources
+2014-09-04 09:48:21.216 Eventool[2043:70b] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2014-09-04 09:48:21.240 Eventool[2043:70b] [CDVTimer][statusbar] 7.725000ms
+2014-09-04 09:48:21.241 Eventool[2043:70b] [CDVTimer][TotalPluginStartup] 8.224964ms
+2014-09-04 09:48:21.280 Eventool[2043:70b] Resetting plugins due to page load.
+2014-09-04 09:48:21.431 Eventool[2043:70b] Finished load of: file:///Users/Itay/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/2EF95C73-634D-4580-83BB-5F9C792005DF/Eventool.app/www/index.html
+2014-09-04 09:48:34.752 Eventool[2043:70b] Resetting plugins due to page load.
+2014-09-04 09:48:34.932 Eventool[2043:70b] Finished load of: file:///Users/Itay/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/2EF95C73-634D-4580-83BB-5F9C792005DF/Eventool.app/www/index.html
+Terminating in response to SpringBoard's termination.
+2014-09-04 09:50:10.044 Eventool[2309:70b] Multi-tasking -> Device: YES, App: YES
+2014-09-04 09:50:10.053 Eventool[2309:70b] Unlimited access to network resources
+2014-09-04 09:50:10.056 Eventool[2309:70b] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2014-09-04 09:50:10.080 Eventool[2309:70b] [CDVTimer][statusbar] 7.721007ms
+2014-09-04 09:50:10.081 Eventool[2309:70b] [CDVTimer][TotalPluginStartup] 8.213997ms
+2014-09-04 09:50:10.177 Eventool[2309:70b] Resetting plugins due to page load.
+2014-09-04 09:50:10.377 Eventool[2309:70b] Finished load of: file:///Users/Itay/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/2EF95C73-634D-4580-83BB-5F9C792005DF/Eventool.app/www/index.html#/app/home
+Terminating in response to SpringBoard's termination.

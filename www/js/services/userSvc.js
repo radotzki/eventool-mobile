@@ -31,6 +31,10 @@ angular.module('eventool.services')
 
 	factory.unlock = function (entity) {
 		return entity.customPUT({}, "unlock");
+	};
+
+	factory.lock = function (entity) {
+		return entity.customPUT({}, "lock");
 	};	
 
 	factory.changeRole = function (entity, role) {

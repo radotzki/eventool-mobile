@@ -3,7 +3,7 @@ angular.module('eventool.directives')
 .directive('eventPriceList', function () {
   return {
     restrict: 'E',
-    templateUrl: '/templates/directives/eventPriceList.html',
+    templateUrl: 'templates/directives/eventPriceList.html',
     scope: {
       'prices': '='
     },

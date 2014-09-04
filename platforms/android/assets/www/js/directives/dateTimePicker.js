@@ -30,7 +30,7 @@ angular.module('eventool.directives')
               onTap: function(e) {
                 //$scope.$apply(function() { //error: apply already in progress
                   $scope.dateModel = $scope.tmp.newDate;
-                  $scope.formatted_datetime = $filter('date')($scope.tmp.newDate, 'medium');
+                  $scope.formatted_datetime = $filter('date')($scope.tmp.newDate, 'dd/MM/yyyy HH:mm');
                 //});
               }
             } 

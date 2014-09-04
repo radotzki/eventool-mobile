@@ -115,21 +115,22 @@ angular.module('eventool',
   url: "/user/show/:userId",
   views: {
     'menuContent' :{
-      controller:  "UserIndexCtrl",
-      templateUrl: "templates/users/index.html"             
+      controller:  "UserShowCtrl",
+      templateUrl: "templates/users/show.html"             
+    }
+  }         
+})
+ .state('app.updateUser', {
+  url: "/user/update/:userId",
+  views: {
+    'menuContent' :{
+      controller:  "UserUpdateCtrl",
+      templateUrl: "templates/users/update.html"             
     }
   }         
 })
  // Clients
- .state('app.clients', {
-  url: "/clients",
-  views: {
-    'menuContent' :{
-      controller:  "ClientsCtrl",
-      templateUrl: "templates/clients.html"             
-    }
-  }         
-})
+
  .state('app.logout', {
   url: "/logout",
   views: {
