@@ -18,6 +18,13 @@ angular.module('eventool.controllers')
     $state.go('app.signup');
   };
 
+  $scope.createProduction = function(){
+    $scope.username = null;
+    $scope.password = null;
+    $scope.loginModal.hide();
+    $state.go('app.createProduction');
+  };
+
   $scope.$on('event:auth-loginRequired', function(e, rejection) {
     $scope.loginModal.show();
   });

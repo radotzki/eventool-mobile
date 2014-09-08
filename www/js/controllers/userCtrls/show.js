@@ -7,7 +7,9 @@ angular.module('eventool.controllers')
 
 	Event.index().then(function(events){
 		$scope.events = orderByFilter(events, '-when');
-		$scope.selectedEvent.id = $scope.events[0].id;
+		if ($scope.events.length > 0){
+			$scope.selectedEvent.id = $scope.events[0].id;
+		}
 	});
 
 	User.show($stateParams.userId).then(function(responseData) {
