@@ -1,0 +1,31 @@
+<ion-view title="Clients">
+<ion-nav-buttons side="left">
+<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+</ion-nav-buttons>
+<ion-content class="has-header" >
+
+<button class="button button-block button-outline button-positive icon-left" ui-sref="app.createClient" >
+	<i class="ion-plus-round"></i>
+	Add new client
+</button>
+
+<label class="item item-input">
+	<i class="icon ion-search placeholder-icon"></i>
+	<input type="text" placeholder="Search" ng-model="searchParam">
+</label>
+
+<div class="list">
+	<a class="item item-avatar" ui-sref="app.showClient({ clientId:client.id })" ng-repeat="client in clients | orderBy:'first_name' | filter:searchParam">
+		<img src="img/ionic.png">
+		<h2> {{client.name}}</h2>
+		<p>
+			<i ng-if="client.gender == 'female'" class="icon ion-female"></i>
+			<i ng-if="client.gender == 'male'" class="icon ion-male"></i>
+			<span ng-if="client.birthdate"> {{client.birthdate | date}} </span>
+			<span ng-if="client.city"> from {{client.city}} </span>			
+		</p>
+	</a>
+</div>
+
+</ion-content>
+</ion-view>

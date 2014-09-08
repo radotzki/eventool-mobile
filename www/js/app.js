@@ -14,7 +14,7 @@ angular.module('eventool',
   // test: http://eventool-test.herokuapp.com/api/v1
   // prod: http://eventool.herokuapp.com/api/v1
 
-  RestangularProvider.setBaseUrl('http://eventool-dev.herokuapp.com/api/v1');
+  RestangularProvider.setBaseUrl('http://localhost:3000/api/v1');
 })
 
 .run(function($rootScope, $ionicPlatform, $http) {
@@ -37,15 +37,6 @@ angular.module('eventool',
     templateUrl: "templates/menu.html",
     controller: 'AppCtrl'
   })
-  .state('app.home', {
-    url: "/home",
-    views: {
-     'menuContent' :{
-       controller:  "HomeCtrl",
-       templateUrl: "templates/home.html"            	
-     }
-   }      	  
- })
   .state('app.signup', {
     url: "/signup",
     views: {
@@ -166,6 +157,34 @@ angular.module('eventool',
     }
   }         
 })
+ // Tickets
+ .state('app.showTicket', {
+  url: "/ticket/:ticketId/:clientId",
+  views: {
+    'menuContent' :{
+      controller:  "TicketShowCtrl",
+      templateUrl: "templates/tickets/show.html"             
+    }
+  }         
+})
+ .state('app.createTicket', {
+  url: "/ticket/create/:clientId/",
+  views: {
+    'menuContent' :{
+      controller:  "TicketCreateCtrl",
+      templateUrl: "templates/tickets/create.html"             
+    }
+  }         
+})
+  .state('app.updateTicket', {
+  url: "/ticket/update/:clientId/:ticketId/",
+  views: {
+    'menuContent' :{
+      controller:  "TicketUpdateCtrl",
+      templateUrl: "templates/tickets/update.html"             
+    }
+  }         
+})
  .state('app.logout', {
   url: "/logout",
   views: {
@@ -174,5 +193,5 @@ angular.module('eventool',
    }
  } 
 });
- $urlRouterProvider.otherwise("/app/home");
+ $urlRouterProvider.otherwise("/app/clients");
 })
