@@ -34,7 +34,7 @@ angular.module('eventool',
   .state('app', {
     url: "/app",
     abstract: true,
-    templateUrl: "templates/menu.html",
+    templateUrl: "templates/session/menu.html",
     controller: 'AppCtrl'
   })
   .state('app.signup', {
@@ -42,7 +42,7 @@ angular.module('eventool',
     views: {
      'menuContent' :{
        controller:  "SignupCtrl",
-       templateUrl: "templates/signup.html"             
+       templateUrl: "templates/session/signup.html"             
      }
    }          
  })

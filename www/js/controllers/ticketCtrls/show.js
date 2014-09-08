@@ -5,7 +5,7 @@ angular.module('eventool.controllers')
 	Ticket.show($stateParams.clientId, $stateParams.ticketId).then(function(data){
 		$scope.ticket = data;
 
-		$scope.canEdit = !$scope.eventPass($scope.ticket.event) && 
+		$scope.canEdit = !$scope.eventPass($scope.ticket.event) && (!$scope.ticket.arrived) &&
 		($scope.ticket.promoter.id == $scope.curUser.id || $scope.curUser.role == 'producer');
 
 		$scope.arrived = $scope.eventPass($scope.ticket.event) && $scope.ticket.arrived;

@@ -14,10 +14,11 @@
 			{{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}
 		</p>
 		<p> Created at {{ticket.created_at | date:'medium' }} </p>
+		<p ng-if="ticket.arrived"> Get in at {{ticket.updated_at | date:'HH:mm:ss' }} by {{ticket.cashier.first_name + " " + ticket.cashier.last_name}} </p>
 	</div>
 
 	<div class="item tabs tabs-secondary tabs-icon-left" >
-		<a class="tab-item" ng-click="checkin()">
+		<a class="tab-item" ng-click="checkin()" ng-if="!ticket.arrived">
 			<i class="icon ion-pin"></i>
 			Check In
 		</a>

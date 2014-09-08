@@ -37,7 +37,7 @@ angular.module('eventool.controllers')
   });
 
   $scope.$on('event:auth-logout-complete', function() {
-    $state.go('app', {}, {reload: true, inherit: false});
+    $state.go('app.clients', {}, {reload: true, inherit: false});
   });    	
 })
 

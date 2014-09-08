@@ -4,7 +4,7 @@
 	<div class="item">
 		<h2>{{ event.name }}</h2>
 		<p>{{ event.when | date }} </p>
-		<p ng-if="eventPass">Male: {{maleArrived}}, Female: {{arrivedCount-maleArrived}}, Income: {{income | currency}} </p>
+		<p >Male: {{maleArrived}}, Female: {{arrivedCount-maleArrived}}, Income: {{income | currency}} </p>
 		<p>Prices: <label ng-repeat="price in event.prices"> {{price.price | currency}}, </label> </p>
 	</div>
 
@@ -18,8 +18,8 @@
 			{{ticket.client.first_name + " " + ticket.client.last_name}}
 			{{ticket.price.price | currency}}
 			<p>By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
-			<i class="icon ion-checkmark-round" ng-if="eventPass && ticket.arrived"></i>
-			<i class="icon ion-close-round" ng-if="eventPass && !ticket.arrived"></i>
+			<i class="icon ion-checkmark-round" ng-if="ticket.arrived"></i>
+			<i class="icon ion-close-round" ng-if="!ticket.arrived"></i>
 		</li>
 	</ul>
 

@@ -22,7 +22,7 @@ angular.module('eventool.controllers')
 				template: 'You need to wait for your producer to unlock your user.'
 			});
 			alertPopup.then(function(res) {
-				$state.go('app.home');
+				$state.go('app.clients');
 			});
 		});
 

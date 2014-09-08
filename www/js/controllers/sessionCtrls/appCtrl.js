@@ -1,7 +1,7 @@
 angular.module('eventool.controllers')
 .controller('AppCtrl', function($scope, $state, $ionicModal, User) {
 
-  $ionicModal.fromTemplateUrl('templates/login.html', function(modal) {
+  $ionicModal.fromTemplateUrl('templates/session/login.html', function(modal) {
     $scope.loginModal = modal;
   },
   {
