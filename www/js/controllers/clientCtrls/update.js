@@ -1,6 +1,6 @@
 angular.module('eventool.controllers')
 
-.controller('ClientUpdateCtrl', function($scope, $stateParams, $state, $ionicPopup,  Client) {
+.controller('ClientUpdateCtrl', function($scope, $stateParams, $window, $ionicPopup,  Client) {
 	Client.show($stateParams.clientId).then(function(data){
 		$scope.client = data;
 	});
@@ -11,7 +11,7 @@ angular.module('eventool.controllers')
 				title: 'Client saved!'
 			});
 			alertPopup.then(function(res) {
-				$state.go('app.clients');
+				$window.history.back();
 			});
 		});
 	};

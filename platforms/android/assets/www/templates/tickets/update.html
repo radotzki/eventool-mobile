@@ -1,0 +1,21 @@
+<ion-view title="Update Ticket">
+<ion-content class="has-header">    
+<form name="myForm" novalidate>
+	<div class="list">
+		<label class="item item-input">
+			<div class="input-label">{{ticket.event.name}} </div>
+		</label>
+		<label class="item item-input item-select">
+			<div class="input-label">Price </div>
+			<select ng-model="ticket.price.id" ng-options="price.id as (price.price | currency) for price in prices" required>
+			</select>
+		</label>
+	</div>
+</form>
+
+<button class="button button-block button-outline button-positive" ng-click="UpdateTicket()" ng-disabled="myForm.$invalid">
+	Update
+</button>
+
+</ion-content>
+</ion-view>

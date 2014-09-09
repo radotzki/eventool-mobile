@@ -1,7 +1,7 @@
 <ion-view title="{{client.name}}">
 <ion-content class="has-header">    
 
-<div class="list card">
+<div class="list card" ng-if="curUser.role != 'cashier'">
 
 	<div class="item item-avatar">
 		<img src="img/ionic.png">
@@ -34,15 +34,15 @@
 	<div class="item tabs tabs-secondary tabs-icon-left">
 		<a class="tab-item" href="#" ng-if="client.phone_number">
 			<i class="icon ion-ios7-telephone"></i>
-			Call
+		</a>
+		<a class="tab-item" ui-sref="app.createTicket({clientId:client.id})">
+			<i class="icon ion-pricetags"></i>
 		</a>
 		<a class="tab-item" ui-sref="app.updateClient({ clientId:client.id })">
 			<i class="icon ion-edit"></i>
-			Edit
 		</a>
 		<a class="tab-item" ng-click="deleteClient()">
 			<i class="icon ion-trash-b"></i>
-			Delete
 		</a>
 	</div>
 
@@ -56,11 +56,11 @@
 	</label>
 
 	<ul class="list">
-		<li class="item item-icon-right" ng-repeat="ticket in tickets | orderBy:'price.price' | filter:{event: selectedEvent}">
+		<li class="item item-icon-right" ng-repeat="ticket in tickets | orderBy:'price.price' | filter:{event: selectedEvent}" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
 			{{ticket.price.price | currency}}
 			<p>By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
-			<i class="icon ion-checkmark-round" ng-if="eventPass(ticket.event) && ticket.arrived"></i>
-			<i class="icon ion-close-round" ng-if="eventPass(ticket.event) && !ticket.arrived"></i>
+			<i class="icon ion-checkmark-round" ng-if="ticket.arrived"></i>
+			<i class="icon ion-close-round" ng-if="!ticket.arrived"></i>
 		</li>
 	</ul>
 

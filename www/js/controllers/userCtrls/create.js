@@ -1,5 +1,5 @@
 angular.module('eventool.controllers')
-.controller('SignupCtrl', function($scope, $state, Production, User, $ionicPopup) {
+.controller('UserCreateCtrl', function($scope, $window, Production, User, $ionicPopup) {
 	$scope.user = {};
 
 	Production.index().then(function(responseData) {
@@ -22,7 +22,7 @@ angular.module('eventool.controllers')
 				template: 'You need to wait for your producer to unlock your user.'
 			});
 			alertPopup.then(function(res) {
-				$state.go('app.home');
+				$window.history.back();
 			});
 		});
 

@@ -1,6 +1,6 @@
 angular.module('eventool.controllers')
 
-.controller('ProductionCreateCtrl', function($scope, $window, $ionicPopup, Production, User) {
+.controller('ProductionCreateCtrl', function($scope, $state, $ionicPopup, Production, User) {
 	$scope.user = {};
 	$scope.create = function(production){
 		var productionParams = {
@@ -16,7 +16,7 @@ angular.module('eventool.controllers')
 				title: 'Production created',
 			});
 			alertPopup.then(function(res) {
-				$window.history.back();
+				$state.go('app.clients');
 			});	
 		});
 	};

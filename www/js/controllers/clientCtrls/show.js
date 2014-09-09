@@ -1,6 +1,6 @@
 angular.module('eventool.controllers')
 
-.controller('ClientShowCtrl', function($scope, $stateParams, $ionicPopup, $state, orderByFilter, Client, Event, Ticket, ClientComment) {
+.controller('ClientShowCtrl', function($scope, $stateParams, $ionicPopup, $window, orderByFilter, Client, Event, Ticket, ClientComment) {
 	$scope.selectedEvent = {};
 
 	Client.show($stateParams.clientId).then(function(data){
@@ -33,7 +33,7 @@ angular.module('eventool.controllers')
 		confirmPopup.then(function(res) {
 			if(res) {
 				Client.delete($scope.client);
-				$state.go('app.clients');
+				$window.history.back();
 			}
 		});
 	};

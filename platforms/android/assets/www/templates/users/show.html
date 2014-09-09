@@ -38,11 +38,11 @@
 	</label>
 
 	<ul class="list">
-		<li class="item item-icon-right" ng-repeat="ticket in tickets | orderBy:'client.first_name' | filter:{event: selectedEvent, client: searchParam}">
+		<li class="item item-icon-right" ng-repeat="ticket in tickets | orderBy:'client.first_name' | filter:{event: selectedEvent, client: searchParam}" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
 			{{ticket.client.first_name + " " + ticket.client.last_name}}
 			{{ticket.price.price | currency}}
-			<i class="icon ion-checkmark-round" ng-if="eventPass(ticket.event) && ticket.arrived"></i>
-			<i class="icon ion-close-round" ng-if="eventPass(ticket.event) && !ticket.arrived"></i>
+			<i class="icon ion-checkmark-round" ng-if="ticket.arrived"></i>
+			<i class="icon ion-close-round" ng-if="!ticket.arrived"></i>
 		</li>
 	</ul>
 </div>

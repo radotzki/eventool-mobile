@@ -1,6 +1,6 @@
 angular.module('eventool.controllers')
 
-.controller('UserShowCtrl', function($scope, $stateParams, $ionicPopup, $state, User, Event, orderByFilter) {
+.controller('UserShowCtrl', function($scope, $stateParams, $ionicPopup, $window, User, Event, orderByFilter) {
 	$scope.selectedEvent = {};
 	$scope.EventArrived = 0;
 	$scope.EventNotArrived = 0;
@@ -54,7 +54,7 @@ angular.module('eventool.controllers')
 		confirmPopup.then(function(res) {
 			if(res) {
 				User.lock($scope.user);
-				$state.go('app.users')
+				$window.history.back();
 			}
 		});
 	};

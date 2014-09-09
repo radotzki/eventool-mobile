@@ -36,7 +36,7 @@ angular.module('eventool.controllers')
 				title: 'Ticket checkin'
 			});
 			alertPopup.then(function(res) {
-				$window.history.back();
+				$state.go('app.clients');
 			});
 		});
 	};

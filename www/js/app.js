@@ -37,15 +37,6 @@ angular.module('eventool',
     templateUrl: "templates/session/menu.html",
     controller: 'AppCtrl'
   })
-  .state('app.signup', {
-    url: "/signup",
-    views: {
-     'menuContent' :{
-       controller:  "SignupCtrl",
-       templateUrl: "templates/session/signup.html"             
-     }
-   }          
- })
   // Event
   .state('app.events', {
     url: "/events",
@@ -119,6 +110,15 @@ angular.module('eventool',
       templateUrl: "templates/users/update.html"             
     }
   }         
+})
+ .state('app.createUser', {
+  url: "/users/create",
+  views: {
+   'menuContent' :{
+     controller:  "UserCreateCtrl",
+     templateUrl: "templates/users/create.html"             
+   }
+ }          
 })
  // Clients
  .state('app.clients', {

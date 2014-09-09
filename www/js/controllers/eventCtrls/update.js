@@ -1,6 +1,6 @@
 angular.module('eventool.controllers')
 
-.controller('EventUpdateCtrl', function($scope, $stateParams, $state, Event, EventPrice, $ionicPopup) {
+.controller('EventUpdateCtrl', function($scope, $stateParams, $window, Event, EventPrice, $ionicPopup) {
 	Event.show($stateParams.eventId).then(function(data){
 		$scope.event = data;
 		$scope.prices = [];
@@ -50,7 +50,7 @@ angular.module('eventool.controllers')
 			title: 'Event \'' + $scope.event.name + '\' saved!'
 		});
 		alertPopup.then(function(res) {
-			$state.go('app.events');
+			$window.history.back();
 		});
 	}	
 
