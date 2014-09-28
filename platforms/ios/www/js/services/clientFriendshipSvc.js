@@ -7,8 +7,8 @@ angular.module('eventool.services')
 		return Restangular.one('clients', clientId).getList('friends');
 	};
 
-	factory.create = function(clientId, params) {
-		return Restangular.one('clients', clientId).post("friends", params);
+	factory.create = function(clientId, clientTwoId) {
+		return Restangular.one('clients', clientId).post("friends", {client_two_id: clientTwoId});
 	};
 
 	factory.delete = function(clientId, friendId) {

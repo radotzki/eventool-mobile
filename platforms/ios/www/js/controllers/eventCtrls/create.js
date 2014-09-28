@@ -1,6 +1,6 @@
 angular.module('eventool.controllers')
 
-.controller('EventCreateCtrl', function($scope, Event, EventPrice, $state, $ionicPopup, $filter) {
+.controller('EventCreateCtrl', function($scope, Event, EventPrice, $window, $ionicPopup, $filter) {
 	$scope.prices = ["0", "10", "20"];
 	$scope.event = {when: new Date()};
 
@@ -17,7 +17,7 @@ angular.module('eventool.controllers')
 				title: 'Event \'' + $scope.event.name + '\' created! '
 			});
 			alertPopup.then(function(res) {
-				$state.go('app.events');
+				$window.history.back();
 			});
 		});
 	};

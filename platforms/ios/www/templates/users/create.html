@@ -1,4 +1,4 @@
-<ion-view title="Signin">
+<ion-view title="Register">
 <ion-content class="has-header" padding="true">
 
 <form name="myForm" novalidate>
@@ -20,12 +20,13 @@
 		</label>
 		<label class="item item-input item-stacked-label">
 			<span class="input-label">Password</span>
-			<input type="password" placeholder="8-10 digits" ng-model="user.password" name="password" required>
-			<p style="color: pink" ng-show="myForm.password.$invalid && !myForm.password.$pristine">password is required</p>
+			<input type="password" placeholder="8-10 digits" ng-model="user.password" name="password" required ng-minlength="8">
+			<p style="color: pink" ng-show="myForm.password.$invalid && !myForm.password.$pristine && !myForm.password.$error.minlength">password is required</p>
+			<p style="color: pink" ng-show="!myForm.password.$pristine && myForm.password.$error.minlength">at least 8 characters long</p>
 		</label>
 		<label class="item item-input item-stacked-label">
 			<span class="input-label">Phone</span>
-			<input type="tel" placeholder="0541234567" ng-model="user.phone">
+			<input type="tel" placeholder="0541234567" ng-model="user.phone" name="phone">
 		</label>
 		<label class="item item-input item-select">
 			<div class="input-label">Production</div>

@@ -14,8 +14,8 @@
 <ion-content class="has-header">
 <ion-list>
 
-<ion-item nav-clear menu-close ui-sref="app.home">
-Home
+<ion-item nav-clear menu-close ui-sref="app.clients" ng-if="curUser.role!='cashier'">
+Clients
 </ion-item>
 
 <ion-item nav-clear menu-close ui-sref="app.events" ng-if="curUser.role!='cashier'">
@@ -24,10 +24,6 @@ Events
 
 <ion-item nav-clear menu-close ui-sref="app.users" ng-if="curUser.role=='producer'">
 Workers
-</ion-item>
-
-<ion-item nav-clear menu-close ui-sref="app.clients" ng-if="curUser.role!='cashier'">
-Clients
 </ion-item>
 
 <ion-item nav-clear menu-close ui-sref="app.logout">

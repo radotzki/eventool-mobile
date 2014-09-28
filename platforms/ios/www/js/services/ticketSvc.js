@@ -27,5 +27,9 @@ angular.module('eventool.services')
 		return Restangular.one('clients', clientId).one('tickets', ticketId).customPUT({},"checkin");
 	};	
 
+	factory.changePrice = function(clientId, ticketId, priceId) {
+		return Restangular.one('clients', clientId).one('tickets', ticketId).customPUT({},"change_price",  {event_price_id: priceId});
+	};	
+
 	return factory;
 })

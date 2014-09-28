@@ -1,13 +1,15 @@
 angular.module('eventool.controllers')
 
-.controller('UserShowCtrl', function($scope, $stateParams, $ionicPopup, $state, User, Event, orderByFilter) {
+.controller('UserShowCtrl', function($scope, $stateParams, $ionicPopup, $window, User, Event, orderByFilter) {
 	$scope.selectedEvent = {};
 	$scope.EventArrived = 0;
 	$scope.EventNotArrived = 0;
 
 	Event.index().then(function(events){
 		$scope.events = orderByFilter(events, '-when');
-		$scope.selectedEvent.id = $scope.events[0].id;
+		if ($scope.events.length > 0){
+			$scope.selectedEvent.id = $scope.events[0].id;
+		}
 	});
 
 	User.show($stateParams.userId).then(function(responseData) {
@@ -52,7 +54,7 @@ angular.module('eventool.controllers')
 		confirmPopup.then(function(res) {
 			if(res) {
 				User.lock($scope.user);
-				$state.go('app.users')
+				$window.history.back();
 			}
 		});
 	};

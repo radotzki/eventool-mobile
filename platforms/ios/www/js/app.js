@@ -34,27 +34,9 @@ angular.module('eventool',
   .state('app', {
     url: "/app",
     abstract: true,
-    templateUrl: "templates/menu.html",
+    templateUrl: "templates/session/menu.html",
     controller: 'AppCtrl'
   })
-  .state('app.home', {
-    url: "/home",
-    views: {
-     'menuContent' :{
-       controller:  "HomeCtrl",
-       templateUrl: "templates/home.html"            	
-     }
-   }      	  
- })
-  .state('app.signup', {
-    url: "/signup",
-    views: {
-     'menuContent' :{
-       controller:  "SignupCtrl",
-       templateUrl: "templates/signup.html"             
-     }
-   }          
- })
   // Event
   .state('app.events', {
     url: "/events",
@@ -129,6 +111,15 @@ angular.module('eventool',
     }
   }         
 })
+ .state('app.createUser', {
+  url: "/users/create",
+  views: {
+   'menuContent' :{
+     controller:  "UserCreateCtrl",
+     templateUrl: "templates/users/create.html"             
+   }
+ }          
+})
  // Clients
  .state('app.clients', {
   url: "/clients",
@@ -148,7 +139,63 @@ angular.module('eventool',
     }
   }         
 })
- .state('app.logout', {
+ .state('app.createClient', {
+  url: "/clients/create",
+  views: {
+    'menuContent' :{
+      controller:  "ClientCreateCtrl",
+      templateUrl: "templates/clients/create.html"             
+    }
+  }         
+})
+ .state('app.updateClient', {
+  url: "/clients/update/:clientId",
+  views: {
+    'menuContent' :{
+      controller:  "ClientUpdateCtrl",
+      templateUrl: "templates/clients/update.html"             
+    }
+  }         
+})
+ // Tickets
+ .state('app.showTicket', {
+  url: "/ticket/:ticketId/:clientId",
+  views: {
+    'menuContent' :{
+      controller:  "TicketShowCtrl",
+      templateUrl: "templates/tickets/show.html"             
+    }
+  }         
+})
+ .state('app.createTicket', {
+  url: "/ticket/create/:clientId/",
+  views: {
+    'menuContent' :{
+      controller:  "TicketCreateCtrl",
+      templateUrl: "templates/tickets/create.html"             
+    }
+  }         
+})
+ .state('app.updateTicket', {
+  url: "/ticket/update/:clientId/:ticketId/",
+  views: {
+    'menuContent' :{
+      controller:  "TicketUpdateCtrl",
+      templateUrl: "templates/tickets/update.html"             
+    }
+  }         
+})
+// Productions
+.state('app.createProduction', {
+  url: "/productions/create",
+  views: {
+    'menuContent' :{
+      controller:  "ProductionCreateCtrl",
+      templateUrl: "templates/production/create.html"             
+    }
+  }         
+})
+.state('app.logout', {
   url: "/logout",
   views: {
     'menuContent' :{
@@ -156,5 +203,5 @@ angular.module('eventool',
    }
  } 
 });
- $urlRouterProvider.otherwise("/app/home");
+$urlRouterProvider.otherwise("/app/clients");
 })

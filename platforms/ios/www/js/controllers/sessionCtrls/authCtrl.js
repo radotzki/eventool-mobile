@@ -15,7 +15,14 @@ angular.module('eventool.controllers')
     $scope.username = null;
     $scope.password = null;
     $scope.loginModal.hide();
-    $state.go('app.signup');
+    $state.go('app.createUser');
+  };
+
+  $scope.createProduction = function(){
+    $scope.username = null;
+    $scope.password = null;
+    $scope.loginModal.hide();
+    $state.go('app.createProduction');
   };
 
   $scope.$on('event:auth-loginRequired', function(e, rejection) {
@@ -37,7 +44,7 @@ angular.module('eventool.controllers')
   });
 
   $scope.$on('event:auth-logout-complete', function() {
-    $state.go('app.home', {}, {reload: true, inherit: false});
+    $state.go('app.clients', {}, {reload: true, inherit: false});
   });    	
 })
 
