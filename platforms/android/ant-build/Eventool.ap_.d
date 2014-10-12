@@ -64,10 +64,10 @@
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/productionCtrls/create.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/sessionCtrls/appCtrl.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/sessionCtrls/authCtrl.js \
-/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/sessionCtrls/signupCtrl.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/ticketCtrls/create.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/ticketCtrls/show.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/ticketCtrls/update.js \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/userCtrls/create.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/userCtrls/index.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/userCtrls/show.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/userCtrls/update.js \
@@ -188,10 +188,10 @@
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/production/create.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/session/login.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/session/menu.html \
-/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/session/signup.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/tickets/create.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/tickets/show.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/tickets/update.html \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/users/create.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/users/index.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/users/show.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/users/update.html \

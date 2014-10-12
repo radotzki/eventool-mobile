@@ -2,17 +2,24 @@
 <ion-nav-buttons side="left">
 <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 </ion-nav-buttons>
+<ion-nav-buttons side="right">
+<button class="button button-clear  icon ion-plus-round right" ui-sref="app.createClient"></button>
+</ion-nav-buttons>
 <ion-content class="has-header" >
-
-<button class="button button-block button-outline button-positive icon-left" ui-sref="app.createClient" >
-	<i class="ion-plus-round"></i>
-	Add new client
-</button>
 
 <label class="item item-input">
 	<i class="icon ion-search placeholder-icon"></i>
 	<input type="text" placeholder="Search" ng-model="searchParam">
 </label>
+
+<div class="loading" ng-show="loading">
+<i class="icon ion-looping"></i> Loading
+	<!-- <span class="loading"></span>
+	<span class="loading"></span>
+	<span class="loading"></span>
+	<span class="loading"></span>
+	<span class="loading"></span> -->
+</div>
 
 <div class="list">
 	<a class="item item-avatar" ui-sref="app.showClient({ clientId:client.id })" ng-repeat="client in clients | orderBy:'first_name' | filter:searchParam">

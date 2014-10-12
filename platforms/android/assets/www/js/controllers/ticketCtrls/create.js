@@ -5,14 +5,17 @@ angular.module('eventool.controllers')
 	Event.index().then(function(events){
 		$scope.events = orderByFilter(events, '-when');
 
-		// Delete passed events
-		for(var i=0; i<$scope.events.length; i++) {
-			if($scope.eventPass($scope.events[i])) {
-				$scope.events.splice(i, 1);
+		if ($scope.events.length > 0){
+			// Delete passed events
+			for(var i=0; i<$scope.events.length; i++) {
+				if($scope.eventPass($scope.events[i])) {
+					$scope.events.splice(i, $scope.events.length - i);
+				}
 			}
+
+			$scope.selectedEvent = $scope.events[0].id;
+			$scope.getPrices($scope.selectedEvent);
 		}
-		$scope.selectedEvent = $scope.events[0].id;
-		$scope.getPrices($scope.selectedEvent);
 	});
 
 	$scope.getPrices = function(selectedEvent) {

@@ -15,7 +15,7 @@ angular.module('eventool.controllers')
     $scope.username = null;
     $scope.password = null;
     $scope.loginModal.hide();
-    $state.go('app.signup');
+    $state.go('app.createUser');
   };
 
   $scope.createProduction = function(){

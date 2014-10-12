@@ -10,11 +10,11 @@ angular.module('eventool',
 .config(function(RestangularProvider) {
   // define an host url
   // localhost: http://localhost:3000/api/v1
-  // dev: http://eventool-dev.herokuapp.com/api/v1
+  // dev: http://amitay.cloudapp.net:3000/api/v1
   // test: http://eventool-test.herokuapp.com/api/v1
-  // prod: http://eventool.herokuapp.com/api/v1
+  // prod: http://amitay.cloudapp.net/api/v1
 
-  RestangularProvider.setBaseUrl('http://localhost:3000/api/v1');
+  RestangularProvider.setBaseUrl('http://amitay.cloudapp.net:3000/api/v1');
 })
 
 .run(function($rootScope, $ionicPlatform, $http) {

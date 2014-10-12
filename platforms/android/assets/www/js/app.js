@@ -10,11 +10,11 @@ angular.module('eventool',
 .config(function(RestangularProvider) {
   // define an host url
   // localhost: http://localhost:3000/api/v1
-  // dev: http://eventool-dev.herokuapp.com/api/v1
+  // dev: http://amitay.cloudapp.net:3000/api/v1
   // test: http://eventool-test.herokuapp.com/api/v1
-  // prod: http://eventool.herokuapp.com/api/v1
+  // prod: http://amitay.cloudapp.net/api/v1
 
-  RestangularProvider.setBaseUrl('http://192.168.1.87:3000/api/v1');
+  RestangularProvider.setBaseUrl('http://amitay.cloudapp.net:3000/api/v1');
 })
 
 .run(function($rootScope, $ionicPlatform, $http) {
@@ -37,15 +37,6 @@ angular.module('eventool',
     templateUrl: "templates/session/menu.html",
     controller: 'AppCtrl'
   })
-  .state('app.signup', {
-    url: "/signup",
-    views: {
-     'menuContent' :{
-       controller:  "SignupCtrl",
-       templateUrl: "templates/session/signup.html"             
-     }
-   }          
- })
   // Event
   .state('app.events', {
     url: "/events",
@@ -119,6 +110,15 @@ angular.module('eventool',
       templateUrl: "templates/users/update.html"             
     }
   }         
+})
+ .state('app.createUser', {
+  url: "/users/create",
+  views: {
+   'menuContent' :{
+     controller:  "UserCreateCtrl",
+     templateUrl: "templates/users/create.html"             
+   }
+ }          
 })
  // Clients
  .state('app.clients', {

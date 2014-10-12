@@ -12,6 +12,15 @@
 	<input type="text" placeholder="Search" ng-model="searchParam">
 </label>
 
+<div class="loading" ng-show="loading">
+<i class="icon ion-looping"></i> Loading
+	<!-- <span class="loading"></span>
+	<span class="loading"></span>
+	<span class="loading"></span>
+	<span class="loading"></span>
+	<span class="loading"></span> -->
+</div>
+
 <div class="list">
 	<a class="item item-avatar" ui-sref="app.showClient({ clientId:client.id })" ng-repeat="client in clients | orderBy:'first_name' | filter:searchParam">
 		<img src="img/ionic.png">

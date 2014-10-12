@@ -1,6 +1,6 @@
 angular.module('eventool.controllers')
 
-.controller('ClientCreateCtrl', function($scope, $state, $ionicPopup, Client) {
+.controller('ClientCreateCtrl', function($scope, $window, $ionicPopup, Client) {
 	$scope.client = {};
 	
 	$scope.createClient = function(){
@@ -18,7 +18,7 @@ angular.module('eventool.controllers')
 				title: 'Client created!'
 			});
 			alertPopup.then(function(res) {
-				$state.go('app.clients');
+				$window.history.back();
 			});
 		});
 	};

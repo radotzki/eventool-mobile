@@ -1,6 +1,6 @@
 angular.module('eventool.controllers')
 
-.controller('EventDeleteCtrl', function($scope, $stateParams, Event, $state, $ionicPopup) {
+.controller('EventDeleteCtrl', function($scope, $stateParams, Event, $window, $ionicPopup) {
 	Event.show($stateParams.eventId).then(function(data){
 		$scope.event = data;
 	});
@@ -12,7 +12,7 @@ angular.module('eventool.controllers')
 			title: 'Event \'' + $scope.event.name + '\' deleted!'
 		});
 		alertPopup.then(function(res) {
-			$state.go('app.events');
+			$window.history.back();
 		});
 	}
 
