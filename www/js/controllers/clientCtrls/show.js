@@ -50,6 +50,17 @@ angular.module('eventool.controllers')
 		ClientComment.delete($scope.comments[index]).then(function(res){
 			$scope.comments.splice(index, 1);
 		});
-		
 	};
+
+	$scope.ticketsCountForEvent = function(tickets, eventId) {
+		var count =0;
+		if(tickets) {
+			for(var i=0; i<tickets.length; i++) {
+				if (tickets[i].event.id == eventId) 
+					count++;
+			}
+		}
+		return count;
+	}
+
 })

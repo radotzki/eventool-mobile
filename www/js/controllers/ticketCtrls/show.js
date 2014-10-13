@@ -1,6 +1,6 @@
 angular.module('eventool.controllers')
 
-.controller('TicketShowCtrl', function($scope, $stateParams, $ionicPopup, $state, $window, Ticket) {
+.controller('TicketShowCtrl', function($scope, $stateParams, $ionicPopup, $state, $window, Ticket, Client) {
 
 	Ticket.show($stateParams.clientId, $stateParams.ticketId).then(function(data){
 		$scope.ticket = data;
@@ -10,6 +10,10 @@ angular.module('eventool.controllers')
 
 		$scope.arrived = $scope.eventPass($scope.ticket.event) && $scope.ticket.arrived;
 		$scope.notArrived = $scope.eventPass($scope.ticket.event) && !$scope.ticket.arrived;
+
+		Client.inEvent($stateParams.clientId, $scope.ticket.event.id).then(function(inEvent){
+			$scope.canCheckin = inEvent == 'false' && $scope.curUser.role != 'promoter';
+		});
 	});
 
 	$scope.eventPass = function(event) {

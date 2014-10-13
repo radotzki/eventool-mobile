@@ -62,7 +62,12 @@
 			<i class="icon ion-checkmark-round" ng-if="ticket.arrived"></i>
 			<i class="icon ion-close-round" ng-if="!ticket.arrived"></i>
 		</li>
+		<li class="item item-icon-right" ng-show="ticketsCountForEvent(tickets, selectedEvent.id)==0">
+			Have no tickets for that event
+		</li>
 	</ul>
+
+	
 
 </div>
 
