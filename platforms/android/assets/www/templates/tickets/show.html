@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="item tabs tabs-secondary tabs-icon-left" >
-		<a class="tab-item" ng-click="checkin()" ng-if="!ticket.arrived">
+		<a class="tab-item" ng-click="checkin()" ng-if="!ticket.arrived && canCheckin">
 			<i class="icon ion-pin"></i>
 			Check In
 		</a>

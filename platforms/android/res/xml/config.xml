@@ -10,14 +10,14 @@
     </feature>
     <name>Eventool</name>
     <description>
-        An Ionic Framework and Cordova project.
+        Events Management Application.
     </description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+    <author email="radotzki@gmail.com" href="http://ionicframework.com/">
+      Itay Radotzlo
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <preference name="fullscreen" value="true" />
+    <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

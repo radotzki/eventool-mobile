@@ -29,5 +29,9 @@ angular.module('eventool.services')
 		return base.customGETLIST('search', param);
 	};
 
+	factory.inEvent = function (clientId, eventId) {
+		return Restangular.one("clients", clientId).one("in_event", eventId).get();
+	};
+
 	return factory;
 })
