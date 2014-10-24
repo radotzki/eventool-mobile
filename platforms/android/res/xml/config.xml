@@ -13,7 +13,7 @@
         Events Management Application.
     </description>
     <author email="radotzki@gmail.com" href="http://ionicframework.com/">
-      Itay Radotzlo
+      Itay Radotzki
     </author>
     <content src="index.html" />
     <access origin="*" />

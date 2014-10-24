@@ -12,13 +12,26 @@
 	<input type="text" placeholder="Search" ng-model="searchParam">
 </label>
 
-<div class="loading" ng-show="loading">
-	<i class="icon ion-looping"></i> Loading
+<div class="list">
+	<a class="item my-item"
+	collection-repeat="client in clients | orderBy:'first_name' | filter:searchParam"
+	collection-item-width="'100%'"
+	collection-item-height="60"
+	ui-sref="app.showClient({ clientId:client.id })">
+	
+	<h2> {{client.name}}</h2>
+	<p>
+		<i ng-if="client.gender == 'female'" class="icon ion-female"></i>
+		<i ng-if="client.gender == 'male'" class="icon ion-male"></i>
+		<span ng-if="client.birthdate"> {{client.birthdate | date}} </span>
+		<span ng-if="client.city"> from {{client.city}} </span>			
+	</p>
+
+</a>
 </div>
 
-<div class="list">
-	<a class="item item-avatar" ui-sref="app.showClient({ clientId:client.id })" ng-repeat="client in clients | orderBy:'first_name' | filter:searchParam">
-		<img src="img/ionic.png">
+<!-- <div class="list">
+	<a class="item" ui-sref="app.showClient({ clientId:client.id })" ng-repeat="client in clients | orderBy:'first_name' | filter:searchParam ">
 		<h2> {{client.name}}</h2>
 		<p>
 			<i ng-if="client.gender == 'female'" class="icon ion-female"></i>
@@ -27,7 +40,14 @@
 			<span ng-if="client.city"> from {{client.city}} </span>			
 		</p>
 	</a>
+</div> -->
+<!-- <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll> -->
+<!-- <a class="btn" ng-click="limit=limit+20" ng-show="limit<=clients.length"> Add limit </a> -->
+
+<div class="loading" ng-show="loading">
+	<i class="icon ion-looping" style="font-size:30px"></i>
 </div>
+
 
 </ion-content>
 </ion-view>
