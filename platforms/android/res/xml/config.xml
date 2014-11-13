@@ -10,15 +10,16 @@
     </feature>
     <name>Eventool</name>
     <description>
-        Events Management Application.
-    </description>
+    Events Management Application.
+  </description>
     <author email="radotzki@gmail.com" href="http://ionicframework.com/">
-      Itay Radotzki
-    </author>
+    Itay Radotzki
+  </author>
     <content src="index.html" />
     <access origin="*" />
     <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
+    <icon height="120" src="icons/android/icon.png" width="120" />
 </widget>

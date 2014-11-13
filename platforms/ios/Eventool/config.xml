@@ -30,12 +30,14 @@
     </feature>
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
+    <icon height="60" src="icons/ios/icon.png" width="60" />
+    <icon height="120" src="icons/ios/icon.png" width="120" />
     <name>Eventool</name>
     <description>
         Events Management Application.
     </description>
     <author email="radotzki@gmail.com" href="http://ionicframework.com/">
-      Itay Radotzlo
+      Itay Radotzki
     </author>
     <content src="index.html" />
     <access origin="*" />

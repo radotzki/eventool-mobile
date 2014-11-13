@@ -20,22 +20,6 @@ angular.module('eventool.controllers')
 		$scope.loading = false;
 	});
 
-	// $scope.noMoreItemsAvailable = false;
-
-	// $scope.loadMore = function() {
-	// 	console.log($scope.data);
-	// 	if ($scope.data){
-	// 		var last = $scope.data.splice(0, 10);
-	// 		$scope.clients.concat(last);
-	// 		$scope.$broadcast('scroll.infiniteScrollComplete');
-	// 	}
-	// 	else{
-	// 		Client.index().then(function(resp){
-	// 			$scope.data = resp;
-	// 		})
-	// 	}
-	// };
-
 	// This a temporary solution to solve an issue where the back button is displayed when it should not be.
  	// This is fixed in the nightly ionic build so the next release should fix the issue
  	$ionicViewService.clearHistory();

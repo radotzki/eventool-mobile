@@ -1,5 +1,5 @@
 <ion-view title="{{event.name}}">
-<ion-content class="has-header">    
+<ion-content class="has-header my-content">    
 <div class="list card">
 	<div class="item">
 		<h2>{{ event.name }}</h2>
@@ -12,17 +12,21 @@
 		<i class="icon ion-search placeholder-icon"></i>
 		<input type="text" placeholder="Search" ng-model="searchParam">
 	</label>
-	
-	<ul class="list">
-		<li class="item item-icon-right" ng-repeat="ticket in tickets | orderBy:'client.first_name' | filter:searchParam" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
-			{{ticket.client.first_name + " " + ticket.client.last_name}}
-			{{ticket.price.price | currency}}
-			<p>By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
-			<i class="icon ion-checkmark-round" ng-if="ticket.arrived"></i>
-			<i class="icon ion-close-round" ng-if="!ticket.arrived"></i>
-		</li>
-	</ul>
-
 </div>
+
+<div class="list">
+	<a class="item my-item item-icon-right m-r-m m-l-m"
+	ng-repeat="ticket in tickets | orderBy:'client.first_name' | filter:searchParam"
+	collection-item-width="'100%'"
+	collection-item-height="70"
+	ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
+	{{ticket.client.first_name + " " + ticket.client.last_name}}
+	{{ticket.price.price | currency}}
+	<p>By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
+	<i class="icon ion-checkmark-round" ng-if="ticket.arrived"></i>
+	<i class="icon ion-close-round" ng-if="!ticket.arrived"></i>
+</a>
+</div>
+
 </ion-content>
 </ion-view>
