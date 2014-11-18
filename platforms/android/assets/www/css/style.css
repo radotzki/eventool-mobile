@@ -29,3 +29,32 @@
 
 .m-l-m {margin-left: 10px;}
 .m-r-m {margin-right: 10px;}
+.m-t-large {margin-top: 20px}
+
+.menu {
+	background-color: #353030
+}
+
+.item-complex .item-content {
+	background-color: #353030;
+	color: #fff;	
+	padding: 30px 49px 30px 16px;
+}
+
+.menu .bar-header {
+	background-color: #353030;
+}
+
+.bar.bar-menu .title {
+	color: #fff;	
+}
+
+.ticket-arrived {
+	border-top-width: thin;
+	border-top-color: green;
+}
+
+.ticket-not-arrived {
+	border-top-width: thin;
+	border-top-color: red;
+}

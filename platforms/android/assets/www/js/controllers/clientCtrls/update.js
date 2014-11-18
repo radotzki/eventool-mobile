@@ -16,4 +16,18 @@ angular.module('eventool.controllers')
 		});
 	};
 
+	$scope.deleteClient = function(){
+		var confirmPopup = $ionicPopup.confirm({
+			title: 'Delete Client',
+			template: 'Are you sure you want to delete ' + $scope.client.name + '?',
+			okText: 'Yes'
+		});
+		confirmPopup.then(function(res) {
+			if(res) {
+				Client.delete($scope.client);
+				$window.history.back();
+			}
+		});
+	};
+
 })

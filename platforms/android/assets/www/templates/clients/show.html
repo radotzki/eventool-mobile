@@ -1,75 +1,103 @@
-<ion-view title="{{client.name}}">
-<ion-content class="has-header">    
+<ion-view title="Profile">
+<ion-nav-buttons side="right">
+<button class="button button-clear right" ui-sref="app.updateClient({ clientId:client.id })">EDIT</button>
+</ion-nav-buttons>
+<ion-content class="has-header"> 
 
-<div class="list card" ng-if="curUser.role != 'cashier'">
+<div style="position: relative;">
+	<img src="img/clientCover.jpg" style="height: 300px;width: 100%; ">   
 
-	<div class="item item-avatar">
-		<img src="img/ionic.png">
-		<h2>{{client.name}}</h2>
-		<p>
+	<div class="text-center" style="position: absolute; top: 0px; height: 300px; width: 100%; background: rgba(68, 68, 68, 0.7)">
+		<h1 style="color:#fff; margin-top:20%"> {{client.name}}</h1>
+
+		<h4 style="color:#fff">
 			<i ng-if="client.gender == 'female'" class="icon ion-female"></i>
 			<i ng-if="client.gender == 'male'" class="icon ion-male"></i>
 			<span ng-if="client.birthdate"> {{client.birthdate | date}} </span>
 			<span ng-if="client.city"> from {{client.city}} </span>			
-		</p>
-	</div>
+		</h4>
+		<h4 style="color:#fff">
+			<i class="icon ion-iphone"></i>
+			<span> {{client.phone_number}} </span>
+		</h4>
 
-	<div class="item item-body">	
-		<p ng-repeat="comment in comments" class="item item-icon-right">
-			{{comment.comment}}
-			({{comment.user.first_name}} {{comment.user.last_name}} at {{comment.created_at | date}})
-			<i class="icon ion-close-round" ng-click="deleteComment($index)" ng-if="comment.user.id == curUser.id"></i>
-		</p>
-	</div>
+		<div class="row" style="margin-top:10%">
+			<div class="col" style="border-right:white solid thin">
+				<h4 style="color:#fff">
+					Tickets
+					<br> {{tickets.length}}
+				</h4>
+			</div>
+			<div class="col" style="border-right:white solid thin">
+				<h4 style="color:#fff">
+					Arrived
+					<br> {{arrivedCount}}
+				</h4>
+			</div>
+			<div class="col">
+				<h4 style="color:#fff">
+					Friends
+					<br> 7
+				</h4>
+			</div>
+		</div>
 
+	</div>
+</div>
+
+<ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="false" style="background-color: #f5f6f7;">
+
+<ion-slide>
+<div>
+	<h3 class="text-center" style="padding-bottom: 10px; padding-top: 10px">
+		Tickets
+		<a class="button button-clear icon ion-plus-round" 
+		style="float: right;" ui-sref="app.createTicket({clientId:client.id})"></a>
+	</h3>
+	<div class="list">
+		<a class="item"
+		ng-repeat="ticket in tickets | orderBy:'-event.when'" 
+		ng-class="ticket.arrived ? 'ticket-arrived' : 'ticket-not-arrived'"
+		collection-item-width="'100%'"
+		collection-item-height="60"
+		ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
+		{{ticket.event.name}} <span style="font-size: 12px; color: #666;"> {{ticket.event.when | date:'dd/MM/yy'}} </span>
+		<p> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
+	</a>
+	<a ng-show="tickets.length==0"> Have no tickets </a>
+</div>
+
+</div>
+</ion-slide>
+
+<ion-slide>
+<div >
+	<h1 class="text-center">Comments</h1>
 	<div class="item item-input-inset">
 		<label class="item-input-wrapper">
-			<input type="text" placeholder="new comment" ng-model="client.newComment">
+			<input type="text" placeholder="Say something" ng-model="client.newComment">
 		</label>
 		<button class="button button-small" ng-click="addComment()">
-			Add
+			SEND
 		</button>
 	</div>
-
-	<div class="item tabs tabs-secondary tabs-icon-left">
-		<a class="tab-item" href="#" ng-if="client.phone_number">
-			<i class="icon ion-ios7-telephone"></i>
-		</a>
-		<a class="tab-item" ui-sref="app.createTicket({clientId:client.id})">
-			<i class="icon ion-pricetags"></i>
-		</a>
-		<a class="tab-item" ui-sref="app.updateClient({ clientId:client.id })">
-			<i class="icon ion-edit"></i>
-		</a>
-		<a class="tab-item" ng-click="deleteClient()">
-			<i class="icon ion-trash-b"></i>
-		</a>
-	</div>
-
+	<div class="list">
+		<a class="item"
+		ng-repeat="comment in comments | orderBy:'-created_at'" 
+		collection-item-width="'100%'"
+		collection-item-height="60">
+		<h3> {{comment.user.first_name}} {{comment.user.last_name}} </h3>
+		<p> {{comment.comment}} </p>
+		<p> <i class="icon ion-ios7-clock-outline"></i> {{comment.newComment ? 'Right now' : comment.created_at | date}} </p>
+	</a>
 </div>
-
-<div class="list card">
-	<label class="item item-input item-select">
-		<div class="input-label">Event </div>
-		<select ng-model="selectedEvent.id" ng-options="event.id as event.name for event in events">
-		</select>
-	</label>
-
-	<ul class="list">
-		<li class="item item-icon-right" ng-repeat="ticket in tickets | orderBy:'price.price' | filter:{event: selectedEvent}" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
-			{{ticket.price.price | currency}}
-			<p>By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
-			<i class="icon ion-checkmark-round" ng-if="ticket.arrived"></i>
-			<i class="icon ion-close-round" ng-if="!ticket.arrived"></i>
-		</li>
-		<li class="item item-icon-right" ng-show="ticketsCountForEvent(tickets, selectedEvent.id)==0">
-			Have no tickets for that event
-		</li>
-	</ul>
-
-	
-
 </div>
+</ion-slide>
+
+<ion-slide>
+<div><h1 class="text-center">Friends</h1></div>
+</ion-slide>
+</ion-slide-box>
 
 </ion-content>
 </ion-view>

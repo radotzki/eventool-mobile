@@ -8,26 +8,26 @@
 </ion-pane>
 
 <ion-side-menu side="left">
-<header class="bar bar-header bar-stable" style="background-color:#0FD3B1">
-  <h1 class="title">Menu</h1>
+<header class="bar bar-header bar-stable bar-menu">
+  <h1 class="title">{{curUser.first_name + " " + curUser.last_name}}</h1>
 </header>
 <ion-content class="has-header">
 <ion-list>
 
 <ion-item nav-clear menu-close ui-sref="app.clients" ng-if="curUser.role!='cashier'">
-Clients
+CLIENTS
 </ion-item>
 
 <ion-item nav-clear menu-close ui-sref="app.events" ng-if="curUser.role!='cashier'">
-Events
+EVENTS
 </ion-item>
 
 <ion-item nav-clear menu-close ui-sref="app.users" ng-if="curUser.role=='producer'">
-Workers
+WORKERS
 </ion-item>
 
 <ion-item nav-clear menu-close ui-sref="app.logout">
-Logout
+LOGOUT
 </ion-item>
 
 </ion-list>

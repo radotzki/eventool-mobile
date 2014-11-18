@@ -35,10 +35,16 @@
 	</div>
 </form>
 
+<div class="text-center m-t-large">
+	<button class="button button-outline button-positive" ng-click="updateClient()" ng-disabled="myForm.$invalid">
+		Update client
+	</button>
+	<button class="button button-outline button-assertive" ng-click="deleteClient()" ng-disabled="myForm.$invalid">
+		Delete client
+	</button>
+</div>
 
-<button class="button button-block button-outline button-positive" ng-click="updateClient()" ng-disabled="myForm.$invalid">
-	Update client
-</button>
+
 
 </ion-content>
 </ion-view>

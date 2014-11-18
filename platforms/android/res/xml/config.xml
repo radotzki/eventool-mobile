@@ -8,6 +8,8 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
+    <icon height="60" src="icons/android/icon.png" width="60" />
+    <icon height="120" src="icons/android/icon.png" width="120" />
     <name>Eventool</name>
     <description>
     Events Management Application.
@@ -21,5 +23,4 @@
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
-    <icon height="120" src="icons/android/icon.png" width="120" />
 </widget>
