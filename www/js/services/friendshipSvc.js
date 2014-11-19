@@ -14,7 +14,7 @@ angular.module('eventool.services')
 	};
 
 	factory.delete = function(entity) {
-		return entity.remove();
+		// return entity.remove();
 	};
 
 	return factory;

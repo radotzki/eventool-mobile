@@ -21,20 +21,22 @@ on-refresh="doRefresh()">
 </div>
 
 <div class="list">
-	<a class="item my-item"
+	<a class="item item-avatar"
+	style="border: none;"
 	ng-repeat="client in clients | orderBy:'first_name' | filter:searchParam"
 	collection-item-width="'100%'"
 	collection-item-height="60"
 	ui-sref="app.showClient({ clientId:client.id })">
-	
-	<h2> {{client.name}}</h2>
-	<p>
-		<i ng-if="client.gender == 'female'" class="icon ion-female" style="color:red"></i>
-		<i ng-if="client.gender == 'male'" class="icon ion-male" style="color:blue"></i>
-		<span ng-if="client.birthdate"> {{client.birthdate | date}} </span>
-		<span ng-if="client.city"> from {{client.city}} </span>			
-	</p>
-
+	<img src="img/avatar.jpg">
+	<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
+		<h2> {{client.name}}</h2>
+		<p style="margin-bottom: 15px;">
+			<i ng-if="client.gender == 'female'" class="icon ion-female" style="color:red"></i>
+			<i ng-if="client.gender == 'male'" class="icon ion-male" style="color:blue"></i>
+			<span ng-if="client.birthdate"> {{client.birthdate | date}} </span>
+			<span ng-if="client.city"> from {{client.city}} </span>			
+		</p>
+	</div>
 </a>
 </div>
 
