@@ -14,7 +14,7 @@ angular.module('eventool',
   // test: http://eventool-test.herokuapp.com/api/v1
   // prod: http://amitay.cloudapp.net/api/v1
 
-  RestangularProvider.setBaseUrl('http://amitay.cloudapp.net:3000/api/v1');
+  RestangularProvider.setBaseUrl('//amitay.cloudapp.net:3000/api/v1');
 })
 
 .run(function($rootScope, $ionicPlatform, $http) {
