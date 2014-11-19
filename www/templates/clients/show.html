@@ -111,9 +111,30 @@ Have no comments
 	<span style="margin-left: 10px" ng-click="slideTo(1)"> COMMENTS </span>
 	<span style="margin-left: 10px; font-weight: bold;"> FRIENDS </span>
 </p>
-<a class="button button-block button-outline button-positive" ui-sref="app.createTicket({clientId:client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
+<a class="button button-block button-outline button-positive" ui-sref="app.selectNewFriend({clientId:client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
 	Add Friend
 </a>
+<div class="list">
+	<a class="item item-avatar" ng-repeat="friend in friends | orderBy:'first_name'" style="border: none;">
+		<img src="img/avatar.jpg">
+		<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
+			<span ng-if="friend.client_two.id==client.id">
+				<h2 style="margin-bottom: 15px; margin-top: 7px;" ui-sref="app.showClient({ clientId:friend.client_one.id })">
+					{{friend.client_one.first_name}} {{friend.client_one.last_name}}
+				</h2>
+			</span>
+			<span ng-if="friend.client_one.id==client.id">
+				<h2 style="margin-bottom: 15px; margin-top: 7px;" ui-sref="app.showClient({ clientId:friend.client_two.id })">
+					{{friend.client_two.first_name}} {{friend.client_two.last_name}}
+				</h2>
+			</span>
+		</div>
+	</a>
+</div>
+<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;"
+ng-show="friends.length==0">
+Have no friends 
+</div>
 </ion-slide>
 </ion-slide-box>
 

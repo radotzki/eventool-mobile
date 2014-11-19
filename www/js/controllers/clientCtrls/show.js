@@ -1,6 +1,7 @@
 angular.module('eventool.controllers')
 
-.controller('ClientShowCtrl', function($scope, $stateParams, $ionicPopup, $window, $ionicSlideBoxDelegate, orderByFilter, Client, Event, Ticket, ClientComment) {
+.controller('ClientShowCtrl', function($scope, $stateParams, $ionicPopup, $window, $ionicSlideBoxDelegate,
+	orderByFilter, Client, Event, Ticket, ClientComment, Friendship) {
 	// $scope.selectedEvent = {};
 
 	Client.show($stateParams.clientId).then(function(data){
@@ -11,6 +12,9 @@ angular.module('eventool.controllers')
 	// 	$scope.events = orderByFilter(events, '-when');
 	// 	$scope.selectedEvent.id = $scope.events[0].id;
 	// });
+Friendship.index($stateParams.clientId).then(function(friends){
+	$scope.friends = friends;
+})
 
 Ticket.index($stateParams.clientId).then(function(tickets) {
 	$scope.tickets = tickets;
@@ -34,36 +38,36 @@ $scope.eventPass = function(event) {
 $scope.addComment = function(){
 	$scope.data = {}
 
-  var myPopup = $ionicPopup.show({
-    template: '<input type="text" ng-model="data.comment">',
-    title: 'Say something about ' + $scope.client.name,
-    scope: $scope,
-    buttons: [
-      {
-        text: '<b>Save</b>',
-        type: 'button-positive',
-        onTap: function(e) {
-          if (!$scope.data.comment) {
-            e.preventDefault();
-          } else {
-            return $scope.data.comment;
-          }
-        }
-      },
-    ]
-  });
-  myPopup.then(function(res) {
-  	ClientComment.create($stateParams.clientId, {comment: res}).then(function(){
-  		$scope.comments.push({
-  			comment: res,
-  			created_at: new Date().toString(),
-  			user: $scope.curUser,
-  			newComment: true
-  		});
-  		$scope.comments = orderByFilter($scope.comments, '-created_at');
-  		$scope.client.newComment = '';
-  	});
-  });
+	var myPopup = $ionicPopup.show({
+		template: '<input type="text" ng-model="data.comment">',
+		title: 'Say something about ' + $scope.client.name,
+		scope: $scope,
+		buttons: [
+		{
+			text: '<b>Save</b>',
+			type: 'button-positive',
+			onTap: function(e) {
+				if (!$scope.data.comment) {
+					e.preventDefault();
+				} else {
+					return $scope.data.comment;
+				}
+			}
+		},
+		]
+	});
+	myPopup.then(function(res) {
+		ClientComment.create($stateParams.clientId, {comment: res}).then(function(){
+			$scope.comments.push({
+				comment: res,
+				created_at: new Date().toString(),
+				user: $scope.curUser,
+				newComment: true
+			});
+			$scope.comments = orderByFilter($scope.comments, '-created_at');
+			$scope.client.newComment = '';
+		});
+	});
 };
 
 $scope.deleteComment = function  (index) {

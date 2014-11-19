@@ -21,7 +21,6 @@ angular.module('eventool',
 
 	$ionicPlatform.ready(function() {
     if(window.StatusBar) {
-      // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
   });
@@ -182,6 +181,16 @@ angular.module('eventool',
     'menuContent' :{
       controller:  "TicketUpdateCtrl",
       templateUrl: "templates/tickets/update.html"             
+    }
+  }         
+})
+ // Friendship
+ .state('app.selectNewFriend', {
+  url: "/friendship/select/:clientId/",
+  views: {
+    'menuContent' :{
+      controller:  "SelectNewFriendCtrl",
+      templateUrl: "templates/friendship/select.html"             
     }
   }         
 })

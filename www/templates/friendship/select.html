@@ -1,0 +1,36 @@
+<ion-view title="Clients">
+<ion-content class="has-header" >
+<ion-refresher
+pulling-text="Pull to refresh..."
+on-refresh="doRefresh()">
+</ion-refresher>
+
+<label class="item item-input">
+	<i class="icon ion-search placeholder-icon"></i>
+	<input type="text" placeholder="Search" ng-model="searchParam">
+</label>
+
+<div class="loading" ng-show="loading">
+	<i class="icon ion-looping" style="font-size:30px"></i>
+</div>
+
+<div class="list">
+	<a class="item my-item"
+	ng-repeat="client in clients | orderBy:'first_name' | filter:searchParam"
+	collection-item-width="'100%'"
+	collection-item-height="60"
+	ng-click="choose(client)">
+	
+	<h2> {{client.name}}</h2>
+	<p>
+		<i ng-if="client.gender == 'female'" class="icon ion-female" style="color:red"></i>
+		<i ng-if="client.gender == 'male'" class="icon ion-male" style="color:blue"></i>
+		<span ng-if="client.birthdate"> {{client.birthdate | date}} </span>
+		<span ng-if="client.city"> from {{client.city}} </span>			
+	</p>
+
+</a>
+</div>
+
+</ion-content>
+</ion-view>
