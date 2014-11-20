@@ -33,13 +33,19 @@
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/README.md \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/css/style.css \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/img/avatar.jpg \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/img/clientCover.jpg \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/img/favicon.ico \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/img/ionic.png \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/img/party_people.jpg \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/img/ProfilePicture.png \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/app.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/directives \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/services \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/clientCtrls \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/eventCtrls \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/friendshipCtrls \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/productionCtrls \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/sessionCtrls \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/ticketCtrls \
@@ -53,6 +59,7 @@
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/eventCtrls/index.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/eventCtrls/show.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/eventCtrls/update.js \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/friendshipCtrls/selectNewFriend.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/productionCtrls/create.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/sessionCtrls/appCtrl.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/controllers/sessionCtrls/authCtrl.js \
@@ -72,6 +79,7 @@
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/services/clientSvc.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/services/eventPriceSvc.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/services/eventSvc.js \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/services/friendshipSvc.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/services/productionSvc.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/services/ticketSvc.js \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/js/services/userSvc.js \
@@ -162,6 +170,7 @@
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/clients \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/directives \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/events \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/friendship \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/production \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/session \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/tickets \
@@ -177,6 +186,7 @@
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/events/index.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/events/show.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/events/update.html \
+/Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/friendship/select.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/production/create.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/session/login.html \
 /Users/Itay/Sites/eventool_mobile/platforms/android/assets/www/templates/session/menu.html \

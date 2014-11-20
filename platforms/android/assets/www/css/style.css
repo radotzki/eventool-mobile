@@ -48,13 +48,3 @@
 .bar.bar-menu .title {
 	color: #fff;	
 }
-
-.ticket-arrived {
-	border-top-width: thin;
-	border-top-color: green;
-}
-
-.ticket-not-arrived {
-	border-top-width: thin;
-	border-top-color: red;
-}

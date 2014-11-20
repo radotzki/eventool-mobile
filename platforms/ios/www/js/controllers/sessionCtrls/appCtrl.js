@@ -20,5 +20,8 @@ angular.module('eventool.controllers')
     $scope.curUser = responseData;
   });
 
+  $scope.getCurrentUser = function(){
+    return User.currentUser();
+  }
 
 })

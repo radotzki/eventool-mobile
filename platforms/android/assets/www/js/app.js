@@ -6,7 +6,7 @@ angular.module('eventool',
   ['ionic','ui.bootstrap.datetimepicker',
   'eventool.services', 'eventool.controllers', 'eventool.directives'])
 
-
+// ios-sim launch platforms/ios/build/emulator/Eventool.app --devicetypeid "com.apple.CoreSimulator.SimDeviceType.iPhone-6, 8.1"
 .config(function(RestangularProvider) {
   // define an host url
   // localhost: http://localhost:3000/api/v1
@@ -21,7 +21,6 @@ angular.module('eventool',
 
 	$ionicPlatform.ready(function() {
     if(window.StatusBar) {
-      // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
   });
@@ -182,6 +181,16 @@ angular.module('eventool',
     'menuContent' :{
       controller:  "TicketUpdateCtrl",
       templateUrl: "templates/tickets/update.html"             
+    }
+  }         
+})
+ // Friendship
+ .state('app.selectNewFriend', {
+  url: "/friendship/select/:clientId/",
+  views: {
+    'menuContent' :{
+      controller:  "SelectNewFriendCtrl",
+      templateUrl: "templates/friendship/select.html"             
     }
   }         
 })

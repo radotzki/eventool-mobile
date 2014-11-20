@@ -9,4 +9,19 @@ angular.module('eventool.controllers')
 		User.update($scope.user);
 		$window.history.back();
 	};
+
+	$scope.lockUser = function(){
+		var confirmPopup = $ionicPopup.confirm({
+			title: 'Lock User',
+			template: 'Are you sure you want to lock ' + $scope.user.name + '?',
+			okText: 'Yes'
+		});
+		confirmPopup.then(function(res) {
+			if(res) {
+				User.lock($scope.user);
+				$window.history.back();
+			}
+		});
+	};
+	
 })

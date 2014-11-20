@@ -1,32 +1,66 @@
 <ion-view title="{{event.name}}">
-<ion-content class="has-header my-content">    
-<div class="list card">
-	<div class="item">
-		<h2>{{ event.name }}</h2>
-		<p>{{ event.when | date }} </p>
-		<p >Male: {{maleArrived}}, Female: {{arrivedCount-maleArrived}}, Income: {{income | currency}} </p>
-		<p>Prices: <label ng-repeat="price in event.prices"> {{price.price | currency}}, </label> </p>
-	</div>
+<ion-content class="has-header">    
 
-	<label class="item item-input">
-		<i class="icon ion-search placeholder-icon"></i>
-		<input type="text" placeholder="Search" ng-model="searchParam">
-	</label>
+<div style="position: relative;">
+	<img src="img/clientCover.jpg" style="height: 300px;width: 100%; ">   
+
+	<div class="text-center" style="position: absolute; top: 0px; height: 300px; width: 100%; background: rgba(68, 68, 68, 0.7)">
+		<h1 style="color:#fff; margin-top:20%"> {{event.name}}</h1>
+		<h4 style="color:#fff">
+			<span> <i class="icon ion-ios7-calendar-outline"></i> {{event.when | date}} </span>
+		</h4>
+		<h5 style="color:#fff">
+			<span> 
+				<i class="icon ion-ios7-pricetags-outline"></i>
+				<span ng-repeat="price in event.prices"> {{price.price | currency}} </span> 
+			</span>	
+		</h5>
+
+		<div class="row" style="margin-top:10%">
+			<div class="col" style="border-right:white solid thin">
+				<h4 style="color:#fff">
+					Male
+					<br> {{maleArrived + "/" + maleCount}}
+				</h4>
+			</div>
+			<div class="col" style="border-right:white solid thin">
+				<h4 style="color:#fff">
+					Female
+					<br> {{femaleArrived + "/" + femaleCount}}
+				</h4>
+			</div>
+			<div class="col">
+				<h4 style="color:#fff">
+					Income
+					<br> {{income | currency}}
+				</h4>
+			</div>
+		</div>
+
+	</div>
 </div>
+
+<label class="item item-input">
+	<i class="icon ion-search placeholder-icon"></i>
+	<input type="text" placeholder="Search" ng-model="searchParam">
+</label>
 
 <div class="list">
-	<a class="item my-item item-icon-right m-r-m m-l-m"
-	ng-repeat="ticket in tickets | orderBy:'client.first_name' | filter:searchParam"
+	<a class="item"
+	ng-repeat="ticket in tickets | filter:searchParam"
 	collection-item-width="'100%'"
-	collection-item-height="70"
-	ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
-	{{ticket.client.first_name + " " + ticket.client.last_name}}
-	{{ticket.price.price | currency}}
-	<p>By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
-	<i class="icon ion-checkmark-round" ng-if="ticket.arrived"></i>
-	<i class="icon ion-close-round" ng-if="!ticket.arrived"></i>
+	collection-item-height="60"
+	ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })"
+	style="border: none;">
+	<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
+		{{ticket.client.first_name + " " + ticket.client.last_name}}
+		<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
+		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
+		<p style="margin-bottom: 15px"> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
+	</div>
 </a>
 </div>
+
 
 </ion-content>
 </ion-view>

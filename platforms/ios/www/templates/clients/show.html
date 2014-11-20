@@ -1,6 +1,6 @@
 <ion-view title="Profile">
 <ion-nav-buttons side="right">
-<button class="button button-clear right" ui-sref="app.updateClient({ clientId:client.id })">EDIT</button>
+<button class="button button-clear right" ui-sref="app.updateClient({ clientId:client.id })" ng-if="curUser.role!='cashier'">EDIT</button>
 </ion-nav-buttons>
 <ion-content class="has-header"> 
 
@@ -21,7 +21,7 @@
 			<span> {{client.phone_number}} </span>
 		</h4>
 
-		<div class="row" style="margin-top:10%">
+		<div class="row" style="margin-top:10%" ng-if="curUser.role!='cashier'">
 			<div class="col" style="border-right:white solid thin">
 				<h4 style="color:#fff">
 					Tickets
@@ -45,7 +45,7 @@
 	</div>
 </div>
 
-<ion-slide-box show-pager="false" >
+<ion-slide-box show-pager="false" ng-if="curUser.role!='cashier'">
 
 <ion-slide>
 <p style="padding-bottom: 10px; padding-top: 10px;" class="text-center">
@@ -58,20 +58,22 @@
 </a>
 <div class="list">
 	<a class="item"
-	ng-repeat="ticket in tickets | orderBy:'-event.when'" 
+	ng-repeat="ticket in tickets | orderBy:['-event.when', '-arrived']" 
 	collection-item-width="'100%'"
 	collection-item-height="60"
 	ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })"
-	style="background-color: #f5f6f7;">
-	<span>
+	style="border: none;">
+	<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
 		{{ticket.event.name}} 
 		<span style="font-size: 12px; color: #666;"> {{ticket.event.when | date:'dd/MM/yy'}} </span>
 		<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
 		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
-	</span>
-	<p> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
+		<p style="margin-bottom: 15px"> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
+	</div>
 </a>
-<a ng-show="tickets.length==0"> Have no tickets </a>
+</div>
+<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;" ng-show="tickets.length==0">
+	Have no tickets 
 </div>
 </ion-slide>
 
@@ -96,6 +98,10 @@
 		</div>
 	</a>
 </div>
+<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;"
+ng-show="comments.length==0">
+Have no comments 
+</div>
 
 </ion-slide>
 
@@ -105,11 +111,59 @@
 	<span style="margin-left: 10px" ng-click="slideTo(1)"> COMMENTS </span>
 	<span style="margin-left: 10px; font-weight: bold;"> FRIENDS </span>
 </p>
-<a class="button button-block button-outline button-positive" ui-sref="app.createTicket({clientId:client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
+<a class="button button-block button-outline button-positive" ui-sref="app.selectNewFriend({clientId:client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
 	Add Friend
 </a>
+<div class="list">
+	<a class="item item-avatar" ng-repeat="friend in friends | orderBy:'first_name'" style="border: none;">
+		<img src="img/avatar.jpg">
+		<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
+			<span ng-if="friend.client_two.id==client.id">
+				<h2 style="" ui-sref="app.showClient({ clientId:friend.client_one.id })">
+					{{friend.client_one.first_name}} {{friend.client_one.last_name}}
+				</h2>
+				<p style="font-size: 12px; margin-bottom: 15px;"> 
+					<i class="icon ion-ios7-clock-outline"></i> since {{friend.created_at | date}}
+				</p>
+			</span>
+			<span ng-if="friend.client_one.id==client.id">
+				<h2 style="" ui-sref="app.showClient({ clientId:friend.client_two.id })">
+					{{friend.client_two.first_name}} {{friend.client_two.last_name}}
+				</h2>
+				<p style="font-size: 12px; margin-bottom: 15px;"> 
+					<i class="icon ion-ios7-clock-outline"></i> since {{friend.created_at | date}}
+				</p>
+			</span>
+		</div>
+	</a>
+</div>
+<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;"
+ng-show="friends.length==0">
+Have no friends 
+</div>
 </ion-slide>
 </ion-slide-box>
+
+<div ng-if="curUser.role=='cashier'">
+	<div class="list" ng-show="!clientArrived">
+		<a class="item"
+		ng-repeat="ticket in tickets | orderBy:'price.price'" 
+		collection-item-width="'100%'"
+		collection-item-height="60"
+		ng-click="checkin(ticket)"
+		style="border: none;">
+		<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
+			{{ticket.event.name}} 
+			<span style="font-size: 12px; color: #666;"> {{ticket.event.when | date:'dd/MM/yy'}} </span>
+			<p style="margin-bottom: 15px"> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
+		</div>
+	</a>
+</div>
+<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;">
+	<span ng-show="clientArrived"> {{client.name}} has already take his ticket for this event </span>
+	<span ng-show="tickets.length==0"> {{client.name}} has no tickets for this event </span>
+</div>
+</div>
 
 </ion-content>
 </ion-view>

@@ -6,25 +6,43 @@ angular.module('eventool.controllers')
 	Client.show($stateParams.clientId).then(function(data){
 		$scope.client = data;
 	});
+	
+	$scope.getCurrentUser().then(function(curUser) {
+		if(curUser.role!='cashier'){
 
-	Friendship.index($stateParams.clientId).then(function(friends){
-		$scope.friends = friends;
-	})
+			Friendship.index($stateParams.clientId).then(function(friends){
+				$scope.friends = friends;
+			})
 
-	Ticket.index($stateParams.clientId).then(function(tickets) {
-		$scope.tickets = tickets;
+			Ticket.index($stateParams.clientId).then(function(tickets) {
+				$scope.tickets = tickets;
 
-		$scope.arrivedCount = 0;
-		for(i=0; i<tickets.length;i++){
-			if(tickets[i].arrived){
-				$scope.arrivedCount++;
-			}
+				$scope.arrivedCount = 0;
+				for(i=0; i<tickets.length;i++){
+					if(tickets[i].arrived){
+						$scope.arrivedCount++;
+					}
+				}
+			});
+
+			ClientComment.index($stateParams.clientId).then(function(responseData) {
+				$scope.comments = responseData;
+			});
 		}
+		else{
+			Ticket.currentEvent($stateParams.clientId).then(function(tickets){
+				$scope.tickets = tickets;
+
+				$scope.clientArrived = false;
+				for(var i=0; i < tickets.length && !$scope.clientArrived; i++){
+					if (tickets[i].arrived)
+						$scope.clientArrived = true;
+				}
+			})
+		}	
 	});
 
-	ClientComment.index($stateParams.clientId).then(function(responseData) {
-		$scope.comments = responseData;
-	});
+	
 
 	$scope.eventPass = function(event) {
 		return (new Date(event.when)) < Date.now();
@@ -82,5 +100,16 @@ angular.module('eventool.controllers')
 	$scope.slideTo = function(index){
 		$ionicSlideBoxDelegate.slide(index);
 	}
+
+	$scope.checkin = function(ticket){
+		Ticket.checkin($stateParams.clientId, ticket.id).then(function(res){
+			var alertPopup = $ionicPopup.alert({
+				title: 'Saved!'
+			});
+			alertPopup.then(function(res) {
+				$window.history.back();
+			});
+		});
+	};
 
 })

@@ -10,10 +10,6 @@ angular.module('eventool.controllers')
 
 		$scope.arrived = $scope.eventPass($scope.ticket.event) && $scope.ticket.arrived;
 		$scope.notArrived = $scope.eventPass($scope.ticket.event) && !$scope.ticket.arrived;
-
-		Client.inEvent($stateParams.clientId, $scope.ticket.event.id).then(function(inEvent){
-			$scope.canCheckin = inEvent == 'false' && $scope.curUser.role != 'promoter';
-		});
 	});
 
 	$scope.eventPass = function(event) {
@@ -34,14 +30,4 @@ angular.module('eventool.controllers')
 		});
 	};
 
-	$scope.checkin = function(){
-		Ticket.checkin($stateParams.clientId, $stateParams.ticketId).then(function(res){
-			var alertPopup = $ionicPopup.alert({
-				title: 'Ticket checkin'
-			});
-			alertPopup.then(function(res) {
-				$window.history.back();
-			});
-		});
-	};
 })

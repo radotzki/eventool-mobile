@@ -18,10 +18,6 @@
 	</div>
 
 	<div class="item tabs tabs-secondary tabs-icon-left" >
-		<a class="tab-item" ng-click="checkin()" ng-if="!ticket.arrived && canCheckin">
-			<i class="icon ion-pin"></i>
-			Check In
-		</a>
 		<a class="tab-item" ui-sref="app.updateTicket({ clientId:ticket.client.id, ticketId:ticket.id })" ng-if="canEdit">
 			<i class="icon ion-edit"></i>
 			Edit
