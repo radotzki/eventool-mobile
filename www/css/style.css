@@ -56,13 +56,13 @@
 	background-color: #fcf59b;
 	min-height: 300px;
 	margin: 20px 10px;
-	border-bottom-left-radius: 20px 500px;
+	/*border-bottom-left-radius: 20px 500px;
 	border-bottom-right-radius: 500px 30px;
-	border-top-right-radius: 15px 100px;
+	border-top-right-radius: 15px 100px;*/
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 	text-align: center;
 }
-
+/*
 .ticket :before {
 	transform: rotate(-4deg);
 	background-color: #fcf6a7;
@@ -85,7 +85,7 @@
 	border-bottom-left-radius: 20px 500px;
 	border-bottom-right-radius: 500px 30px;
 	border-top-right-radius: 15px 100px;
-	}
+	}*/
 
 	.ticket h2,
 	.ticket h4 {
