@@ -56,7 +56,24 @@
 <a class="button button-block button-outline button-positive" ui-sref="app.createTicket({clientId:client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
 	Add Ticket
 </a>
+
 <div class="list">
+
+	<div class="item item-divider" ng-repeat-start="(eventName, tickets) in events" ng-click="show=!show;" style="margin-bottom: 10px; text-align: center">
+		{{eventName}}
+	</div>
+
+	<div ng-show="show" class="item" ng-repeat="ticket in tickets" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
+		<span> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</span>
+		<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
+		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
+	</div>
+
+	<div ng-repeat-end></div>
+
+</div>
+
+<!-- <div class="list">
 	<a class="item"
 	ng-repeat="ticket in tickets | orderBy:['-event.when', '-arrived']" 
 	collection-item-width="'100%'"
@@ -71,7 +88,7 @@
 		<p style="margin-bottom: 15px"> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
 	</div>
 </a>
-</div>
+</div> -->
 <div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;" ng-show="tickets.length==0">
 	Have no tickets 
 </div>

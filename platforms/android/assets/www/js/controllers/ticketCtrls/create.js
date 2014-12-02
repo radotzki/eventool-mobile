@@ -13,8 +13,22 @@ angular.module('eventool.controllers')
 				}
 			}
 
-			$scope.selectedEvent = $scope.events[0].id;
-			$scope.getPrices($scope.selectedEvent);
+			Ticket.index($stateParams.clientId).then(function(tickets) {
+				$scope.tickets = tickets;
+
+				for(var i=0; i<$scope.tickets.length; i++) {
+					for(var j=0; j<$scope.events.length; j++) {
+						if($scope.events[j].id == $scope.tickets[i].event.id)
+							$scope.events.splice(j, 1);
+					}
+				}
+
+				if ($scope.events.length > 0){
+					$scope.selectedEvent = $scope.events[0].id;
+					$scope.getPrices($scope.selectedEvent);
+				}
+			})
+
 		}
 	});
 

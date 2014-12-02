@@ -31,7 +31,7 @@ angular.module('eventool.controllers')
 		confirmPopup.then(function(res) {
 			if(res) {
 				Ticket.delete($scope.ticket);
-				$window.history.back();
+				$state.go('app.showClient', { clientId: $stateParams.clientId } );
 			}
 		});
 	};
