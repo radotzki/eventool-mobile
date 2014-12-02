@@ -13,9 +13,16 @@
 	</div>
 </form>
 
-<button class="button button-block button-outline button-positive" ng-click="UpdateTicket()" ng-disabled="myForm.$invalid">
-	Update
-</button>
+
+<div class="text-center m-t-large">
+	<button class="button button-outline button-positive" ng-click="UpdateTicket()" ng-disabled="myForm.$invalid">
+		Update
+	</button>
+	<button class="button button-outline button-assertive" ng-click="deleteTicket()">
+		Delete
+	</button>
+</div>
+
 
 </ion-content>
 </ion-view>

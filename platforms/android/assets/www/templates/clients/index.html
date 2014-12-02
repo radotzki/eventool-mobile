@@ -2,7 +2,7 @@
 <ion-nav-buttons side="left">
 <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 </ion-nav-buttons>
-<ion-nav-buttons side="right">
+<ion-nav-buttons side="right" ng-if="curUser.role!='cashier'">
 <button class="button button-clear  icon ion-plus-round right" ui-sref="app.createClient"></button>
 </ion-nav-buttons>
 <ion-content class="has-header" >
@@ -21,14 +21,14 @@ on-refresh="doRefresh()">
 </div>
 
 <div class="list">
-	<a class="item item-avatar"
-	style="border: none;"
+	<div class="item item-avatar"
+	style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;"
 	ng-repeat="client in clients | orderBy:'first_name' | filter:searchParam"
 	collection-item-width="'100%'"
 	collection-item-height="60"
 	ui-sref="app.showClient({ clientId:client.id })">
 	<img src="img/avatar.jpg">
-	<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
+	<div >
 		<h2> {{client.name}}</h2>
 		<p style="margin-bottom: 15px;">
 			<i ng-if="client.gender == 'female'" class="icon ion-female" style="color:red"></i>
@@ -37,7 +37,7 @@ on-refresh="doRefresh()">
 			<span ng-if="client.city"> from {{client.city}} </span>			
 		</p>
 	</div>
-</a>
+</div>
 </div>
 
 </ion-content>

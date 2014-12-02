@@ -21,14 +21,14 @@ on-refresh="doRefresh()">
 </div>
 
 <div class="list">
-	<a class="item item-avatar"
-	style="border: none;"
+	<div class="item item-avatar"
+	style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;"
 	ng-repeat="client in clients | orderBy:'first_name' | filter:searchParam"
 	collection-item-width="'100%'"
 	collection-item-height="60"
 	ui-sref="app.showClient({ clientId:client.id })">
 	<img src="img/avatar.jpg">
-	<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
+	<div >
 		<h2> {{client.name}}</h2>
 		<p style="margin-bottom: 15px;">
 			<i ng-if="client.gender == 'female'" class="icon ion-female" style="color:red"></i>
@@ -37,7 +37,7 @@ on-refresh="doRefresh()">
 			<span ng-if="client.city"> from {{client.city}} </span>			
 		</p>
 	</div>
-</a>
+</div>
 </div>
 
 </ion-content>
