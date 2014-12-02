@@ -5,29 +5,14 @@ angular.module('eventool.controllers')
 	Ticket.show($stateParams.clientId, $stateParams.ticketId).then(function(data){
 		$scope.ticket = data;
 
-		$scope.canEdit = !$scope.eventPass($scope.ticket.event) && (!$scope.ticket.arrived) &&
-		($scope.ticket.promoter.id == $scope.curUser.id || $scope.curUser.role == 'producer');
+		$scope.eventPass = eventPass($scope.ticket.event.when);
 
-		$scope.arrived = $scope.eventPass($scope.ticket.event) && $scope.ticket.arrived;
-		$scope.notArrived = $scope.eventPass($scope.ticket.event) && !$scope.ticket.arrived;
+		$scope.canEdit = !$scope.eventPass && (!$scope.ticket.arrived) &&
+		($scope.ticket.promoter.id == $scope.curUser.id || $scope.curUser.role == 'producer');
 	});
 
-	$scope.eventPass = function(event) {
-		return (new Date(event.when)) < Date.now();
-	};
-
-	$scope.deleteTicket = function(){
-		var confirmPopup = $ionicPopup.confirm({
-			title: 'Delete Ticket',
-			template: 'Are you sure you want to delete this ticket?',
-			okText: 'Yes'
-		});
-		confirmPopup.then(function(res) {
-			if(res) {
-				Ticket.delete($scope.ticket);
-				$window.history.back();
-			}
-		});
-	};
+	var eventPass = function(eventDate){
+		return (new Date(eventDate)) < Date.now();
+	}
 
 })

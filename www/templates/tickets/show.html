@@ -1,6 +1,29 @@
 <ion-view title="Ticket">
-<ion-content class="has-header">    
-<div class="list card">
+<ion-nav-buttons side="right">
+<button class="button button-clear right" ui-sref="app.updateTicket({ clientId:ticket.client.id, ticketId:ticket.id })" ng-if="canEdit">EDIT</button>
+</ion-nav-buttons>
+<ion-content class="has-header"> 
+
+<article class="ticket">
+	<h2> {{ticket.event.name}} </h2>
+	<h4> {{ticket.event.when | date }} </h4>
+	<hr>
+	<p> CLIENT: {{ticket.client.first_name}} {{ticket.client.last_name}} </p>
+	<p> PRICE: {{ticket.price.price | currency}} </p>
+	<p> PROMOTER: {{ticket.promoter.first_name + " " + ticket.promoter.last_name}} </p>
+	<div ng-show="eventPass">
+		<hr>
+		<div ng-show="ticket.arrived">
+			<p> ARRIVED AT: {{ticket.updated_at | date:'HH:mm:ss' }} </p>
+			<p> CASHIER: {{ticket.cashier.first_name + " " + ticket.cashier.last_name}} </p>
+		</div>
+		<div ng-show="!ticket.arrived">
+			<p> DID NOT ARRIVED</p>
+		</div>
+	</div>
+</article>
+
+<!-- <div class="list card">
 
 	<div class="item item-icon-right">
 		<h2>{{ticket.client.first_name}} {{ticket.client.last_name}}</h2>
@@ -29,5 +52,6 @@
 	</div>
 
 </div>
+-->
 </ion-content>
 </ion-view>

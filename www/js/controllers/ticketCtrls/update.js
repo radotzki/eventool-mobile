@@ -22,4 +22,18 @@ angular.module('eventool.controllers')
 		});
 	};
 
+	$scope.deleteTicket = function(){
+		var confirmPopup = $ionicPopup.confirm({
+			title: 'Delete Ticket',
+			template: 'Are you sure you want to delete this ticket?',
+			okText: 'Yes'
+		});
+		confirmPopup.then(function(res) {
+			if(res) {
+				Ticket.delete($scope.ticket);
+				$window.history.back();
+			}
+		});
+	};
+
 })
