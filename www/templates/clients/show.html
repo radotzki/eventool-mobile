@@ -25,7 +25,7 @@
 			<div class="col" style="border-right:white solid thin">
 				<h4 style="color:#fff">
 					Tickets
-					<br> {{tickets.length}}
+					<br> {{ticketsCount}}
 				</h4>
 			</div>
 			<div class="col" style="border-right:white solid thin">
@@ -59,11 +59,10 @@
 
 <div class="list">
 
-	<div class="item item-divider" ng-repeat-start="(eventName, tickets) in events" ng-click="show=!show;" style="margin-bottom: 10px; text-align: center">
-		{{eventName}}
+	<div class="item item-divider" ng-repeat-start="value in ticketsByEvents | orderBy: '-when'" ng-click="show=!show;" style="margin-bottom: 10px; text-align: center">
+		<p style="color:{{value.arriveCount?'green':'red'}}"> {{value.eventName}} </p>
 	</div>
-
-	<div ng-show="show" class="item" ng-repeat="ticket in tickets" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
+	<div ng-show="show" class="item" ng-repeat="ticket in value.tickets" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
 		<span> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</span>
 		<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
 		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>

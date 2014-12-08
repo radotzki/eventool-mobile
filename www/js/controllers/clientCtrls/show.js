@@ -3,6 +3,10 @@ angular.module('eventool.controllers')
 .controller('ClientShowCtrl', function($scope, $stateParams, $ionicPopup, $window, $ionicSlideBoxDelegate,
 	orderByFilter, Client, Event, Ticket, ClientComment, Friendship) {
 
+	$scope.ticketsByEvents = [];
+	$scope.arrivedCount = 0;
+	$scope.ticketsCount = 0;
+
 	Client.show($stateParams.clientId).then(function(data){
 		$scope.client = data;
 	});
@@ -15,22 +19,7 @@ angular.module('eventool.controllers')
 			})
 
 			Ticket.index($stateParams.clientId).then(function(tickets) {
-				$scope.tickets = tickets;
-				$scope.events = {};
-				$scope.arrivedCount = 0;
-
-				for(i=0; i<tickets.length;i++){
-					if(tickets[i].arrived){
-						$scope.arrivedCount++;
-					}
-					if ( $scope.events[tickets[i].event.name] ) {
-						$scope.events[tickets[i].event.name].push(tickets[i]);
-					}
-					else {
-						$scope.events[tickets[i].event.name] = [tickets[i]];
-					}
-				}
-				console.log($scope.events)
+				loadTickets(tickets);
 			});
 
 			ClientComment.index($stateParams.clientId).then(function(responseData) {
@@ -50,78 +39,93 @@ angular.module('eventool.controllers')
 		}	
 	});
 
-
-
-$scope.eventPass = function(event) {
-	return (new Date(event.when)) < Date.now();
-};
-
-$scope.eventOrder = function(eventName, tickets){
-	console.log(eventName)
-}
-
-$scope.addComment = function(){
-	$scope.data = {}
-
-	var myPopup = $ionicPopup.show({
-		template: '<input type="text" ng-model="data.comment">',
-		title: 'Say something about ' + $scope.client.name,
-		scope: $scope,
-		buttons: [
-		{
-			text: '<b>Save</b>',
-			type: 'button-positive',
-			onTap: function(e) {
-				if (!$scope.data.comment) {
-					e.preventDefault();
-				} else {
-					return $scope.data.comment;
-				}
+	function loadTickets(tickets){
+		$scope.ticketsCount = tickets.length;
+		for(var i=0; i<tickets.length;i++){
+			if(tickets[i].arrived){
+				$scope.arrivedCount++;
 			}
-		},
-		]
-	});
-	myPopup.then(function(res) {
-		ClientComment.create($stateParams.clientId, {comment: res}).then(function(){
-			$scope.comments.push({ 
-				comment: res, created_at: new Date().toString(), user: $scope.curUser, newComment: true
-			});
-			$scope.comments = orderByFilter($scope.comments, '-created_at');
-			$scope.client.newComment = '';
-		});
-	});
-};
 
-$scope.deleteComment = function  (index) {
-	ClientComment.delete($scope.comments[index]).then(function(res){
-		$scope.comments.splice(index, 1);
-	});
-};
-
-$scope.ticketsCountForEvent = function(tickets, eventId) {
-	var count =0;
-	if(tickets) {
-		for(var i=0; i<tickets.length; i++) {
-			if (tickets[i].event.id == eventId) 
-				count++;
+			var event = findEventByName(tickets[i].event.name);
+			if ( event != -1 ){
+				$scope.ticketsByEvents[event].tickets.push(tickets[i]);
+				$scope.ticketsByEvents[event].arriveCount += tickets[i].arrived;	
+			}
+			else {
+				$scope.ticketsByEvents.push({
+					tickets: [tickets[i]],
+					arriveCount: tickets[i].arrived,
+					when: tickets[i].event.when,
+					eventName: tickets[i].event.name
+				});	
+			}
 		}
 	}
-	return count;
-}
 
-$scope.slideTo = function(index){
-	$ionicSlideBoxDelegate.slide(index);
-}
+	function findEventByName(name){
+		var res = -1;
+		for(var i=0; i < $scope.ticketsByEvents.length; i++){
+			if ( $scope.ticketsByEvents[i].eventName == name )
+				return i;
+		}
+		return res;
+	}
 
-$scope.checkin = function(ticket){
-	Ticket.checkin($stateParams.clientId, ticket.id).then(function(res){
-		var alertPopup = $ionicPopup.alert({
-			title: 'Saved!'
+	$scope.eventPass = function(event) {
+		return (new Date(event.when)) < Date.now();
+	};
+
+	$scope.addComment = function(){
+		$scope.data = {}
+
+		var myPopup = $ionicPopup.show({
+			template: '<input type="text" ng-model="data.comment">',
+			title: 'Say something about ' + $scope.client.name,
+			scope: $scope,
+			buttons: [
+			{
+				text: '<b>Save</b>',
+				type: 'button-positive',
+				onTap: function(e) {
+					if (!$scope.data.comment) {
+						e.preventDefault();
+					} else {
+						return $scope.data.comment;
+					}
+				}
+			},
+			]
 		});
-		alertPopup.then(function(res) {
-			$window.history.back();
+		myPopup.then(function(res) {
+			ClientComment.create($stateParams.clientId, {comment: res}).then(function(){
+				$scope.comments.push({ 
+					comment: res, created_at: new Date().toString(), user: $scope.curUser, newComment: true
+				});
+				$scope.comments = orderByFilter($scope.comments, '-created_at');
+				$scope.client.newComment = '';
+			});
 		});
-	});
-};
+	};
+
+	$scope.deleteComment = function  (index) {
+		ClientComment.delete($scope.comments[index]).then(function(res){
+			$scope.comments.splice(index, 1);
+		});
+	};
+
+	$scope.slideTo = function(index){
+		$ionicSlideBoxDelegate.slide(index);
+	}
+
+	$scope.checkin = function(ticket){
+		Ticket.checkin($stateParams.clientId, ticket.id).then(function(res){
+			var alertPopup = $ionicPopup.alert({
+				title: 'Saved!'
+			});
+			alertPopup.then(function(res) {
+				$window.history.back();
+			});
+		});
+	};
 
 })

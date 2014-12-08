@@ -96,7 +96,7 @@ angular.module('eventool',
   url: "/user/:userId",
   views: {
     'menuContent' :{
-      controller:  "UserShowCtrl",
+      controller:  "UserShowCtrl as vm",
       templateUrl: "templates/users/show.html"             
     }
   }         
