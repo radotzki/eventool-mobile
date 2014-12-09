@@ -9,20 +9,20 @@
 
 <ion-side-menu side="left">
 <header class="bar bar-header bar-stable bar-menu">
-  <h1 class="title">{{curUser.first_name + " " + curUser.last_name}}</h1>
+  <h1 class="title">{{user.first_name + " " + user.last_name}}</h1>
 </header>
 <ion-content class="has-header">
 <ion-list>
 
-<ion-item nav-clear menu-close ui-sref="app.clients" ng-if="curUser.role!='cashier'">
+<ion-item nav-clear menu-close ui-sref="app.clients" ng-if="user.role!='cashier'">
 CLIENTS
 </ion-item>
 
-<ion-item nav-clear menu-close ui-sref="app.events" ng-if="curUser.role!='cashier'">
+<ion-item nav-clear menu-close ui-sref="app.events" ng-if="user.role!='cashier'">
 EVENTS
 </ion-item>
 
-<ion-item nav-clear menu-close ui-sref="app.users" ng-if="curUser.role=='producer'">
+<ion-item nav-clear menu-close ui-sref="app.users" ng-if="user.role=='producer'">
 WORKERS
 </ion-item>
 

@@ -3,7 +3,7 @@
 <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
 </ion-nav-buttons>
 <ion-nav-buttons side="right">
-<button class="button button-clear  icon ion-plus-round right" ui-sref="app.eventCreate" ng-if="curUser.role=='producer'"></button>
+<button class="button button-clear  icon ion-plus-round right" ui-sref="app.eventCreate" ng-if="user.role=='producer'"></button>
 </ion-nav-buttons>
 <ion-content padding="true" class="my-content">
 
@@ -18,11 +18,11 @@
       <i class="icon ion-information-circled"></i>
       Show
     </a>
-    <a class="tab-item" ui-sref="app.eventUpdate({ eventId:event.id })" ng-if="!eventPass(event) && curUser.role=='producer'">
+    <a class="tab-item" ui-sref="app.eventUpdate({ eventId:event.id })" ng-if="!eventPass(event) && user.role=='producer'">
       <i class="icon ion-edit"></i>
       Edit
     </a>
-    <a class="tab-item" ui-sref="app.eventDelete({ eventId:event.id })" ng-if="curUser.role=='producer'">
+    <a class="tab-item" ui-sref="app.eventDelete({ eventId:event.id })" ng-if="user.role=='producer'">
       <i class="icon ion-trash-b"></i>
       Delete
     </a>

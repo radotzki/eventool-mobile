@@ -1,6 +1,9 @@
 angular.module('eventool.controllers')
 
-.controller('EventIndexCtrl', function($scope, Event) {
+.controller('EventIndexCtrl', function($scope, Event, user) {
+
+	$scope.user = user;
+
 	Event.index().then(function(data){
 		$scope.events = data;	
 	});

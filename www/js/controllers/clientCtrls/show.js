@@ -1,43 +1,42 @@
 angular.module('eventool.controllers')
 
 .controller('ClientShowCtrl', function($scope, $stateParams, $ionicPopup, $window, $ionicSlideBoxDelegate,
-	orderByFilter, Client, Event, Ticket, ClientComment, Friendship) {
+	orderByFilter, Client, Event, Ticket, ClientComment, Friendship, user) {
 
 	$scope.ticketsByEvents = [];
 	$scope.arrivedCount = 0;
 	$scope.ticketsCount = 0;
+	$scope.user = user;
 
 	Client.show($stateParams.clientId).then(function(data){
 		$scope.client = data;
 	});
-	
-	$scope.getCurrentUser().then(function(curUser) {
-		if(curUser.role!='cashier'){
 
-			Friendship.index($stateParams.clientId).then(function(friends){
-				$scope.friends = friends;
-			})
+	if(user.role!='cashier'){
 
-			Ticket.index($stateParams.clientId).then(function(tickets) {
-				loadTickets(tickets);
-			});
+		Friendship.index($stateParams.clientId).then(function(friends){
+			$scope.friends = friends;
+		})
 
-			ClientComment.index($stateParams.clientId).then(function(responseData) {
-				$scope.comments = responseData;
-			});
-		}
-		else{
-			Ticket.currentEvent($stateParams.clientId).then(function(tickets){
-				$scope.tickets = tickets;
+		Ticket.index($stateParams.clientId).then(function(tickets) {
+			loadTickets(tickets);
+		});
 
-				$scope.clientArrived = false;
-				for(var i=0; i < tickets.length && !$scope.clientArrived; i++){
-					if (tickets[i].arrived)
-						$scope.clientArrived = true;
-				}
-			})
-		}	
-	});
+		ClientComment.index($stateParams.clientId).then(function(responseData) {
+			$scope.comments = responseData;
+		});
+	}
+	else{
+		Ticket.currentEvent($stateParams.clientId).then(function(tickets){
+			$scope.tickets = tickets;
+
+			$scope.clientArrived = false;
+			for(var i=0; i < tickets.length && !$scope.clientArrived; i++){
+				if (tickets[i].arrived)
+					$scope.clientArrived = true;
+			}
+		})
+	}	
 
 	function loadTickets(tickets){
 		$scope.ticketsCount = tickets.length;
@@ -99,7 +98,7 @@ angular.module('eventool.controllers')
 		myPopup.then(function(res) {
 			ClientComment.create($stateParams.clientId, {comment: res}).then(function(){
 				$scope.comments.push({ 
-					comment: res, created_at: new Date().toString(), user: $scope.curUser, newComment: true
+					comment: res, created_at: new Date().toString(), user: user, newComment: true
 				});
 				$scope.comments = orderByFilter($scope.comments, '-created_at');
 				$scope.client.newComment = '';
