@@ -1,36 +1,69 @@
-angular.module('eventool.controllers')
+(function() {
+	'use strict';
 
-.controller('UserShowCtrl', function($scope, $stateParams, $ionicPopup, $window, User, Event, orderByFilter) {
-	$scope.selectedEvent = {};
-	$scope.EventArrived = 0;
-	$scope.EventNotArrived = 0;
+	angular
+	.module('eventool.controllers')
+	.controller('UserShowCtrl', UserShowCtrl);
 
-	Event.index().then(function(events){
-		$scope.events = orderByFilter(events, '-when');
-		if ($scope.events.length > 0){
-			$scope.selectedEvent.id = $scope.events[0].id;
+	function UserShowCtrl($stateParams, User) {
+		var vm = this;
+
+		vm.arrivedAmount = 0;
+		vm.income = 0;
+		vm.user = {};
+		vm.ticketsAmount = 0;
+		vm.ticketsByEvents = [];
+
+		activate();
+
+		function activate() {
+			return getUser().then(function(user) {
+				getUserTickets(user);
+			})
 		}
-	});
 
-	User.show($stateParams.userId).then(function(responseData) {
-		$scope.user = responseData;
+		function getUser() {
+			return User.show($stateParams.userId).then(function(user) {
+				vm.user = user;		
+				return user;
+			})
+		}
 
-		User.getTickets(responseData).then(function(tickets){
-			$scope.tickets = tickets;
+		function getUserTickets(user) {
+			User.getTickets(user).then(function(tickets){
+				vm.ticketsAmount = tickets.length;
 
-			$scope.arrivedSum = 0;
-			$scope.income = 0;
-			for(i=0; i<$scope.tickets.length;i++){
-				if($scope.tickets[i].arrived){
-					$scope.arrivedSum++;
-					$scope.income += $scope.tickets[i].price.price;
+				for(var i=0; i<tickets.length;i++){
+					if(tickets[i].arrived){
+						vm.arrivedAmount++;
+					}
+
+					var event = findEventByName(tickets[i].event.name);
+					if ( event != -1 ){
+						vm.ticketsByEvents[event].tickets.push(tickets[i]);
+						vm.ticketsByEvents[event].arriveCount += tickets[i].arrived;	
+					}
+					else {
+						vm.ticketsByEvents.push({
+							tickets: [tickets[i]],
+							arriveCount: tickets[i].arrived,
+							when: tickets[i].event.when,
+							eventName: tickets[i].event.name
+						});	
+					}
 				}
+			})
+		}
+
+		function findEventByName(name){
+			var res = -1;
+			for(var i=0; i < vm.ticketsByEvents.length; i++){
+				if ( vm.ticketsByEvents[i].eventName == name )
+					return i;
 			}
-		});
-	});
+			return res;
+		}
 
-	$scope.eventPass = function(event) {
-		return (new Date(event.when)) < Date.now();
-	};
+	}
 
-})
+})();

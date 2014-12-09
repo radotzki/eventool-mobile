@@ -60,10 +60,7 @@ function stateConfig($stateProvider, $urlRouterProvider){
     url: "/app",
     abstract: true,
     templateUrl: "templates/session/menu.html",
-    controller: 'AppCtrl',
-    resolve: {
-      user: generalAuth
-    }
+    controller: 'AppCtrl'
   })
   .state('app.events', {
     url: "/events",
@@ -178,7 +175,7 @@ function stateConfig($stateProvider, $urlRouterProvider){
         templateUrl: "templates/clients/index.html",
         resolve: {
           user: generalAuth
-        }              
+        }             
       }
     }         
   })

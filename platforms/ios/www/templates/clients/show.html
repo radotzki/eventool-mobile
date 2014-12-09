@@ -1,6 +1,6 @@
 <ion-view title="Profile">
 <ion-nav-buttons side="right">
-<button class="button button-clear right" ui-sref="app.updateClient({ clientId:client.id })" ng-if="curUser.role!='cashier'">EDIT</button>
+<button class="button button-clear right" ui-sref="app.updateClient({ clientId:client.id })" ng-if="user.role!='cashier'">EDIT</button>
 </ion-nav-buttons>
 <ion-content class="has-header"> 
 
@@ -21,11 +21,11 @@
 			<span> {{client.phone_number}} </span>
 		</h4>
 
-		<div class="row" style="margin-top:10%" ng-if="curUser.role!='cashier'">
+		<div class="row" style="margin-top:10%" ng-if="user.role!='cashier'">
 			<div class="col" style="border-right:white solid thin">
 				<h4 style="color:#fff">
 					Tickets
-					<br> {{tickets.length}}
+					<br> {{ticketsCount}}
 				</h4>
 			</div>
 			<div class="col" style="border-right:white solid thin">
@@ -45,7 +45,7 @@
 	</div>
 </div>
 
-<ion-slide-box show-pager="false" ng-if="curUser.role!='cashier'">
+<ion-slide-box show-pager="false" ng-if="user.role!='cashier'">
 
 <ion-slide>
 <p style="padding-bottom: 10px; padding-top: 10px;" class="text-center">
@@ -56,7 +56,23 @@
 <a class="button button-block button-outline button-positive" ui-sref="app.createTicket({clientId:client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
 	Add Ticket
 </a>
+
 <div class="list">
+
+	<div class="item item-divider" ng-repeat-start="value in ticketsByEvents | orderBy: '-when'" ng-click="show=!show;" style="margin-bottom: 10px; text-align: center">
+		<p style="color:{{value.arriveCount?'green':'red'}}"> {{value.eventName}} </p>
+	</div>
+	<div ng-show="show" class="item" ng-repeat="ticket in value.tickets" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
+		<span> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</span>
+		<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
+		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
+	</div>
+
+	<div ng-repeat-end></div>
+
+</div>
+
+<!-- <div class="list">
 	<a class="item"
 	ng-repeat="ticket in tickets | orderBy:['-event.when', '-arrived']" 
 	collection-item-width="'100%'"
@@ -71,7 +87,7 @@
 		<p style="margin-bottom: 15px"> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
 	</div>
 </a>
-</div>
+</div> -->
 <div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;" ng-show="tickets.length==0">
 	Have no tickets 
 </div>
@@ -144,7 +160,7 @@ Have no friends
 </ion-slide>
 </ion-slide-box>
 
-<div ng-if="curUser.role=='cashier'">
+<div ng-if="user.role=='cashier'">
 	<div class="list" ng-show="!clientArrived">
 		<a class="item"
 		ng-repeat="ticket in tickets | orderBy:'price.price'" 

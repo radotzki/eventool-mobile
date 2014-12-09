@@ -1,6 +1,8 @@
 angular.module('eventool.controllers')
-.controller('AppCtrl', function($scope, user) {
+.controller('AppCtrl', function($scope, auth) {
 
-	$scope.user = user;
+	var user = auth.getUser();
+
+	$scope.user = user ? user.user : null;
 
 })

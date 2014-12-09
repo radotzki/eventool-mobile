@@ -1,6 +1,8 @@
 angular.module('eventool.controllers')
 
-.controller('ClientIndexCtrl', function($scope, $ionicViewService, Client) {
+.controller('ClientIndexCtrl', function($scope, $ionicViewService, Client, user) {
+
+	$scope.user = user;
 
 	if(localStorage["clients"]){
 		$scope.clients = JSON.parse(localStorage["clients"]);

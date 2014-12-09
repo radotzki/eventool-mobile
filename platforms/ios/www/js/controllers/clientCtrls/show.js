@@ -1,48 +1,74 @@
 angular.module('eventool.controllers')
 
 .controller('ClientShowCtrl', function($scope, $stateParams, $ionicPopup, $window, $ionicSlideBoxDelegate,
-	orderByFilter, Client, Event, Ticket, ClientComment, Friendship) {
+	orderByFilter, Client, Event, Ticket, ClientComment, Friendship, user) {
+
+	$scope.ticketsByEvents = [];
+	$scope.arrivedCount = 0;
+	$scope.ticketsCount = 0;
+	$scope.user = user;
 
 	Client.show($stateParams.clientId).then(function(data){
 		$scope.client = data;
 	});
-	
-	$scope.getCurrentUser().then(function(curUser) {
-		if(curUser.role!='cashier'){
 
-			Friendship.index($stateParams.clientId).then(function(friends){
-				$scope.friends = friends;
-			})
+	if(user.role!='cashier'){
 
-			Ticket.index($stateParams.clientId).then(function(tickets) {
-				$scope.tickets = tickets;
+		Friendship.index($stateParams.clientId).then(function(friends){
+			$scope.friends = friends;
+		})
 
-				$scope.arrivedCount = 0;
-				for(i=0; i<tickets.length;i++){
-					if(tickets[i].arrived){
-						$scope.arrivedCount++;
-					}
-				}
-			});
+		Ticket.index($stateParams.clientId).then(function(tickets) {
+			loadTickets(tickets);
+		});
 
-			ClientComment.index($stateParams.clientId).then(function(responseData) {
-				$scope.comments = responseData;
-			});
+		ClientComment.index($stateParams.clientId).then(function(responseData) {
+			$scope.comments = responseData;
+		});
+	}
+	else{
+		Ticket.currentEvent($stateParams.clientId).then(function(tickets){
+			$scope.tickets = tickets;
+
+			$scope.clientArrived = false;
+			for(var i=0; i < tickets.length && !$scope.clientArrived; i++){
+				if (tickets[i].arrived)
+					$scope.clientArrived = true;
+			}
+		})
+	}	
+
+	function loadTickets(tickets){
+		$scope.ticketsCount = tickets.length;
+		for(var i=0; i<tickets.length;i++){
+			if(tickets[i].arrived){
+				$scope.arrivedCount++;
+			}
+
+			var event = findEventByName(tickets[i].event.name);
+			if ( event != -1 ){
+				$scope.ticketsByEvents[event].tickets.push(tickets[i]);
+				$scope.ticketsByEvents[event].arriveCount += tickets[i].arrived;	
+			}
+			else {
+				$scope.ticketsByEvents.push({
+					tickets: [tickets[i]],
+					arriveCount: tickets[i].arrived,
+					when: tickets[i].event.when,
+					eventName: tickets[i].event.name
+				});	
+			}
 		}
-		else{
-			Ticket.currentEvent($stateParams.clientId).then(function(tickets){
-				$scope.tickets = tickets;
+	}
 
-				$scope.clientArrived = false;
-				for(var i=0; i < tickets.length && !$scope.clientArrived; i++){
-					if (tickets[i].arrived)
-						$scope.clientArrived = true;
-				}
-			})
-		}	
-	});
-
-	
+	function findEventByName(name){
+		var res = -1;
+		for(var i=0; i < $scope.ticketsByEvents.length; i++){
+			if ( $scope.ticketsByEvents[i].eventName == name )
+				return i;
+		}
+		return res;
+	}
 
 	$scope.eventPass = function(event) {
 		return (new Date(event.when)) < Date.now();
@@ -72,7 +98,7 @@ angular.module('eventool.controllers')
 		myPopup.then(function(res) {
 			ClientComment.create($stateParams.clientId, {comment: res}).then(function(){
 				$scope.comments.push({ 
-					comment: res, created_at: new Date().toString(), user: $scope.curUser, newComment: true
+					comment: res, created_at: new Date().toString(), user: user, newComment: true
 				});
 				$scope.comments = orderByFilter($scope.comments, '-created_at');
 				$scope.client.newComment = '';
@@ -85,17 +111,6 @@ angular.module('eventool.controllers')
 			$scope.comments.splice(index, 1);
 		});
 	};
-
-	$scope.ticketsCountForEvent = function(tickets, eventId) {
-		var count =0;
-		if(tickets) {
-			for(var i=0; i<tickets.length; i++) {
-				if (tickets[i].event.id == eventId) 
-					count++;
-			}
-		}
-		return count;
-	}
 
 	$scope.slideTo = function(index){
 		$ionicSlideBoxDelegate.slide(index);
