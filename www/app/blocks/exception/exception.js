@@ -34,6 +34,9 @@
             } else if ( error.status === 499 ) {
                 errorMsg = error.data;
                 $state.go('app.login', null, {reload: true});
+            } else if ( error.status === 500 ) {
+                errorMsg = 'Opps. something went wrong.';
+                $state.go('app.login', null, {reload: true});
             }
         }
 
