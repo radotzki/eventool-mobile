@@ -5,7 +5,7 @@
 <ion-content class="has-header"> 
 
 <div style="position: relative;">
-	<img src="img/clientCover.jpg" style="height: 300px;width: 100%; ">   
+	<img src="content/img/clientCover.jpg" style="height: 300px;width: 100%; ">   
 
 	<div class="text-center" style="position: absolute; top: 0px; height: 300px; width: 100%; background: rgba(68, 68, 68, 0.7)">
 		<h1 style="color:#fff; margin-top:20%"> {{client.name}}</h1>
@@ -104,7 +104,7 @@
 </a>
 <div class="list">
 	<a class="item item-avatar" ng-repeat="comment in comments | orderBy:'-created_at'" style="border: none;">
-		<img src="img/avatar.jpg">
+		<img src="content/img/avatar.jpg">
 		<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
 			<h2>{{comment.user.first_name}} {{comment.user.last_name}}</h2>
 			<p style="color: black; margin-bottom: 5px; margin-top: 5px;">{{comment.comment}}</p>
@@ -132,7 +132,7 @@ Have no comments
 </a>
 <div class="list">
 	<a class="item item-avatar" ng-repeat="friend in friends | orderBy:'first_name'" style="border: none;">
-		<img src="img/avatar.jpg">
+		<img src="content/img/avatar.jpg">
 		<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
 			<span ng-if="friend.client_two.id==client.id">
 				<h2 style="" ui-sref="app.showClient({ clientId:friend.client_one.id })">
