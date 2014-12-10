@@ -1,34 +1,60 @@
-angular.module('eventool.clients')
+(function() {
+	'use strict';
 
-.controller('ClientIndexCtrl', function($scope, $ionicViewService, user, datacontext) {
+	angular
+	.module('eventool.clients')
+	.controller('IndexClients', IndexClients);
 
-	$scope.user = user;
+	/* @ngInject */
+	function IndexClients($ionicViewService, user, datacontext, common) {
+		/*jshint validthis: true */
+		var vm = this;
 
-	if(localStorage["clients"]){
-		$scope.clients = JSON.parse(localStorage["clients"]);
+		vm.clients = [];
+		vm.loading = false;
+		vm.user = user;
+		vm.refresh = refresh;
+
+		activate();
+
+		function activate() {
+			vm.loading = true;
+			return getClients().then(function() {
+				vm.loading = false;
+			});
+		}
+
+		function getClients() {
+			return datacontext.client.index().then(function(data){
+				vm.clients = data;
+				localStorage["clients"] = JSON.stringify(data);
+				return vm.clients;
+			});
+		}
+
+		function refresh() {
+			return getClients().then(function() {
+				common.$broadcast('scroll.refreshComplete');
+			});
+		}
+
+		$ionicViewService.clearHistory();
 	}
-	else{
-		$scope.loading = true;
-		datacontext.client.index().then(function(data){
-			$scope.clients = data;
-			localStorage["clients"] = JSON.stringify(data);
-			$scope.loading = false;
-		});
-	}
+})();
 
-	datacontext.client.index().then(function(data){
-		localStorage["clients"] = JSON.stringify(data);
-	});
+		// if(localStorage["clients"]){
+		// 	vm.clients = JSON.parse(localStorage["clients"]);
+		// }
+		// else{
+		// 	vm.loading = true;
+		// 	datacontext.client.index().then(function(data){
+		// 		vm.clients = data;
+		// 		localStorage["clients"] = JSON.stringify(data);
+		// 		vm.loading = false;
+		// 	});
+		// }
 
-	$scope.doRefresh = function(){
-		datacontext.client.index().then(function(data){
-			$scope.clients = data;
-			localStorage["clients"] = JSON.stringify(data);
-			$scope.$broadcast('scroll.refreshComplete');
-		});
-	}
+		// datacontext.client.index().then(function(data){
+		// 	localStorage["clients"] = JSON.stringify(data);
+		// });
 
-	// This a temporary solution to solve an issue where the back button is displayed when it should not be.
- 	// This is fixed in the nightly ionic build so the next release should fix the issue
- 	$ionicViewService.clearHistory();
- })

@@ -6,16 +6,27 @@
   .factory('auth', auth);
 
   /* @ngInject */
-  function auth($q, Restangular) {
+  function auth($q, Restangular, exception) {
     var userInfo;
     var deferred;
+    
     var service = {
       login: login,
       logout: logout,
-      getUser: getUser
+      getUser: getUser,
+      stateAuth: stateAuth
     };
     
     init();
+    return service;
+
+    function stateAuth(howCan) {
+      if (userInfo && howCan.indexOf(userInfo.user.role) != -1) {
+        return $q.when(userInfo.user);
+      } else {
+        return $q.reject({ authenticated: false });
+      }
+    }
 
     function login(user) {
       deferred = $q.defer();
@@ -35,6 +46,7 @@
     }
 
     function errorLogin (error) {
+      exception.xhrCatcher("Error login", error);
       deferred.reject(error);
     }
 
@@ -55,7 +67,6 @@
       }
     }
 
-    return service;
   }
 })();
 

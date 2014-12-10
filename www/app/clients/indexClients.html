@@ -2,28 +2,28 @@
 <ion-nav-buttons side="left">
 <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 </ion-nav-buttons>
-<ion-nav-buttons side="right" ng-if="user.role!='cashier'">
+<ion-nav-buttons side="right" ng-if="vm.user.role!='cashier'">
 <button class="button button-clear  icon ion-plus-round right" ui-sref="app.createClient"></button>
 </ion-nav-buttons>
 <ion-content class="has-header" >
 <ion-refresher
 pulling-text="Pull to refresh..."
-on-refresh="doRefresh()">
+on-refresh="vm.refresh()">
 </ion-refresher>
 
 <label class="item item-input">
 	<i class="icon ion-search placeholder-icon"></i>
-	<input type="text" placeholder="Search" ng-model="searchParam">
+	<input type="text" placeholder="Search" ng-model="vm.searchParam">
 </label>
 
-<div class="loading" ng-show="loading">
+<div class="loading" ng-show="vm.loading">
 	<i class="icon ion-looping" style="font-size:30px"></i>
 </div>
 
 <div class="list">
 	<div class="item item-avatar"
 	style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;"
-	ng-repeat="client in clients | orderBy:'first_name' | filter:searchParam"
+	ng-repeat="client in vm.clients | orderBy:'first_name' | filter:vm.searchParam"
 	collection-item-width="'100%'"
 	collection-item-height="60"
 	ui-sref="app.showClient({ clientId:client.id })">

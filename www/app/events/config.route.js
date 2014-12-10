@@ -6,16 +6,6 @@
 	.config(stateConfig);
 
 	/* @ngInject */
-	function generalAuth($q, auth) {
-		var user = auth.getUser();
-		if (user) {
-			return $q.when(user.user);
-		} else {
-			return $q.reject({ authenticated: false });
-		}
-	}
-
-	/* @ngInject */
 	function stateConfig($stateProvider){
 		$stateProvider
 
@@ -26,7 +16,9 @@
 					controller:  "EventIndexCtrl",
 					templateUrl: "app/events/indexEvents.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer', 'promoter']);
+						}]
 					}
 				}
 			}         
@@ -38,7 +30,9 @@
 					controller:  "EventShowCtrl",
 					templateUrl: "app/events/showEvent.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer', 'promoter']);
+						}]
 					}            
 				}
 			}          
@@ -50,7 +44,9 @@
 					controller:  "EventCreateCtrl",
 					templateUrl: "app/events/createEvent.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer']);
+						}]
 					}             
 				}
 			}          
@@ -62,7 +58,9 @@
 					controller:  "EventUpdateCtrl",
 					templateUrl: "app/events/editEvent.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer']);
+						}]
 					}              
 				}
 			}          
@@ -74,7 +72,9 @@
 					controller:  "EventDeleteCtrl",
 					templateUrl: "app/events/delete.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer']);
+						}]
 					}              
 				}
 			}          

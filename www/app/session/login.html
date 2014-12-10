@@ -11,11 +11,14 @@
   <label class="item item-input">
     <input type="password" placeholder="Password" ng-model="vm.user.password" required>
   </label>
-  <p>{{vm.message}}</p>
   <button class="button button-outline button-positive button-block" ng-click="vm.login()">Login</button>
 </div>
 
 </ion-content>
+
+<div class="error-msg" ng-show="vm.message">
+  <p>{{vm.message}}</p>
+</div>
 
 <div class="tabs tabs-positive">
   <a class="tab-item" ui-sref="app.createUser">

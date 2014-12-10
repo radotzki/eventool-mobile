@@ -6,7 +6,8 @@
 	.factory('repository.friendship', RepositoryFriendship);
 
 	/* @ngInject */
-	function RepositoryFriendship(Restangular) {
+	function RepositoryFriendship(Restangular, AbstractRepository) {
+		var abstract = AbstractRepository;
 
 		var service = {
 			index: index,
@@ -17,15 +18,15 @@
 
 
 		function index(clientId) {
-			return Restangular.one('clients', clientId).getList('friends');
+			return Restangular.one('clients', clientId).getList('friends').then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 		function create(clientId, clientTwoId) {
-			return Restangular.one('clients', clientId).post("friends", {client_two_id: clientTwoId});
+			return Restangular.one('clients', clientId).post("friends", {client_two_id: clientTwoId}).then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 		function remove(clientId, friendId) {
-			return Restangular.one("clients", clientId).one("friends", friendId).customDELETE();
+			return Restangular.one("clients", clientId).one("friends", friendId).customDELETE().then(abstract.querySucceed, abstract.queryFailed);
 		};	
 
 	}

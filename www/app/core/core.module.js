@@ -9,7 +9,7 @@
         /*
          * Our reusable cross app code modules
          */
-        // 'blocks.exception', 'blocks.logger', 'blocks.router',
+         'blocks.logger', 'blocks.exception',
         /*
          * 3rd Party modules
          */

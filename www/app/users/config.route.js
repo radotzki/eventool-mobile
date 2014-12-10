@@ -6,16 +6,6 @@
 	.config(stateConfig);
 
 	/* @ngInject */
-	function generalAuth($q, auth) {
-		var user = auth.getUser();
-		if (user) {
-			return $q.when(user.user);
-		} else {
-			return $q.reject({ authenticated: false });
-		}
-	}
-
-	/* @ngInject */
 	function stateConfig($stateProvider){
 		$stateProvider
 
@@ -26,7 +16,9 @@
 					controller:  "UserIndexCtrl",
 					templateUrl: "app/users/indexUsers.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer']);
+						}]
 					}              
 				}
 			}         
@@ -38,7 +30,9 @@
 					controller:  "UserShowCtrl as vm",
 					templateUrl: "app/users/showUser.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer']);
+						}]
 					}              
 				}
 			}         
@@ -50,7 +44,9 @@
 					controller:  "UserUpdateCtrl",
 					templateUrl: "app/users/editUser.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer']);
+						}]
 					}              
 				}
 			}         

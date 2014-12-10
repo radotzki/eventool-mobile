@@ -6,27 +6,20 @@
 	.config(stateConfig);
 
 	/* @ngInject */
-	function generalAuth($q, auth) {
-		var user = auth.getUser();
-		if (user) {
-			return $q.when(user.user);
-		} else {
-			return $q.reject({ authenticated: false });
-		}
-	}
-
-	/* @ngInject */
 	function stateConfig($stateProvider){
+
 		$stateProvider
 
 		.state('app.clients', {
 			url: "/clients",
 			views: {
 				'menuContent' :{
-					controller:  "ClientIndexCtrl",
+					controller:  "IndexClients as vm",
 					templateUrl: "app/clients/indexClients.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer', 'promoter', 'cashier']);
+						}]
 					}             
 				}
 			}         
@@ -38,7 +31,9 @@
 					controller:  "ClientShowCtrl",
 					templateUrl: "app/clients/showClient.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer', 'promoter', 'cashier']);
+						}]
 					}              
 				}
 			}         
@@ -50,7 +45,9 @@
 					controller:  "ClientCreateCtrl",
 					templateUrl: "app/clients/createClient.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer', 'promoter', 'cashier']);
+						}]
 					}              
 				}
 			}         
@@ -62,7 +59,9 @@
 					controller:  "ClientUpdateCtrl",
 					templateUrl: "app/clients/editClient.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer', 'promoter']);
+						}]
 					}              
 				}
 			}         

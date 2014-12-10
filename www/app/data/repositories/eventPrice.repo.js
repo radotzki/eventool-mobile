@@ -6,7 +6,8 @@
 	.factory('repository.eventPrice', RepositoryEventPrice);
 
 	/* @ngInject */
-	function RepositoryEventPrice(Restangular) {
+	function RepositoryEventPrice(Restangular, AbstractRepository) {
+		var abstract = AbstractRepository;
 
 		var service = {
 			index: index,
@@ -19,23 +20,23 @@
 
 
 		function index(eventId) {
-			return Restangular.one('events', eventId).getList('prices');
+			return Restangular.one('events', eventId).getList('prices').then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 		function show(eventId, priceId) {
-			return Restangular.one('events', eventId).one('prices', priceId).get();
+			return Restangular.one('events', eventId).one('prices', priceId).get().then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 		function create(eventId, params) {
-			return Restangular.one('events', eventId).post("prices", params);
+			return Restangular.one('events', eventId).post("prices", params).then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 		function update(entity) {
-			return entity.put();
+			return entity.put().then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 		function remove(entity) {
-			return entity.remove();
+			return entity.remove().then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 	}

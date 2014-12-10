@@ -6,16 +6,6 @@
 	.config(stateConfig);
 
 	/* @ngInject */
-	function generalAuth($q, auth) {
-		var user = auth.getUser();
-		if (user) {
-			return $q.when(user.user);
-		} else {
-			return $q.reject({ authenticated: false });
-		}
-	}
-
-	/* @ngInject */
 	function stateConfig($stateProvider){
 		$stateProvider
 
@@ -26,7 +16,9 @@
 					controller:  "SelectNewFriendCtrl",
 					templateUrl: "app/friendships/createFriendship.html",
 					resolve: {
-						user: generalAuth
+						user: ['auth', function(auth) {
+							return auth.stateAuth(['producer', 'promoter']);
+						}]
 					}              
 				}
 			}         

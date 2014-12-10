@@ -3,9 +3,7 @@
 
 	angular
 	.module('eventool.core')
-
 	.run(ionicReady)
-
 	.run(stateChangeError)
 	
 	/* @ngInject */
@@ -18,10 +16,12 @@
 	}
 
 	/* @ngInject */
-	function stateChangeError($rootScope, $state){
+	function stateChangeError($rootScope, exception){
 		$rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
 			if ( !error.authenticated ) {
-				$state.go("app.login");
+				exception.xhrCatcher('You are not allowed to see this.', {status: 403});
+			} else {
+				console.log("else!");
 			}
 		});
 	}

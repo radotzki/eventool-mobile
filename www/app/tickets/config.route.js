@@ -6,16 +6,6 @@
 	.config(stateConfig);
 
 	/* @ngInject */
-	function generalAuth($q, auth) {
-		var user = auth.getUser();
-		if (user) {
-			return $q.when(user.user);
-		} else {
-			return $q.reject({ authenticated: false });
-		}
-	}
-
-	/* @ngInject */
 	function stateConfig($stateProvider){
 		$stateProvider
 
@@ -27,7 +17,9 @@
         controller:  "TicketShowCtrl",
         templateUrl: "app/tickets/showTicket.html",
         resolve: {
-          user: generalAuth
+          user: ['auth', function(auth) {
+              return auth.stateAuth(['producer', 'promoter', 'cashier']);
+            }]
         }              
       }
     }         
@@ -39,7 +31,9 @@
         controller:  "TicketCreateCtrl",
         templateUrl: "app/tickets/createTicket.html",
         resolve: {
-          user: generalAuth
+          user: ['auth', function(auth) {
+              return auth.stateAuth(['producer', 'promoter']);
+            }]
         }              
       }
     }         
@@ -51,7 +45,9 @@
         controller:  "TicketUpdateCtrl",
         templateUrl: "app/tickets/editTicket.html",
         resolve: {
-          user: generalAuth
+          user: ['auth', function(auth) {
+              return auth.stateAuth(['producer', 'promoter']);
+            }]
         }              
       }
     }         

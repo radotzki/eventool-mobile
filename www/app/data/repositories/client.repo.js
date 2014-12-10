@@ -6,8 +6,9 @@
 	.factory('repository.client', RepositoryClient);
 
 	/* @ngInject */
-	function RepositoryClient(Restangular) {
+	function RepositoryClient(Restangular, AbstractRepository) {
 		var base = Restangular.all('clients');
+		var abstract = AbstractRepository;
 
 		var service = {
 			index: index,
@@ -21,31 +22,31 @@
 		return service;
 
 		function index() {
-			return base.getList();
+			return base.getList().then(abstract.querySucceed, abstract.queryFailed);
 		}
 
 		function show(id) {
-			return base.get(id);
+			return base.get(id).then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 		function create(params) {
-			return base.post(params);
+			return base.post(params).then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 		function update(entity) {
-			return entity.put();
+			return entity.put().then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 		function remove(entity) {
-			return entity.remove();
+			return entity.remove().then(abstract.querySucceed, abstract.queryFailed);
 		};	
 
 		function search (param) {
-			return base.customGETLIST('search', param);
+			return base.customGETLIST('search', param).then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 		function inEvent (clientId, eventId) {
-			return Restangular.one("clients", clientId).one("in_event", eventId).get();
+			return Restangular.one("clients", clientId).one("in_event", eventId).get().then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 	}
