@@ -9,5 +9,6 @@
   "android_keystore": "",
   "android_keystore_alias": "",
   "android_keystore_password": "",
-  "android_key_password": ""
+  "android_key_password": "",
+  "gulpStartupTasks": ["watch"]
 }
