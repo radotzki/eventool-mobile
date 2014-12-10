@@ -1,6 +1,6 @@
-angular.module('eventool.directives')
+angular.module('eventool.widgets')
 
-.directive('myDateTimePicker', function ($ionicPopup) {
+.directive('myDatePicker', function ($ionicPopup) {
   return {
     restrict: 'E',
     template: '<input class="my-date-time-picker" type="text" readonly="readonly" ng-model="formatted_datetime" ng-click="popup()" placeholder="{{placeholder}}">',
@@ -15,7 +15,7 @@ angular.module('eventool.directives')
  
       $scope.popup = function() {
         $ionicPopup.show({
-          template: '<div class="my-date-time-picker"><datetimepicker data-ng-model="tmp.newDate"></datetimepicker></div>',
+          templateUrl: 'app/widgets/datePicker.html',
           title: $scope.title,
           scope: $scope,
           buttons: [
@@ -26,7 +26,7 @@ angular.module('eventool.directives')
               onTap: function(e) {
                 //$scope.$apply(function() { //error: apply already in progress
                   $scope.dateModel = $scope.tmp.newDate;
-                  $scope.formatted_datetime = $filter('date')($scope.tmp.newDate, 'dd/MM/yyyy HH:mm');
+                  $scope.formatted_datetime = $filter('date')($scope.tmp.newDate, 'MMM dd, yyyy');
                 //});
               }
             } 
@@ -35,4 +35,4 @@ angular.module('eventool.directives')
       }; 
     }
   };
-})
+});

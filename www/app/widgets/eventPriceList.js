@@ -1,9 +1,9 @@
-angular.module('eventool.directives')
+angular.module('eventool.widgets')
 
 .directive('eventPriceList', function () {
   return {
     restrict: 'E',
-    templateUrl: 'templates/directives/eventPriceList.html',
+    templateUrl: 'app/widgets/eventPriceList.html',
     scope: {
       'prices': '='
     },

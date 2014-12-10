@@ -1,8 +1,6 @@
 (function() {
 	'use strict';
 
-	angular.module('eventool.directives', []);
-
 	angular.module('eventool', [
         /*
          * Everybody has access to these.
@@ -10,6 +8,8 @@
          * but this is easier to maintain.
          */ 
          'eventool.core',
+         'eventool.data',
+         'eventool.widgets',
 
         /*
          * Feature areas
@@ -20,10 +20,8 @@
          'eventool.users',
          'eventool.events',
          'eventool.tickets',
-         'eventool.friendship',
-         'eventool.data',
-
-         'eventool.directives'
+         'eventool.friendship'
+         
          ]);
 
 })();
