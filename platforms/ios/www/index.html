@@ -31,16 +31,50 @@
 
 
     <!-- module:js -->
+    <script src="app/app.module.js"></script>
+    <script src="app/clients/clients.module.js"></script>
+    <script src="app/events/events.module.js"></script>
+    <script src="app/core/core.module.js"></script>
+    <script src="app/friendships/friendships.module.js"></script>
+    <script src="app/layout/layout.module.js"></script>
+    <script src="app/session/session.module.js"></script>
+    <script src="app/tickets/tickets.module.js"></script>
+    <script src="app/users/users.module.js"></script>
     <!-- endinject -->  
 
     <!-- inject:js -->
-    <script src="app/js/app.js"></script>
-    <script src="app/js/app.config.js"></script>
-    
+    <script src="app/clients/config.route.js"></script>
+    <script src="app/clients/createClient.js"></script>
+    <script src="app/clients/editClient.js"></script>
+    <script src="app/clients/indexClients.js"></script>
+    <script src="app/clients/showClient.js"></script>
+    <script src="app/core/config.js"></script>
+    <script src="app/core/constants.js"></script>
+    <script src="app/core/run.js"></script>
+    <script src="app/events/config.route.js"></script>
+    <script src="app/events/createEvent.js"></script>
+    <script src="app/events/delete.js"></script>
+    <script src="app/events/editEvent.js"></script>
+    <script src="app/events/indexEvents.js"></script>
+    <script src="app/events/showEvent.js"></script>
+    <script src="app/friendships/config.route.js"></script>
+    <script src="app/friendships/createFriendship.js"></script>
+    <script src="app/layout/config.route.js"></script>
+    <script src="app/layout/shell.js"></script>
     <script src="app/session/authSvc.js"></script>
+    <script src="app/session/config.route.js"></script>
     <script src="app/session/login.js"></script>
     <script src="app/session/logout.js"></script>
-    <script src="app/session/signup.js"></script>
+    <script src="app/session/productionSignup.js"></script>
+    <script src="app/session/userSignup.js"></script>
+    <script src="app/tickets/config.route.js"></script>
+    <script src="app/tickets/createTicket.js"></script>
+    <script src="app/tickets/editTicket.js"></script>
+    <script src="app/tickets/showTicket.js"></script>
+    <script src="app/users/config.route.js"></script>
+    <script src="app/users/editUser.js"></script>
+    <script src="app/users/indexUsers.js"></script>
+    <script src="app/users/showUser.js"></script>
     <script src="app/js/services/clientCommentSvc.js"></script>
     <script src="app/js/services/clientFriendshipSvc.js"></script>
     <script src="app/js/services/clientSvc.js"></script>
@@ -53,25 +87,6 @@
     <script src="app/js/directives/datePicker.js"></script>
     <script src="app/js/directives/dateTimePicker.js"></script>
     <script src="app/js/directives/eventPriceList.js"></script>
-    <script src="app/js/controllers/clientCtrls/create.js"></script>
-    <script src="app/js/controllers/clientCtrls/index.js"></script>
-    <script src="app/js/controllers/clientCtrls/show.js"></script>
-    <script src="app/js/controllers/clientCtrls/update.js"></script>
-    <script src="app/js/controllers/eventCtrls/create.js"></script>
-    <script src="app/js/controllers/eventCtrls/delete.js"></script>
-    <script src="app/js/controllers/eventCtrls/index.js"></script>
-    <script src="app/js/controllers/eventCtrls/show.js"></script>
-    <script src="app/js/controllers/eventCtrls/update.js"></script>
-    <script src="app/js/controllers/productionCtrls/create.js"></script>
-    <script src="app/js/controllers/friendshipCtrls/selectNewFriend.js"></script>
-    <script src="app/js/controllers/sessionCtrls/appCtrl.js"></script>
-    <script src="app/js/controllers/ticketCtrls/create.js"></script>
-    <script src="app/js/controllers/ticketCtrls/show.js"></script>
-    <script src="app/js/controllers/ticketCtrls/update.js"></script>
-    <script src="app/js/controllers/userCtrls/create.js"></script>
-    <script src="app/js/controllers/userCtrls/index.js"></script>
-    <script src="app/js/controllers/userCtrls/show.js"></script>
-    <script src="app/js/controllers/userCtrls/update.js"></script>
     <!-- endinject -->  
 
 </head>

@@ -812,3 +812,17 @@ You could find it at the following address https://developer.apple.com/icloud/do
 2014-12-10 10:57:21.904 Eventool[1695:29786] [CDVTimer][TotalPluginStartup] 99.135995ms
 2014-12-10 10:57:21.992 Eventool[1695:29786] Resetting plugins due to page load.
 2014-12-10 10:57:22.290 Eventool[1695:29786] Finished load of: file:///Users/Itay/Library/Developer/CoreSimulator/Devices/13E968E3-CDF9-466E-8EEE-C362A5F77A32/data/Containers/Bundle/Application/A7E55238-F400-40E2-9630-997AD466ED3D/Eventool.app/www/index.html#/app/clients
+2014-12-10 13:49:39.859 Eventool[2778:81299] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Itay/Library/Developer/CoreSimulator/Devices/13E968E3-CDF9-466E-8EEE-C362A5F77A32/data/Containers/Data/Application/339A43DC-3AA2-4376-AF18-7F12758DE5B8/Library/Cookies/Cookies.binarycookies
+2014-12-10 13:49:39.955 Eventool[2778:81299] Multi-tasking -> Device: YES, App: YES
+2014-12-10 13:49:39.977 Eventool[2778:81299] Unlimited access to network resources
+2014-12-10 13:49:39.981 Eventool[2778:81299] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2014-12-10 13:49:40.463 Eventool[2778:81299] [CDVTimer][statusbar] 78.212023ms
+2014-12-10 13:49:40.463 Eventool[2778:81299] [CDVTimer][TotalPluginStartup] 78.438044ms
+2014-12-10 13:49:40.548 Eventool[2778:81299] Resetting plugins due to page load.
+2014-12-10 13:49:40.904 Eventool[2778:81299] Finished load of: file:///Users/Itay/Library/Developer/CoreSimulator/Devices/13E968E3-CDF9-466E-8EEE-C362A5F77A32/data/Containers/Bundle/Application/95D2EEC4-BFF3-4398-88A6-22A7243878C3/Eventool.app/www/index.html#/app/clients
