@@ -1,25 +1,25 @@
 angular.module('eventool.friendship')
 
-.controller('SelectNewFriendCtrl', function($scope, $stateParams, $window, Client, Friendship) {
+.controller('SelectNewFriendCtrl', function($scope, $stateParams, $window, datacontext) {
 
 	if(localStorage["clients"]){
 		$scope.clients = JSON.parse(localStorage["clients"]);
 	}
 	else{
 		$scope.loading = true;
-		Client.index().then(function(data){
+		datacontext.client.index().then(function(data){
 			$scope.clients = data;
 			localStorage["clients"] = JSON.stringify(data);
 			$scope.loading = false;
 		});
 	}
 
-	Client.index().then(function(data){
+	datacontext.client.index().then(function(data){
 		localStorage["clients"] = JSON.stringify(data);
 	});
 
 	$scope.doRefresh = function(){
-		Client.index().then(function(data){
+		datacontext.client.index().then(function(data){
 			$scope.clients = data;
 			localStorage["clients"] = JSON.stringify(data);
 			$scope.$broadcast('scroll.refreshComplete');
@@ -27,7 +27,7 @@ angular.module('eventool.friendship')
 	}
 
 	$scope.choose = function(client){
-		Friendship.create($stateParams.clientId, client.id).then(function(){
+		datacontext.friendship.create($stateParams.clientId, client.id).then(function(){
 			$window.history.back();
 		})
 	}

@@ -1,8 +1,8 @@
 angular.module('eventool.session')
-.controller('UserCreateCtrl', function($scope, $window, Production, User, $ionicPopup) {
+.controller('UserCreateCtrl', function($scope, $window, datacontext, $ionicPopup) {
 	$scope.user = {};
 
-	Production.index().then(function(responseData) {
+	datacontext.production.index().then(function(responseData) {
 		$scope.productions = responseData;
 	});
 
@@ -16,7 +16,7 @@ angular.module('eventool.session')
 			role: $scope.user.role
 		};
 
-		User.create(userParams).then(function() {
+		datacontext.user.create(userParams).then(function() {
 			var alertPopup = $ionicPopup.alert({
 				title: 'User created',
 				template: 'You need to wait for your producer to unlock your user.'

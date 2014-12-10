@@ -1,12 +1,12 @@
 angular.module('eventool.clients')
 
-.controller('ClientUpdateCtrl', function($scope, $stateParams, $window, $ionicPopup,  Client) {
-	Client.show($stateParams.clientId).then(function(data){
+.controller('ClientUpdateCtrl', function($scope, $stateParams, $window, $ionicPopup,  datacontext) {
+	datacontext.client.show($stateParams.clientId).then(function(data){
 		$scope.client = data;
 	});
 
 	$scope.updateClient = function() {
-		Client.update($scope.client).then(function(res){
+		datacontext.client.update($scope.client).then(function(res){
 			var alertPopup = $ionicPopup.alert({
 				title: 'Client saved!'
 			});
@@ -24,7 +24,7 @@ angular.module('eventool.clients')
 		});
 		confirmPopup.then(function(res) {
 			if(res) {
-				Client.delete($scope.client);
+				datacontext.client.remove($scope.client);
 				$window.history.back();
 			}
 		});

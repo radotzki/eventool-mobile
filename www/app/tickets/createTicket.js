@@ -1,8 +1,8 @@
 angular.module('eventool.tickets')
 
-.controller('TicketCreateCtrl', function($scope, $stateParams, $state, $ionicPopup, $window, orderByFilter, Ticket, Event, EventPrice) {
+.controller('TicketCreateCtrl', function($scope, $stateParams, $state, $ionicPopup, $window, orderByFilter, datacontext) {
 
-	Event.index().then(function(events){
+	datacontext.event.index().then(function(events){
 		$scope.events = orderByFilter(events, '-when');
 
 		if ($scope.events.length > 0){
@@ -13,7 +13,7 @@ angular.module('eventool.tickets')
 				}
 			}
 
-			Ticket.index($stateParams.clientId).then(function(tickets) {
+			datacontext.ticket.index($stateParams.clientId).then(function(tickets) {
 				$scope.tickets = tickets;
 
 				for(var i=0; i<$scope.tickets.length; i++) {
@@ -33,7 +33,7 @@ angular.module('eventool.tickets')
 	});
 
 	$scope.getPrices = function(selectedEvent) {
-		EventPrice.index(selectedEvent).then(function(prices) {
+		datacontext.eventPrice.index(selectedEvent).then(function(prices) {
 			$scope.prices = orderByFilter(prices, 'price');
 		});
 	};
@@ -43,7 +43,7 @@ angular.module('eventool.tickets')
 	};
 
 	$scope.createTicket = function(eventId, priceId) {
-		Ticket.create($stateParams.clientId, {event_id: eventId, event_price_id: priceId}).then(function(res){
+		datacontext.ticket.create($stateParams.clientId, {event_id: eventId, event_price_id: priceId}).then(function(res){
 			var alertPopup = $ionicPopup.alert({
 				title: 'ticket created! '
 			});

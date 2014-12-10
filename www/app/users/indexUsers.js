@@ -1,7 +1,7 @@
 angular.module('eventool.users')
 
-.controller('UserIndexCtrl', function($scope, $ionicPopup, $state, User) {
-	User.index().then(function(responseData) {
+.controller('UserIndexCtrl', function($scope, $ionicPopup, $state, datacontext) {
+	datacontext.user.index().then(function(responseData) {
 		$scope.users = responseData;
 	});
 
@@ -13,7 +13,7 @@ angular.module('eventool.users')
 		});
 		confirmPopup.then(function(res) {
 			if(res) {
-				User.unlock(user);
+				datacontext.user.unlock(user);
 				$state.go('.', {}, { reload: true });
 			}
 		});

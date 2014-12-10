@@ -1,8 +1,8 @@
 angular.module('eventool.tickets')
 
-.controller('TicketShowCtrl', function($scope, $stateParams, $ionicPopup, $state, $window, Ticket, Client, user) {
+.controller('TicketShowCtrl', function($scope, $stateParams, $ionicPopup, $state, $window, datacontext, user) {
 
-	Ticket.show($stateParams.clientId, $stateParams.ticketId).then(function(data){
+	datacontext.ticket.show($stateParams.clientId, $stateParams.ticketId).then(function(data){
 		$scope.ticket = data;
 
 		$scope.eventPass = eventPass($scope.ticket.event.when);

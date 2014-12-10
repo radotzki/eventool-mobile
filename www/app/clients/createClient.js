@@ -1,6 +1,6 @@
 angular.module('eventool.clients')
 
-.controller('ClientCreateCtrl', function($scope, $window, $ionicPopup, Client) {
+.controller('ClientCreateCtrl', function($scope, $window, $ionicPopup, datacontext) {
 	$scope.client = {};
 	
 	$scope.createClient = function(){
@@ -13,7 +13,7 @@ angular.module('eventool.clients')
 			city: $scope.client.city
 		};
 
-		Client.create(param).then(function(res){
+		datacontext.client.create(param).then(function(res){
 			var alertPopup = $ionicPopup.alert({
 				title: 'Client created!'
 			});

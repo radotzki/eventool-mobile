@@ -1,33 +1,33 @@
 angular.module('eventool.clients')
 
 .controller('ClientShowCtrl', function($scope, $stateParams, $ionicPopup, $window, $ionicSlideBoxDelegate,
-	orderByFilter, Client, Event, Ticket, ClientComment, Friendship, user) {
+	orderByFilter, user, datacontext) {
 
 	$scope.ticketsByEvents = [];
 	$scope.arrivedCount = 0;
 	$scope.ticketsCount = 0;
 	$scope.user = user;
 
-	Client.show($stateParams.clientId).then(function(data){
+	datacontext.client.show($stateParams.clientId).then(function(data){
 		$scope.client = data;
 	});
 
 	if(user.role!='cashier'){
 
-		Friendship.index($stateParams.clientId).then(function(friends){
+		datacontext.friendship.index($stateParams.clientId).then(function(friends){
 			$scope.friends = friends;
 		})
 
-		Ticket.index($stateParams.clientId).then(function(tickets) {
+		datacontext.ticket.index($stateParams.clientId).then(function(tickets) {
 			loadTickets(tickets);
 		});
 
-		ClientComment.index($stateParams.clientId).then(function(responseData) {
+		datacontext.clientComment.index($stateParams.clientId).then(function(responseData) {
 			$scope.comments = responseData;
 		});
 	}
 	else{
-		Ticket.currentEvent($stateParams.clientId).then(function(tickets){
+		datacontext.ticket.currentEvent($stateParams.clientId).then(function(tickets){
 			$scope.tickets = tickets;
 
 			$scope.clientArrived = false;
@@ -96,7 +96,7 @@ angular.module('eventool.clients')
 			]
 		});
 		myPopup.then(function(res) {
-			ClientComment.create($stateParams.clientId, {comment: res}).then(function(){
+			datacontext.clientComment.create($stateParams.clientId, {comment: res}).then(function(){
 				$scope.comments.push({ 
 					comment: res, created_at: new Date().toString(), user: user, newComment: true
 				});
@@ -107,7 +107,7 @@ angular.module('eventool.clients')
 	};
 
 	$scope.deleteComment = function  (index) {
-		ClientComment.delete($scope.comments[index]).then(function(res){
+		datacontext.clientComment.remove($scope.comments[index]).then(function(res){
 			$scope.comments.splice(index, 1);
 		});
 	};
@@ -117,7 +117,7 @@ angular.module('eventool.clients')
 	}
 
 	$scope.checkin = function(ticket){
-		Ticket.checkin($stateParams.clientId, ticket.id).then(function(res){
+		datacontext.ticket.checkin($stateParams.clientId, ticket.id).then(function(res){
 			var alertPopup = $ionicPopup.alert({
 				title: 'Saved!'
 			});

@@ -1,7 +1,7 @@
 angular.module('eventool.events')
 
-.controller('EventUpdateCtrl', function($scope, $stateParams, $window, Event, EventPrice, $ionicPopup) {
-	Event.show($stateParams.eventId).then(function(data){
+.controller('EventUpdateCtrl', function($scope, $stateParams, $window, datacontext, $ionicPopup) {
+	datacontext.event.show($stateParams.eventId).then(function(data){
 		$scope.event = data;
 		$scope.prices = [];
 
@@ -12,7 +12,7 @@ angular.module('eventool.events')
 	});
 
 	$scope.updateEvent = function(){
-		Event.update($scope.event);
+		datacontext.event.update($scope.event);
 
 		for (var i=0; i<$scope.prices.length; i++){
 			var found = false;
@@ -24,7 +24,7 @@ angular.module('eventool.events')
 			}
 
 			if (!found) {
-				EventPrice.create($stateParams.eventId, {price: $scope.prices[i]});
+				datacontext.eventPrice.create($stateParams.eventId, {price: $scope.prices[i]});
 			}
 		}
 
@@ -38,9 +38,9 @@ angular.module('eventool.events')
 			}
 
 			if (!found) {
-				EventPrice.show($stateParams.eventId, $scope.event.prices[i].id)
+				datacontext.eventPrice.show($stateParams.eventId, $scope.event.prices[i].id)
 				.then(function(data){
-					EventPrice.delete(data);
+					datacontext.eventPrice.remove(data);
 				});
 				
 			}

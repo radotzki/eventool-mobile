@@ -1,7 +1,6 @@
 (function() {
 	'use strict';
 
-	angular.module('eventool.services', []);
 	angular.module('eventool.directives', []);
 
 	angular.module('eventool', [
@@ -22,8 +21,8 @@
          'eventool.events',
          'eventool.tickets',
          'eventool.friendship',
+         'eventool.data',
 
-         'eventool.services',
          'eventool.directives'
          ]);
 

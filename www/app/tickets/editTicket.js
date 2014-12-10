@@ -1,17 +1,17 @@
 angular.module('eventool.tickets')
 
-.controller('TicketUpdateCtrl', function($scope, $stateParams, $state, $ionicPopup, $window, orderByFilter, Ticket, Event, EventPrice) {
+.controller('TicketUpdateCtrl', function($scope, $stateParams, $state, $ionicPopup, $window, orderByFilter, datacontext) {
 
-	Ticket.show($stateParams.clientId, $stateParams.ticketId).then(function(ticket){
+	datacontext.ticket.show($stateParams.clientId, $stateParams.ticketId).then(function(ticket){
 		$scope.ticket = ticket;
 
-		EventPrice.index($scope.ticket.event.id).then(function(prices) {
+		datacontext.eventPrice.index($scope.ticket.event.id).then(function(prices) {
 			$scope.prices = orderByFilter(prices, 'price');
 		});
 	});
 
 	$scope.UpdateTicket = function() {
-		Ticket.changePrice($stateParams.clientId, $stateParams.ticketId, $scope.ticket.price.id)
+		datacontext.ticket.changePrice($stateParams.clientId, $stateParams.ticketId, $scope.ticket.price.id)
 		.then(function(res){
 			var alertPopup = $ionicPopup.alert({
 				title: 'ticket updated! '
@@ -30,7 +30,7 @@ angular.module('eventool.tickets')
 		});
 		confirmPopup.then(function(res) {
 			if(res) {
-				Ticket.delete($scope.ticket);
+				datacontext.ticket.remove($scope.ticket);
 				$state.go('app.showClient', { clientId: $stateParams.clientId } );
 			}
 		});

@@ -1,12 +1,12 @@
 angular.module('eventool.users')
 
-.controller('UserUpdateCtrl', function($scope, $ionicPopup, $window, $stateParams, User) {
-	User.show($stateParams.userId).then(function(responseData) {
+.controller('UserUpdateCtrl', function($scope, $ionicPopup, $window, $stateParams, datacontext) {
+	datacontext.user.show($stateParams.userId).then(function(responseData) {
 		$scope.user = responseData;
 	});
 
 	$scope.update = function(){
-		User.update($scope.user);
+		datacontext.user.update($scope.user);
 		$window.history.back();
 	};
 
@@ -18,7 +18,7 @@ angular.module('eventool.users')
 		});
 		confirmPopup.then(function(res) {
 			if(res) {
-				User.lock($scope.user);
+				datacontext.user.lock($scope.user);
 				$window.history.back();
 			}
 		});

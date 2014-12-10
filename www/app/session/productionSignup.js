@@ -1,6 +1,6 @@
 angular.module('eventool.session')
 
-.controller('ProductionCreateCtrl', function($scope, $window, $ionicPopup, Production, User) {
+.controller('ProductionCreateCtrl', function($scope, $window, $ionicPopup, datacontext) {
 	$scope.user = {};
 	$scope.create = function(production){
 		var productionParams = {
@@ -11,7 +11,7 @@ angular.module('eventool.session')
 			password: $scope.user.password,
 			phone_number: $scope.user.phone
 		};
-		Production.create(productionParams).then(function(res){
+		datacontext.production.create(productionParams).then(function(res){
 			var alertPopup = $ionicPopup.alert({
 				title: 'Production created',
 			});

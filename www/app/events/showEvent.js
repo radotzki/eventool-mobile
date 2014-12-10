@@ -1,7 +1,7 @@
 angular.module('eventool.events')
 
-.controller('EventShowCtrl', function($scope, Event, $stateParams, EventPrice, Client, orderByFilter) {
-	Event.show($stateParams.eventId).then(function(data){
+.controller('EventShowCtrl', function($scope, datacontext, $stateParams, orderByFilter) {
+	datacontext.event.show($stateParams.eventId).then(function(data){
 		$scope.event = data;
 
 		$scope.eventPass = false;
@@ -9,7 +9,7 @@ angular.module('eventool.events')
 			$scope.eventPass = true;
 		}
 
-		Event.getTickets(data).then(function (tickets) {
+		datacontext.event.getTickets(data).then(function (tickets) {
 			$scope.tickets = tickets;
 			$scope.tickets = orderByFilter($scope.tickets, ['client.first_name','-arrived']);
 

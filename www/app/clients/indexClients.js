@@ -1,6 +1,6 @@
 angular.module('eventool.clients')
 
-.controller('ClientIndexCtrl', function($scope, $ionicViewService, Client, user) {
+.controller('ClientIndexCtrl', function($scope, $ionicViewService, user, datacontext) {
 
 	$scope.user = user;
 
@@ -9,19 +9,19 @@ angular.module('eventool.clients')
 	}
 	else{
 		$scope.loading = true;
-		Client.index().then(function(data){
+		datacontext.client.index().then(function(data){
 			$scope.clients = data;
 			localStorage["clients"] = JSON.stringify(data);
 			$scope.loading = false;
 		});
 	}
 
-	Client.index().then(function(data){
+	datacontext.client.index().then(function(data){
 		localStorage["clients"] = JSON.stringify(data);
 	});
 
 	$scope.doRefresh = function(){
-		Client.index().then(function(data){
+		datacontext.client.index().then(function(data){
 			$scope.clients = data;
 			localStorage["clients"] = JSON.stringify(data);
 			$scope.$broadcast('scroll.refreshComplete');

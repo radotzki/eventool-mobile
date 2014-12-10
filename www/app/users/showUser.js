@@ -5,7 +5,7 @@
 	.module('eventool.users')
 	.controller('UserShowCtrl', UserShowCtrl);
 
-	function UserShowCtrl($stateParams, User) {
+	function UserShowCtrl($stateParams, datacontext) {
 		var vm = this;
 
 		vm.arrivedAmount = 0;
@@ -23,14 +23,14 @@
 		}
 
 		function getUser() {
-			return User.show($stateParams.userId).then(function(user) {
+			return datacontext.user.show($stateParams.userId).then(function(user) {
 				vm.user = user;		
 				return user;
 			})
 		}
 
 		function getUserTickets(user) {
-			User.getTickets(user).then(function(tickets){
+			datacontext.user.getTickets(user).then(function(tickets){
 				vm.ticketsAmount = tickets.length;
 
 				for(var i=0; i<tickets.length;i++){
