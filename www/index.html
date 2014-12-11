@@ -1,106 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
 
-    <!-- ionic css -->
-    <link rel="stylesheet" href="lib/ionic/css/ionic.css">
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
 
-    <!-- inject:css -->
-    <link rel="stylesheet" href="content/css/style.css">
-    <!-- endinject -->  
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+  -->
 
-    <!-- ionic/angularjs scripts -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <!-- bower:css -->
+  <link rel="stylesheet" href="lib/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
+  <!-- endbower -->
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+  <!-- inject:css -->
+  <link rel="stylesheet" href="content/css/style.css">
+  <!-- endinject -->  
 
-    <!-- restangular -->
-    <script src="lib/restangular/restangular.min.js"></script>
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- lodash -->
-    <script src="lib/lodash/lodash.min.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
 
-    <!-- datetime picker -->
-    <link href="lib/angular-bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet">
-    <script src="lib/angular-bootstrap-datetimepicker/moment.min.js"></script>
-    <script src="lib/angular-bootstrap-datetimepicker/datetimepicker.js"></script> 
+  <!-- bower:js -->
+  <script src="lib/moment/moment.js"></script>
+  <script src="lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+  <script src="lib/lodash/dist/lodash.compat.js"></script>
+  <script src="lib/restangular/dist/restangular.js"></script>
+  <!-- endbower -->
 
+  <!-- module:js -->
+  <script src="app/app.module.js"></script>
+  <script src="app/clients/clients.module.js"></script>
+  <script src="app/core/core.module.js"></script>
+  <script src="app/data/data.module.js"></script>
+  <script src="app/events/events.module.js"></script>
+  <script src="app/friendships/friendships.module.js"></script>
+  <script src="app/layout/layout.module.js"></script>
+  <script src="app/session/session.module.js"></script>
+  <script src="app/tickets/tickets.module.js"></script>
+  <script src="app/users/users.module.js"></script>
+  <script src="app/widgets/widgets.module.js"></script>
+  <script src="app/blocks/exception/exception.module.js"></script>
+  <script src="app/blocks/logger/logger.module.js"></script>
+  <!-- endinject -->
 
-    <!-- module:js -->
-    <script src="app/app.module.js"></script>
-    <script src="app/clients/clients.module.js"></script>
-    <script src="app/data/data.module.js"></script>
-    <script src="app/core/core.module.js"></script>
-    <script src="app/events/events.module.js"></script>
-    <script src="app/layout/layout.module.js"></script>
-    <script src="app/friendships/friendships.module.js"></script>
-    <script src="app/session/session.module.js"></script>
-    <script src="app/tickets/tickets.module.js"></script>
-    <script src="app/users/users.module.js"></script>
-    <script src="app/widgets/widgets.module.js"></script>
-    <script src="app/blocks/exception/exception.module.js"></script>
-    <script src="app/blocks/logger/logger.module.js"></script>
-    <!-- endinject -->  
-
-    <!-- inject:js -->
-    <script src="app/clients/config.route.js"></script>
-    <script src="app/clients/createClient.js"></script>
-    <script src="app/clients/editClient.js"></script>
-    <script src="app/clients/indexClients.js"></script>
-    <script src="app/clients/showClient.js"></script>
-    <script src="app/core/common.js"></script>
-    <script src="app/core/config.js"></script>
-    <script src="app/core/constants.js"></script>
-    <script src="app/core/run.js"></script>
-    <script src="app/data/datacontext.js"></script>
-    <script src="app/events/config.route.js"></script>
-    <script src="app/events/createEvent.js"></script>
-    <script src="app/events/delete.js"></script>
-    <script src="app/events/editEvent.js"></script>
-    <script src="app/events/indexEvents.js"></script>
-    <script src="app/events/showEvent.js"></script>
-    <script src="app/friendships/config.route.js"></script>
-    <script src="app/friendships/createFriendship.js"></script>
-    <script src="app/layout/config.route.js"></script>
-    <script src="app/layout/shell.js"></script>
-    <script src="app/session/authSvc.js"></script>
-    <script src="app/session/config.route.js"></script>
-    <script src="app/session/login.js"></script>
-    <script src="app/session/logout.js"></script>
-    <script src="app/session/productionSignup.js"></script>
-    <script src="app/session/userSignup.js"></script>
-    <script src="app/tickets/config.route.js"></script>
-    <script src="app/tickets/createTicket.js"></script>
-    <script src="app/tickets/editTicket.js"></script>
-    <script src="app/tickets/showTicket.js"></script>
-    <script src="app/users/config.route.js"></script>
-    <script src="app/users/editUser.js"></script>
-    <script src="app/users/indexUsers.js"></script>
-    <script src="app/users/showUser.js"></script>
-    <script src="app/widgets/datePicker.js"></script>
-    <script src="app/widgets/dateTimePicker.js"></script>
-    <script src="app/widgets/eventPriceList.js"></script>
-    <script src="app/blocks/exception/exception.js"></script>
-    <script src="app/blocks/exception/stateException.js"></script>
-    <script src="app/blocks/logger/logger.js"></script>
-    <script src="app/data/repositories/abstract.repository.js"></script>
-    <script src="app/data/repositories/client.repo.js"></script>
-    <script src="app/data/repositories/clientComment.repo.js"></script>
-    <script src="app/data/repositories/event.repo.js"></script>
-    <script src="app/data/repositories/eventPrice.repo.js"></script>
-    <script src="app/data/repositories/friendship.repo.js"></script>
-    <script src="app/data/repositories/production.repo.js"></script>
-    <script src="app/data/repositories/ticket.repo.js"></script>
-    <script src="app/data/repositories/user.repo.js"></script>
-    <!-- endinject -->  
+  <!-- inject:js -->
+  <script src="app/clients/config.route.js"></script>
+  <script src="app/clients/createClient.js"></script>
+  <script src="app/clients/editClient.js"></script>
+  <script src="app/clients/indexClients.js"></script>
+  <script src="app/clients/showClient.js"></script>
+  <script src="app/core/common.js"></script>
+  <script src="app/core/config.js"></script>
+  <script src="app/core/constants.js"></script>
+  <script src="app/core/run.js"></script>
+  <script src="app/data/datacontext.js"></script>
+  <script src="app/events/config.route.js"></script>
+  <script src="app/events/createEvent.js"></script>
+  <script src="app/events/delete.js"></script>
+  <script src="app/events/editEvent.js"></script>
+  <script src="app/events/indexEvents.js"></script>
+  <script src="app/events/showEvent.js"></script>
+  <script src="app/friendships/config.route.js"></script>
+  <script src="app/friendships/createFriendship.js"></script>
+  <script src="app/layout/config.route.js"></script>
+  <script src="app/layout/shell.js"></script>
+  <script src="app/session/authSvc.js"></script>
+  <script src="app/session/config.route.js"></script>
+  <script src="app/session/login.js"></script>
+  <script src="app/session/logout.js"></script>
+  <script src="app/session/productionSignup.js"></script>
+  <script src="app/session/userSignup.js"></script>
+  <script src="app/tickets/config.route.js"></script>
+  <script src="app/tickets/createTicket.js"></script>
+  <script src="app/tickets/editTicket.js"></script>
+  <script src="app/tickets/showTicket.js"></script>
+  <script src="app/users/config.route.js"></script>
+  <script src="app/users/editUser.js"></script>
+  <script src="app/users/indexUsers.js"></script>
+  <script src="app/users/showUser.js"></script>
+  <script src="app/widgets/datePicker.js"></script>
+  <script src="app/widgets/dateTimePicker.js"></script>
+  <script src="app/widgets/eventPriceList.js"></script>
+  <script src="app/blocks/exception/exception.js"></script>
+  <script src="app/blocks/exception/stateException.js"></script>
+  <script src="app/blocks/logger/logger.js"></script>
+  <script src="app/data/repositories/abstract.repository.js"></script>
+  <script src="app/data/repositories/client.repo.js"></script>
+  <script src="app/data/repositories/clientComment.repo.js"></script>
+  <script src="app/data/repositories/event.repo.js"></script>
+  <script src="app/data/repositories/eventPrice.repo.js"></script>
+  <script src="app/data/repositories/friendship.repo.js"></script>
+  <script src="app/data/repositories/production.repo.js"></script>
+  <script src="app/data/repositories/ticket.repo.js"></script>
+  <script src="app/data/repositories/user.repo.js"></script>
+  <!-- endinject -->
 
 </head>
-
 <body ng-app="eventool" animation="slide-left-right-ios7">
+
   <ion-nav-view></ion-nav-view>
+
 </body>
 </html>

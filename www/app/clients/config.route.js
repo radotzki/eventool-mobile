@@ -13,7 +13,7 @@
 		.state('app.clients', {
 			url: "/clients",
 			views: {
-				'menuContent' :{
+				'tab-clients' :{
 					controller:  "IndexClients as vm",
 					templateUrl: "app/clients/indexClients.html",
 					resolve: {
@@ -27,7 +27,7 @@
 		.state('app.showClient', {
 			url: "/client/:clientId",
 			views: {
-				'menuContent' :{
+				'tab-clients' :{
 					controller:  "ClientShowCtrl",
 					templateUrl: "app/clients/showClient.html",
 					resolve: {
@@ -41,7 +41,7 @@
 		.state('app.createClient', {
 			url: "/clients/create",
 			views: {
-				'menuContent' :{
+				'tab-clients' :{
 					controller:  "ClientCreateCtrl",
 					templateUrl: "app/clients/createClient.html",
 					resolve: {
@@ -55,7 +55,7 @@
 		.state('app.updateClient', {
 			url: "/clients/update/:clientId",
 			views: {
-				'menuContent' :{
+				'tab-clients' :{
 					controller:  "ClientUpdateCtrl",
 					templateUrl: "app/clients/editClient.html",
 					resolve: {

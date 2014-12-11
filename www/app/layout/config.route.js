@@ -12,8 +12,8 @@
 		.state('app', {
 			url: "/app",
 			abstract: true,
-			templateUrl: "app/layout/shell.html",
-			controller: 'Shell'
+			templateUrl: "app/layout/shell.html"
+			// controller: 'Shell'
 		})
 		
 	}

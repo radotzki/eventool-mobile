@@ -12,7 +12,7 @@
 		.state('app.users', {
 			url: "/users",
 			views: {
-				'menuContent' :{
+				'tab-workers' :{
 					controller:  "UserIndexCtrl",
 					templateUrl: "app/users/indexUsers.html",
 					resolve: {
@@ -26,7 +26,7 @@
 		.state('app.showUser', {
 			url: "/user/:userId",
 			views: {
-				'menuContent' :{
+				'tab-workers' :{
 					controller:  "UserShowCtrl as vm",
 					templateUrl: "app/users/showUser.html",
 					resolve: {
@@ -40,7 +40,7 @@
 		.state('app.updateUser', {
 			url: "/user/update/:userId",
 			views: {
-				'menuContent' :{
+				'tab-workers' :{
 					controller:  "UserUpdateCtrl",
 					templateUrl: "app/users/editUser.html",
 					resolve: {

@@ -13,7 +13,7 @@
   .state('app.showTicket', {
     url: "/ticket/:ticketId/:clientId",
     views: {
-      'menuContent' :{
+      'tab-clients' :{
         controller:  "TicketShowCtrl",
         templateUrl: "app/tickets/showTicket.html",
         resolve: {

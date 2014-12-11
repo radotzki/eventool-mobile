@@ -12,7 +12,7 @@
 		.state('app.events', {
 			url: "/events",
 			views: {
-				'menuContent' :{
+				'tab-events' :{
 					controller:  "EventIndexCtrl",
 					templateUrl: "app/events/indexEvents.html",
 					resolve: {
@@ -26,7 +26,7 @@
 		.state('app.eventShow', {
 			url: "/event/:eventId",
 			views: {
-				'menuContent' :{
+				'tab-events' :{
 					controller:  "EventShowCtrl",
 					templateUrl: "app/events/showEvent.html",
 					resolve: {
@@ -40,7 +40,7 @@
 		.state('app.eventCreate', {
 			url: "/events/create",
 			views: {
-				'menuContent' :{
+				'tab-events' :{
 					controller:  "EventCreateCtrl",
 					templateUrl: "app/events/createEvent.html",
 					resolve: {
@@ -54,7 +54,7 @@
 		.state('app.eventUpdate', {
 			url: "/event/update/:eventId",
 			views: {
-				'menuContent' :{
+				'tab-events' :{
 					controller:  "EventUpdateCtrl",
 					templateUrl: "app/events/editEvent.html",
 					resolve: {
@@ -68,7 +68,7 @@
 		.state('app.eventDelete', {
 			url: "/event/delete/:eventId",
 			views: {
-				'menuContent' :{
+				'tab-events' :{
 					controller:  "EventDeleteCtrl",
 					templateUrl: "app/events/delete.html",
 					resolve: {

@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Eventool</name>
+<widget id="com.ionicframework.myapp192654" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>myApp</name>
   <description>
-    Events Management Application.
-  </description>
-  <author email="radotzki@gmail.com" href="http://ionicframework.com/">
-    Itay Radotzki
-  </author>
+        An Ionic Framework and Cordova project.
+    </description>
+  <author email="hi@ionicframework" href="http://ionicframework.com/">
+      Ionic Framework Team
+    </author>
   <content src="index.html"/>
   <access origin="*"/>
-  <preference name="fullscreen" value="false"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
+  <preference name="BackupWebStorage" value="none"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-  <platform name="android">
-    <icon src="icons/android/icon.png" width="60" height="60"/>
-    <icon src="icons/android/icon.png" width="120" height="120"/>
-  </platform>
-  <platform name="ios">
-    <icon src="icons/ios/icon.png" width="60" height="60"/>
-    <icon src="icons/ios/icon.png" width="120" height="120"/>
-  </platform>
 </widget>

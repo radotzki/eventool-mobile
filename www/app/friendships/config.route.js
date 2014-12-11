@@ -12,7 +12,7 @@
 		.state('app.selectNewFriend', {
 			url: "/friendship/select/:clientId/",
 			views: {
-				'menuContent' :{
+				'tab-clients' :{
 					controller:  "SelectNewFriendCtrl",
 					templateUrl: "app/friendships/createFriendship.html",
 					resolve: {

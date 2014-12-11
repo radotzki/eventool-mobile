@@ -1,8 +1,20 @@
-angular.module('eventool.layout')
-.controller('Shell', function($scope, auth) {
+(function() {
+	'use strict';
 
-	var user = auth.getUser();
+	angular
+	.module('eventool.layout')
+	.controller('Shell', Shell);
 
-	$scope.user = user ? user.user : null;
+	/* @ngInject */
+	function Shell($ionicNavBarDelegate, auth) {
+		/*jshint validthis: true */
+		var vm = this;
 
-})
+		vm.getPreviousTitle = getPreviousTitle;
+
+		function getPreviousTitle() {
+			return $ionicNavBarDelegate.getPreviousTitle();
+		};
+
+	}
+})();
