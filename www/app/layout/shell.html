@@ -1,6 +1,5 @@
 <ion-nav-bar class="bar-stable nav-title-slide-ios7" ng-controller="Shell as vm">
   <ion-nav-back-button class="button-icon ion-arrow-left-c">
-  	{{vm.getPreviousTitle() || 'Back'}}
   </ion-nav-back-button>
 </ion-nav-bar>
 
@@ -14,18 +13,18 @@
   </ion-tab>
 
   <!-- Events Tab -->
-  <ion-tab title="Events" icon="icon ion-heart" ui-sref="app.events">
+  <ion-tab title="Events" icon="icon ion-headphone" ui-sref="app.events">
     <ion-nav-view name="tab-events"></ion-nav-view>
   </ion-tab>
 
 
   <!-- Workers Tab -->
-  <ion-tab title="Workers" icon="icon ion-gear-b" ui-sref="app.users">
+  <ion-tab title="Workers" icon="icon ion-person-stalker" ui-sref="app.users">
     <ion-nav-view name="tab-workers"></ion-nav-view>
   </ion-tab>
 
   <!-- More Tab -->
-  <ion-tab title="More" icon="icon ion-gear-b" ui-sref="logout">
+  <ion-tab title="More" icon="icon ion-navicon" ui-sref="logout">
     <ion-nav-view name="tab-more"></ion-nav-view>
   </ion-tab>
 

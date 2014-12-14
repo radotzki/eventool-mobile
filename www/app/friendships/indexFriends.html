@@ -1,0 +1,27 @@
+<div class="list">
+	<a class="item item-avatar" ng-repeat="friend in vm.friends | orderBy:'first_name'" style="border: none;">
+		<img src="content/img/avatar.jpg">
+		<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
+			<span ng-if="friend.client_two.id==vm.clientId">
+				<h2 style="" ui-sref="app.showClient({ clientId:friend.client_one.id })">
+					{{friend.client_one.first_name}} {{friend.client_one.last_name}}
+				</h2>
+				<p style="font-size: 12px; margin-bottom: 15px;"> 
+					<i class="icon ion-ios7-clock-outline"></i> since {{friend.created_at | date}}
+				</p>
+			</span>
+			<span ng-if="friend.client_one.id==vm.clientId">
+				<h2 style="" ui-sref="app.showClient({ clientId:friend.client_two.id })">
+					{{friend.client_two.first_name}} {{friend.client_two.last_name}}
+				</h2>
+				<p style="font-size: 12px; margin-bottom: 15px;"> 
+					<i class="icon ion-ios7-clock-outline"></i> since {{friend.created_at | date}}
+				</p>
+			</span>
+		</div>
+	</a>
+</div>
+<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;"
+ng-show="vm.friends.length==0">
+Have no friends 
+</div>

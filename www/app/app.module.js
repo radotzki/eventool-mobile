@@ -20,8 +20,8 @@
          'eventool.users',
          'eventool.events',
          'eventool.tickets',
-         'eventool.friendship'
-         
+         'eventool.friendship',
+         'eventool.comments'
          ]);
 
 })();

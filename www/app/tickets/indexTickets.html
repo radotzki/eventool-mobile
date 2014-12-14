@@ -1,0 +1,19 @@
+<div class="list">
+
+	<div class="item item-divider" ng-repeat-start="separator in vm.separatedTickets | orderBy: '-when'" ng-click="show=!show;" style="margin-bottom: 10px; text-align: center">
+		<p style="color:{{separator.arriveCount?'green':'red'}}"> {{separator.eventName}} </p>
+	</div>
+	<div ng-show="show" class="item" ng-repeat="ticket in separator.tickets" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
+		<span> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</span>
+		<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
+		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
+	</div>
+
+	<div ng-repeat-end></div>
+
+</div>
+
+<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;"
+ng-show="vm.separatedTickets.length==0">
+Have no tickets 
+</div>

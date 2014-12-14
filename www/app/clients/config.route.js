@@ -28,7 +28,7 @@
 			url: "/client/:clientId",
 			views: {
 				'tab-clients' :{
-					controller:  "ClientShowCtrl",
+					controller:  "ShowClient as vm",
 					templateUrl: "app/clients/showClient.html",
 					resolve: {
 						user: ['auth', function(auth) {
@@ -42,7 +42,7 @@
 			url: "/clients/create",
 			views: {
 				'tab-clients' :{
-					controller:  "ClientCreateCtrl",
+					controller:  "CreateClient as vm",
 					templateUrl: "app/clients/createClient.html",
 					resolve: {
 						user: ['auth', function(auth) {
@@ -56,7 +56,7 @@
 			url: "/clients/update/:clientId",
 			views: {
 				'tab-clients' :{
-					controller:  "ClientUpdateCtrl",
+					controller:  "EditClient as vm",
 					templateUrl: "app/clients/editClient.html",
 					resolve: {
 						user: ['auth', function(auth) {

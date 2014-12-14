@@ -6,15 +6,9 @@
 	.controller('Shell', Shell);
 
 	/* @ngInject */
-	function Shell($ionicNavBarDelegate, auth) {
+	function Shell() {
 		/*jshint validthis: true */
 		var vm = this;
-
-		vm.getPreviousTitle = getPreviousTitle;
-
-		function getPreviousTitle() {
-			return $ionicNavBarDelegate.getPreviousTitle();
-		};
 
 	}
 })();

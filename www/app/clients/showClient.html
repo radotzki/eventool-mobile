@@ -1,6 +1,6 @@
 <ion-view title="Profile">
 <ion-nav-buttons side="right">
-<button class="button button-clear right" ui-sref="app.updateClient({ clientId:client.id })" ng-if="user.role!='cashier'">EDIT</button>
+<button class="button button-clear right" ui-sref="app.updateClient({ clientId: vm.client.id })" ng-if="vm.user.role!='cashier'">EDIT</button>
 </ion-nav-buttons>
 <ion-content class="has-header"> 
 
@@ -8,36 +8,36 @@
 	<img src="content/img/clientCover.jpg" style="height: 300px;width: 100%; ">   
 
 	<div class="text-center" style="position: absolute; top: 0px; height: 300px; width: 100%; background: rgba(68, 68, 68, 0.7)">
-		<h1 style="color:#fff; margin-top:20%"> {{client.name}}</h1>
+		<h1 style="color:#fff; margin-top:20%"> {{vm.client.name}}</h1>
 
 		<h4 style="color:#fff">
-			<i ng-if="client.gender == 'female'" class="icon ion-female"></i>
-			<i ng-if="client.gender == 'male'" class="icon ion-male"></i>
-			<span ng-if="client.birthdate"> {{client.birthdate | date}} </span>
-			<span ng-if="client.city"> from {{client.city}} </span>			
+			<i ng-if="vm.client.gender == 'female'" class="icon ion-female"></i>
+			<i ng-if="vm.client.gender == 'male'" class="icon ion-male"></i>
+			<span ng-if="vm.client.birthdate"> {{vm.client.birthdate | date}} </span>
+			<span ng-if="vm.client.city"> from {{vm.client.city}} </span>			
 		</h4>
 		<h4 style="color:#fff">
 			<i class="icon ion-iphone"></i>
-			<span> {{client.phone_number}} </span>
+			<span> {{vm.client.phone_number}} </span>
 		</h4>
 
 		<div class="row" style="margin-top:10%" ng-if="user.role!='cashier'">
 			<div class="col" style="border-right:white solid thin">
 				<h4 style="color:#fff">
 					Tickets
-					<br> {{ticketsCount}}
+					<br> {{vm.tickets.length}}
 				</h4>
 			</div>
 			<div class="col" style="border-right:white solid thin">
 				<h4 style="color:#fff">
 					Arrived
-					<br> {{arrivedCount}}
+					<br> {{vm.arrivedCount}}
 				</h4>
 			</div>
 			<div class="col">
 				<h4 style="color:#fff">
 					Friends
-					<br> {{friends.length}}
+					<br> {{vm.friendsCount}}
 				</h4>
 			</div>
 		</div>
@@ -45,120 +45,30 @@
 	</div>
 </div>
 
-<ion-slide-box show-pager="false" ng-if="user.role!='cashier'">
-
-<ion-slide>
-<p style="padding-bottom: 10px; padding-top: 10px;" class="text-center">
-	<span style="font-weight: bold;"> TICKETS </span>
-	<span style="margin-left: 10px;" ng-click="slideTo(1)"> COMMENTS </span>
-	<span style="margin-left: 10px;" ng-click="slideTo(2)"> FRIENDS </span>
-</p>
-<a class="button button-block button-outline button-positive" ui-sref="app.createTicket({clientId:client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
-	Add Ticket
-</a>
-
-<div class="list">
-
-	<div class="item item-divider" ng-repeat-start="value in ticketsByEvents | orderBy: '-when'" ng-click="show=!show;" style="margin-bottom: 10px; text-align: center">
-		<p style="color:{{value.arriveCount?'green':'red'}}"> {{value.eventName}} </p>
-	</div>
-	<div ng-show="show" class="item" ng-repeat="ticket in value.tickets" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
-		<span> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</span>
-		<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
-		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
-	</div>
-
-	<div ng-repeat-end></div>
-
+<div class="client-profile-nav" ng-init="section='tickets'">
+	<p ng-class="{active: section=='tickets'}" ng-click="section='tickets'"> TICKETS </p>
+	<p ng-class="{active: section=='comments'}" ng-click="section='comments'"> COMMENTS </p>
+	<p ng-class="{active: section=='friends'}" ng-click="section='friends'"> FRIENDS </p>
 </div>
 
-<!-- <div class="list">
-	<a class="item"
-	ng-repeat="ticket in tickets | orderBy:['-event.when', '-arrived']" 
-	collection-item-width="'100%'"
-	collection-item-height="60"
-	ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })"
-	style="border: none;">
-	<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
-		{{ticket.event.name}} 
-		<span style="font-size: 12px; color: #666;"> {{ticket.event.when | date:'dd/MM/yy'}} </span>
-		<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
-		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
-		<p style="margin-bottom: 15px"> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
-	</div>
-</a>
-</div> -->
-<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;" ng-show="tickets.length==0">
-	Have no tickets 
-</div>
-</ion-slide>
-
-<ion-slide>
-<p style="padding-bottom: 10px; padding-top: 10px;" class="text-center">
-	<span ng-click="slideTo(0)"> TICKETS </span>
-	<span style="margin-left: 10px; font-weight: bold;"> COMMENTS </span>
-	<span style="margin-left: 10px" ng-click="slideTo(2)"> FRIENDS </span>
-</p>
-<a class="button button-block button-outline button-positive" ng-click="addComment()" style="margin-left: auto; margin-right: auto; width: 90%;">
-	Add Comment
-</a>
-<div class="list">
-	<a class="item item-avatar" ng-repeat="comment in comments | orderBy:'-created_at'" style="border: none;">
-		<img src="content/img/avatar.jpg">
-		<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
-			<h2>{{comment.user.first_name}} {{comment.user.last_name}}</h2>
-			<p style="color: black; margin-bottom: 5px; margin-top: 5px;">{{comment.comment}}</p>
-			<p style="font-size: 12px; margin-bottom: 15px;"> 
-				<i class="icon ion-ios7-clock-outline"></i> {{comment.newComment ? 'Just now' : comment.created_at | date}} 
-			</p>
-		</div>
+<ng-switch on="section">
+<div ng-switch-when="tickets">
+	<a class="button button-block button-outline button-positive" ui-sref="app.createTicket({clientId: vm.client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
+		Add Ticket
 	</a>
+	<et-tickets tickets="vm.tickets" collaps-by="event"> </et-tickets>
 </div>
-<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;"
-ng-show="comments.length==0">
-Have no comments 
+<div ng-switch-when="comments">
+	<et-comments client-id="{{vm.client.id}}" user="vm.user"> </et-comments>
 </div>
-
-</ion-slide>
-
-<ion-slide>
-<p style="padding-bottom: 10px; padding-top: 10px;" class="text-center">
-	<span ng-click="slideTo(0)"> TICKETS </span>
-	<span style="margin-left: 10px" ng-click="slideTo(1)"> COMMENTS </span>
-	<span style="margin-left: 10px; font-weight: bold;"> FRIENDS </span>
-</p>
-<a class="button button-block button-outline button-positive" ui-sref="app.selectNewFriend({clientId:client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
-	Add Friend
-</a>
-<div class="list">
-	<a class="item item-avatar" ng-repeat="friend in friends | orderBy:'first_name'" style="border: none;">
-		<img src="content/img/avatar.jpg">
-		<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
-			<span ng-if="friend.client_two.id==client.id">
-				<h2 style="" ui-sref="app.showClient({ clientId:friend.client_one.id })">
-					{{friend.client_one.first_name}} {{friend.client_one.last_name}}
-				</h2>
-				<p style="font-size: 12px; margin-bottom: 15px;"> 
-					<i class="icon ion-ios7-clock-outline"></i> since {{friend.created_at | date}}
-				</p>
-			</span>
-			<span ng-if="friend.client_one.id==client.id">
-				<h2 style="" ui-sref="app.showClient({ clientId:friend.client_two.id })">
-					{{friend.client_two.first_name}} {{friend.client_two.last_name}}
-				</h2>
-				<p style="font-size: 12px; margin-bottom: 15px;"> 
-					<i class="icon ion-ios7-clock-outline"></i> since {{friend.created_at | date}}
-				</p>
-			</span>
-		</div>
+<div ng-switch-when="friends">
+	<a class="button button-block button-outline button-positive" ui-sref="app.selectNewFriend({clientId: vm.client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
+		Add Friend
 	</a>
+	<et-friends client-id="{{vm.client.id}}"> </et-friends>
 </div>
-<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;"
-ng-show="friends.length==0">
-Have no friends 
-</div>
-</ion-slide>
-</ion-slide-box>
+</ng-switch>
+
 
 <div ng-if="user.role=='cashier'">
 	<div class="list" ng-show="!clientArrived">

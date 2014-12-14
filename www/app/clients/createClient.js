@@ -1,25 +1,31 @@
-angular.module('eventool.clients')
+(function() {
+	'use strict';
 
-.controller('ClientCreateCtrl', function($scope, $window, $ionicPopup, datacontext) {
-	$scope.client = {};
-	
-	$scope.createClient = function(){
-		var param = {
-			first_name: $scope.client.firstName,
-			last_name: $scope.client.lastName,
-			gender: $scope.client.gender,
-			birthdate: $scope.client.birthdate,
-			phone_number: $scope.client.phone,
-			city: $scope.client.city
-		};
+	angular
+	.module('eventool.clients')
+	.controller('CreateClient', CreateClient);
 
-		datacontext.client.create(param).then(function(res){
-			var alertPopup = $ionicPopup.alert({
-				title: 'Client created!'
-			});
-			alertPopup.then(function(res) {
+	/* @ngInject */
+	function CreateClient($window, datacontext) {
+		/*jshint validthis: true */
+		var vm = this;
+		vm.client = {};
+		vm.createClient = createClient;
+
+		function createClient() {
+			var newClient = {
+				first_name: vm.client.firstName,
+				last_name: vm.client.lastName,
+				gender: vm.client.gender,
+				birthdate: vm.client.birthdate,
+				phone_number: vm.client.phone,
+				city: vm.client.city
+			};
+
+			datacontext.client.create(newClient).then(function(res){
 				$window.history.back();
 			});
-		});
-	};
-})
+		}
+
+	}
+})();

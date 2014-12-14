@@ -27,7 +27,7 @@
   .state('app.createTicket', {
     url: "/ticket/create/:clientId/",
     views: {
-      'menuContent' :{
+      'tab-clients' :{
         controller:  "TicketCreateCtrl",
         templateUrl: "app/tickets/createTicket.html",
         resolve: {

@@ -1,33 +1,43 @@
-angular.module('eventool.clients')
+(function() {
+	'use strict';
 
-.controller('ClientUpdateCtrl', function($scope, $stateParams, $window, $ionicPopup,  datacontext) {
-	datacontext.client.show($stateParams.clientId).then(function(data){
-		$scope.client = data;
-	});
+	angular
+	.module('eventool.clients')
+	.controller('EditClient', EditClient);
 
-	$scope.updateClient = function() {
-		datacontext.client.update($scope.client).then(function(res){
-			var alertPopup = $ionicPopup.alert({
-				title: 'Client saved!'
+	/* @ngInject */
+	function EditClient($window, $state, $stateParams, datacontext) {
+		/*jshint validthis: true */
+		var vm = this;
+		vm.client;
+		vm.updateClient = updateClient;
+		vm.deleteClient = deleteClient;
+
+		activate();
+
+		function activate() {
+			console.log($stateParams.clientId)
+			getClient();
+		}
+
+		function getClient() {
+			return datacontext.client.show($stateParams.clientId).then(function(data){
+				vm.client = data;
+				return data;
 			});
-			alertPopup.then(function(res) {
+		}
+
+		function updateClient() {
+			datacontext.client.update(vm.client).then(function(res){
 				$window.history.back();
 			});
-		});
-	};
+		}
 
-	$scope.deleteClient = function(){
-		var confirmPopup = $ionicPopup.confirm({
-			title: 'Delete Client',
-			template: 'Are you sure you want to delete ' + $scope.client.name + '?',
-			okText: 'Yes'
-		});
-		confirmPopup.then(function(res) {
-			if(res) {
-				datacontext.client.remove($scope.client);
-				$window.history.back();
-			}
-		});
-	};
+		function deleteClient() {
+			datacontext.client.remove(vm.client).then(function(res){
+				$state.go('app.clients');
+			});
+		}
 
-})
+	}
+})();

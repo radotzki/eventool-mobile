@@ -12,13 +12,18 @@
 		var service = {
 			index: index,
 			create: create,
-			remove: remove
+			remove: remove,
+			count: count
 		};
 		return service;
 
 
 		function index(clientId) {
 			return Restangular.one('clients', clientId).getList('friends').then(abstract.querySucceed, abstract.queryFailed);
+		};
+
+		function count(clientId) {
+			return Restangular.one('clients', clientId).one('friends/count').get().then(abstract.querySucceed, abstract.queryFailed);
 		};
 
 		function create(clientId, clientTwoId) {
