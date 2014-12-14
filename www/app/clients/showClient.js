@@ -50,7 +50,7 @@
 			return datacontext.friendship.count($stateParams.clientId).then(function(data){
 				vm.friendsCount = data;
 				return data;
-			})
+			});
 		}
 
 	}

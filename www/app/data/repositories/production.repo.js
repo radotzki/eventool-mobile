@@ -22,23 +22,23 @@
 
 		function index() {
 			return base.getList().then(abstract.querySucceed, abstract.queryFailed);
-		};
+		}
 
 		function show(id) {
 			return base.get(id).then(abstract.querySucceed, abstract.queryFailed);
-		};
+		}
 
 		function create(params) {
 			return base.post(params).then(abstract.querySucceed, abstract.queryFailed);
-		};
+		}
 
 		function update(entity) {
 			return entity.put().then(abstract.querySucceed, abstract.queryFailed);
-		};
+		}
 
 		function remove(entity) {
 			return entity.remove().then(abstract.querySucceed, abstract.queryFailed);
-		};
+		}
 
 	}
 })();

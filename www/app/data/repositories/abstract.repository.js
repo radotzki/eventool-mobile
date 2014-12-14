@@ -15,11 +15,11 @@
 
 		function queryFailed(error) {
 			exception.xhrCatcher('Error retrieving data.', error);
-		};
+		}
 
 		function querySucceed(resp) {
 			return resp;
-		};
+		}
 
 	}
 })();

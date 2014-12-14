@@ -21,23 +21,23 @@
 
 		function index(clientId) {
 			return Restangular.one('clients', clientId).getList('comments').then(abstract.querySucceed, abstract.queryFailed);
-		};
+		}
 
 		function show(clientId, commentId) {
 			return Restangular.one('clients', clientId).one('comments', commentId).get().then(abstract.querySucceed, abstract.queryFailed);
-		};
+		}
 
 		function create(clientId, params) {
 			return Restangular.one('clients', clientId).post("comments", params).then(abstract.querySucceed, abstract.queryFailed);
-		};
+		}
 
 		function update(entity) {
 			return entity.put().then(abstract.querySucceed, abstract.queryFailed);
-		};
+		}
 
 		function remove(entity) {
 			return entity.remove().then(abstract.querySucceed, abstract.queryFailed);
-		};
+		}
 
 	}
 })();

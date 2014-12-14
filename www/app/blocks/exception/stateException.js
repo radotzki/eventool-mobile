@@ -3,7 +3,7 @@
 
 	angular
 	.module('blocks.exception')
-	.run(stateChangeError)
+	.run(stateChangeError);
 
 	/* @ngInject */
 	function stateChangeError($rootScope, exception){

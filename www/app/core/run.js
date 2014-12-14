@@ -3,7 +3,7 @@
 
 	angular
 	.module('eventool.core')
-	.run(ionicReady)
+	.run(ionicReady);
 	
 	/* @ngInject */
 	function ionicReady($ionicPlatform) {

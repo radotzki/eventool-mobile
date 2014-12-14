@@ -20,7 +20,7 @@
 		function init() {
 			repoNames.forEach(function(name) {
 				service[name] = $injector.get('repository.' + name);
-			})
+			});
 		}
 
 	}

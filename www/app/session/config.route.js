@@ -27,7 +27,7 @@
 			url: "/productions/create",
 			controller:  "ProductionCreateCtrl",
 			templateUrl: "app/session/productionSignup.html"                     
-		})
+		});
 		
 	}
 

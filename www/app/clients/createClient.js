@@ -6,7 +6,7 @@
 	.controller('CreateClient', CreateClient);
 
 	/* @ngInject */
-	function CreateClient($window, datacontext) {
+	function CreateClient($state, $ionicLoading, datacontext) {
 		/*jshint validthis: true */
 		var vm = this;
 		vm.client = {};
@@ -22,8 +22,10 @@
 				city: vm.client.city
 			};
 
+			$ionicLoading.show();
 			datacontext.client.create(newClient).then(function(res){
-				$window.history.back();
+				$ionicLoading.hide();
+				$state.go('app.showClient', {clientId: res.id});
 			});
 		}
 

@@ -6,17 +6,16 @@
 	.controller('EditClient', EditClient);
 
 	/* @ngInject */
-	function EditClient($window, $state, $stateParams, datacontext) {
+	function EditClient($window, $state, $stateParams, $ionicLoading, datacontext, actionSheet) {
 		/*jshint validthis: true */
 		var vm = this;
 		vm.client;
 		vm.updateClient = updateClient;
-		vm.deleteClient = deleteClient;
+		vm.confirmDelete = confirmDelete;
 
 		activate();
 
 		function activate() {
-			console.log($stateParams.clientId)
 			getClient();
 		}
 
@@ -28,13 +27,22 @@
 		}
 
 		function updateClient() {
+			$ionicLoading.show();
 			datacontext.client.update(vm.client).then(function(res){
+				$ionicLoading.hide();
 				$window.history.back();
 			});
 		}
 
+		function confirmDelete() {
+			var msg = "This will delete " + vm.client.first_name + " " + vm.client.last_name;
+			actionSheet.confirmDelete(deleteClient, msg);
+		}
+
 		function deleteClient() {
+			$ionicLoading.show();
 			datacontext.client.remove(vm.client).then(function(res){
+				$ionicLoading.hide();
 				$state.go('app.clients');
 			});
 		}
