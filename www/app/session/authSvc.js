@@ -6,7 +6,7 @@
   .factory('auth', auth);
 
   /* @ngInject */
-  function auth($q, Restangular, exception) {
+  function auth($q, Restangular, $localStorage, exception) {
     var userInfo;
     var deferred;
     
@@ -41,7 +41,7 @@
       };
 
       Restangular.setDefaultHeaders({token: userInfo.token});
-      localStorage.setItem('user', JSON.stringify(userInfo));
+      $localStorage.user = userInfo;
       deferred.resolve(userInfo);
     }
 
@@ -52,7 +52,7 @@
 
     function logout() {
       userInfo = null;
-      localStorage.removeItem('user');
+      delete $localStorage.user;
       delete Restangular.defaultHeaders.token;
     }
 
@@ -61,8 +61,8 @@
     }
 
     function init() {
-      if (localStorage["user"]) {
-        userInfo = JSON.parse(localStorage["user"]);
+      if ($localStorage.user) {
+        userInfo = $localStorage.user;
         Restangular.setDefaultHeaders({token: userInfo.token});
       }
     }

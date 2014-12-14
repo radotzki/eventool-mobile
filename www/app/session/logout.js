@@ -11,7 +11,7 @@
 
         function activate() {
         	auth.logout();
-        	$state.go('app.login');
+        	$state.go('login');
         }
     }
 })();

@@ -9,40 +9,24 @@
 	function stateConfig($stateProvider){
 		$stateProvider
 
-		.state('app.login', {
+		.state('login', {
 			url: "/login",
-			views: {
-				'menuContent' :{
-					controller: "Login as vm",
-					templateUrl: "app/session/login.html"
-				}
-			}
+			controller: "Login as vm",
+			templateUrl: "app/session/login.html"
 		})
-		.state('app.logout', {
+		.state('logout', {
 			url: "/logout",
-			views: {
-				'menuContent' :{
-					controller: "Logout"
-				}
-			} 
+			controller: "Logout"
 		})
-		.state('app.createUser', {
+		.state('createUser', {
 			url: "/users/create",
-			views: {
-				'menuContent' :{
-					controller:  "UserCreateCtrl",
-					templateUrl: "app/session/userSignup.html"            
-				}
-			}          
+			controller:  "UserCreateCtrl",
+			templateUrl: "app/session/userSignup.html"                     
 		})
-		.state('app.createProduction', {
+		.state('createProduction', {
 			url: "/productions/create",
-			views: {
-				'menuContent' :{
-					controller:  "ProductionCreateCtrl",
-					templateUrl: "app/session/productionSignup.html"             
-				}
-			}         
+			controller:  "ProductionCreateCtrl",
+			templateUrl: "app/session/productionSignup.html"                     
 		})
 		
 	}

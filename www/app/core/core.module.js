@@ -13,6 +13,6 @@
         /*
          * 3rd Party modules
          */
-        'ui.bootstrap.datetimepicker', 'restangular'
+        'ui.bootstrap.datetimepicker', 'restangular', 'ngStorage'
     ]);
 })();
