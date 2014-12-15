@@ -1,39 +1,61 @@
-angular.module('eventool.events')
+(function() {
+	'use strict';
 
-.controller('EventShowCtrl', function($scope, datacontext, $stateParams, orderByFilter) {
-	datacontext.event.show($stateParams.eventId).then(function(data){
-		$scope.event = data;
+	angular
+	.module('eventool.events')
+	.controller('ShowEvent', ShowEvent);
 
-		$scope.eventPass = false;
-		if ((new Date(data.when)) < Date.now()) {
-			$scope.eventPass = true;
+	/* @ngInject */
+	function ShowEvent($ionicLoading, $stateParams, datacontext, user) {
+		/*jshint validthis: true */
+		var vm = this;
+		vm.event;
+		vm.tickets;
+		vm.user = user;
+		vm.income = 0;
+		vm.femaleArrived = 0;
+		vm.maleArrived = 0;
+		vm.canEditEvent = false;
+
+		activate();
+
+		function activate() {
+			$ionicLoading.show();
+			getEvent().then(getTickets).then(analyzeTickets).then(checkCanEditEvent).then(stopLoading);
 		}
 
-		datacontext.event.getTickets(data).then(function (tickets) {
-			$scope.tickets = tickets;
-			$scope.tickets = orderByFilter($scope.tickets, ['client.first_name','-arrived']);
+		function getEvent() {
+			return datacontext.event.show($stateParams.eventId).then(function(data){
+				vm.event = data;
+				return data;
+			});
+		}
 
-			// Statistic
-			$scope.maleCount=0;
-			$scope.femaleCount=0;
-			$scope.maleArrived=0;
-			$scope.femaleArrived=0;
-			$scope.income=0;
+		function checkCanEditEvent() {
+			vm.canEditEvent = ((new Date(vm.event.when)) < Date.now()) && (vm.user.role == 'producer');
+			return vm.canEditEvent;
+		}
 
-			for(i=0; i<$scope.tickets.length;i++){
-				if(i==0){
-					$scope.tickets[i].client.gender == "male" ? $scope.maleCount++ : $scope.femaleCount++;
-				}
-				else if(i!=0 && $scope.tickets[i].client.id != $scope.tickets[i-1].client.id){
-					$scope.tickets[i].client.gender == "male" ? $scope.maleCount++ : $scope.femaleCount++;
-				}
+		function getTickets() {
+			return datacontext.event.getTickets(vm.event).then(function (tickets) {
+				vm.tickets = tickets;
+				return tickets;
+			})
+		}
 
-				if($scope.tickets[i].arrived){
-					$scope.income+=$scope.tickets[i].price.price;	
-					$scope.tickets[i].client.gender == "male" ? $scope.maleArrived++ : $scope.femaleArrived++;				
+		function analyzeTickets() {
+			for (var i=0; i < vm.tickets.length; i++) {
+				if(vm.tickets[i].arrived){
+					vm.income += vm.tickets[i].price.price;	
+					vm.tickets[i].client.gender == "male" ? vm.maleArrived++ : vm.femaleArrived++;				
 				}
 			}
-		})
+			return true;
+		}
 
-	});
-})
+		function stopLoading() {
+			return $ionicLoading.hide();
+		}
+
+	}
+})();

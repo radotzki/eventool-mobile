@@ -13,7 +13,7 @@
 			url: "/events",
 			views: {
 				'tab-events' :{
-					controller:  "EventIndexCtrl",
+					controller:  "IndexEvents as vm",
 					templateUrl: "app/events/indexEvents.html",
 					resolve: {
 						user: ['auth', function(auth) {
@@ -27,7 +27,7 @@
 			url: "/event/:eventId",
 			views: {
 				'tab-events' :{
-					controller:  "EventShowCtrl",
+					controller:  "ShowEvent as vm",
 					templateUrl: "app/events/showEvent.html",
 					resolve: {
 						user: ['auth', function(auth) {

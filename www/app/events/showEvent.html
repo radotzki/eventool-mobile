@@ -1,18 +1,23 @@
-<ion-view title="{{event.name}}">
+<ion-view title="{{vm.event.name}}">
+
+<ion-nav-buttons side="right">
+<button class="button button-clear right" ui-sref="app.eventUpdate({ eventId:vm.event.id })" ng-show="vm.canEditEvent">EDIT</button>
+</ion-nav-buttons>
+
 <ion-content class="has-header">    
 
 <div style="position: relative;">
 	<img src="content/img/clientCover.jpg" style="height: 300px;width: 100%; ">   
 
 	<div class="text-center" style="position: absolute; top: 0px; height: 300px; width: 100%; background: rgba(68, 68, 68, 0.7)">
-		<h1 style="color:#fff; margin-top:20%"> {{event.name}}</h1>
+		<h1 style="color:#fff; margin-top:20%"> {{vm.event.name}}</h1>
 		<h4 style="color:#fff">
-			<span> <i class="icon ion-ios7-calendar-outline"></i> {{event.when | date}} </span>
+			<span> <i class="icon ion-ios7-calendar-outline"></i> {{vm.event.when | date}} </span>
 		</h4>
 		<h5 style="color:#fff">
 			<span> 
 				<i class="icon ion-ios7-pricetags-outline"></i>
-				<span ng-repeat="price in event.prices"> {{price.price | currency}} </span> 
+				<span ng-repeat="price in vm.event.prices"> {{price.price | currency}} </span> 
 			</span>	
 		</h5>
 
@@ -20,19 +25,19 @@
 			<div class="col" style="border-right:white solid thin">
 				<h4 style="color:#fff">
 					Male
-					<br> {{maleArrived + "/" + maleCount}}
+					<br> {{vm.maleArrived}}
 				</h4>
 			</div>
 			<div class="col" style="border-right:white solid thin">
 				<h4 style="color:#fff">
 					Female
-					<br> {{femaleArrived + "/" + femaleCount}}
+					<br> {{vm.femaleArrived}}
 				</h4>
 			</div>
 			<div class="col">
 				<h4 style="color:#fff">
 					Income
-					<br> {{income | currency}}
+					<br> {{vm.income | currency}}
 				</h4>
 			</div>
 		</div>
@@ -42,12 +47,12 @@
 
 <label class="item item-input">
 	<i class="icon ion-search placeholder-icon"></i>
-	<input type="text" placeholder="Search" ng-model="searchParam">
+	<input type="text" placeholder="Search" ng-model="vm.searchParam">
 </label>
 
 <div class="list">
 	<a class="item"
-	ng-repeat="ticket in tickets | filter:searchParam"
+	ng-repeat="ticket in vm.tickets | filter:vm.searchParam | orderBy:['client.first_name','-arrived']"
 	collection-item-width="'100%'"
 	collection-item-height="60"
 	ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })"

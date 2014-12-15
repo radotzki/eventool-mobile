@@ -1,15 +1,31 @@
-angular.module('eventool.events')
+(function() {
+	'use strict';
 
-.controller('EventIndexCtrl', function($scope, datacontext, user) {
+	angular
+	.module('eventool.events')
+	.controller('IndexEvents', IndexEvents);
 
-	$scope.user = user;
+	/* @ngInject */
+	function IndexEvents($ionicLoading, datacontext, user) {
+		/*jshint validthis: true */
+		var vm = this;
+		vm.user = user;
+		vm.events;
 
-	datacontext.event.index().then(function(data){
-		$scope.events = data;	
-	});
+		activate();
 
-	$scope.eventPass = function(event) {
-		return (new Date(event.when)) < Date.now();
+		function activate() {
+			getEvents();
+		}
+
+		function getEvents() {
+			$ionicLoading.show();
+			return datacontext.event.index().then(function(data){
+				vm.events = data;
+				$ionicLoading.hide();
+				return data;	
+			});
+		}
+
 	}
-
-})
+})();
