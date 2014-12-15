@@ -32,7 +32,7 @@
 		}
 
 		function checkCanEditEvent() {
-			vm.canEditEvent = ((new Date(vm.event.when)) < Date.now()) && (vm.user.role == 'producer');
+			vm.canEditEvent = ((new Date(vm.event.when)) >= Date.now()) && (vm.user.role == 'producer');
 			return vm.canEditEvent;
 		}
 
@@ -40,7 +40,7 @@
 			return datacontext.event.getTickets(vm.event).then(function (tickets) {
 				vm.tickets = tickets;
 				return tickets;
-			})
+			});
 		}
 
 		function analyzeTickets() {

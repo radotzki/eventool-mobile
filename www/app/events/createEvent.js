@@ -1,27 +1,34 @@
-angular.module('eventool.events')
+(function() {
+	'use strict';
 
-.controller('EventCreateCtrl', function($scope, datacontext, $window, $ionicPopup, $filter) {
-	$scope.prices = ["0", "10", "20"];
-	$scope.event = {when: new Date()};
+	angular
+	.module('eventool.events')
+	.controller('CreateEvent', CreateEvent);
 
-	$scope.createEvent = function(myForm) {
-		datacontext.event.create
-		({when: $scope.event.when, name: $scope.event.name, prices: $scope.prices})
-		.then(function(eventId){
-			// Add prices
-			for (var i=0; i < $scope.prices.length; i++) {
-				datacontext.eventPrice.create(eventId, {price: $scope.prices[i]});
+	/* @ngInject */
+	function CreateEvent($ionicLoading, $state, datacontext) {
+		/*jshint validthis: true */
+		var vm = this;
+		vm.event = {prices: [], when: new Date()};
+		vm.createEvent = createEvent;
+
+		function createEvent() {
+			$ionicLoading.show();
+			var newEvent = {when: vm.event.when, name: vm.event.name};
+			datacontext.event.create(newEvent).then(addPrices).then(showNewEvent);
+		}
+
+		function addPrices(resp) {
+			for (var i=0; i < vm.event.prices.length; i++) {
+				datacontext.eventPrice.create(resp.id, {price: vm.event.prices[i].price});
 			}
+			return resp.id;
+		}
 
-			var alertPopup = $ionicPopup.alert({
-				title: 'Event \'' + $scope.event.name + '\' created! '
-			});
-			alertPopup.then(function(res) {
-				$window.history.back();
-			});
-		});
-	};
+		function showNewEvent(eventId) {
+			$ionicLoading.hide();
+			$state.go('app.eventShow', {eventId: eventId});
+		}
 
-
-})
-
+	}
+})();

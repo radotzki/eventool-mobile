@@ -1,57 +1,61 @@
-angular.module('eventool.events')
+(function() {
+	'use strict';
 
-.controller('EventUpdateCtrl', function($scope, $stateParams, $window, datacontext, $ionicPopup) {
-	datacontext.event.show($stateParams.eventId).then(function(data){
-		$scope.event = data;
-		$scope.prices = [];
+	angular
+	.module('eventool.events')
+	.controller('EditEvent', EditEvent);
 
-		for(var i=0; i < data.prices.length; i++) {
-			$scope.prices.push(data.prices[i].price);	
+	/* @ngInject */
+	function EditEvent($stateParams, $ionicLoading, $state, $window, datacontext, actionSheet) {
+		/*jshint validthis: true */
+		var vm = this;
+		vm.event;
+		vm.updateEvent = updateEvent;
+		vm.confirmDelete = confirmDelete;
+
+		activate();
+
+		function activate() {
+			getEvent();
 		}
-		
-	});
 
-	$scope.updateEvent = function(){
-		datacontext.event.update($scope.event);
+		function getEvent() {
+			$ionicLoading.show();
+			return datacontext.event.show($stateParams.eventId).then(function(data){
+				vm.event = data;
+				$ionicLoading.hide();
+				return data;
+			});
+		}
 
-		for (var i=0; i<$scope.prices.length; i++){
-			var found = false;
-			for (var j=0; j<$scope.event.prices.length; j++){
-				if ($scope.prices[i] == $scope.event.prices[j].price){
-					found = true;
-					break;
+		function updateEvent() {
+			$ionicLoading.show();
+			datacontext.event.update(vm.event);
+			updatePrices();
+		}
+
+		function updatePrices() {
+			for (var i=0; i < vm.event.prices.length; i++) {
+				if ( !vm.event.prices[i].id ) {
+					datacontext.eventPrice.create(vm.event.id, {price: vm.event.prices[i].price});
 				}
 			}
-
-			if (!found) {
-				datacontext.eventPrice.create($stateParams.eventId, {price: $scope.prices[i]});
-			}
-		}
-
-		for (var i=0; i<$scope.event.prices.length; i++){
-			var found = false;
-			for (var j=0; j<$scope.prices.length; j++){
-				if ($scope.event.prices[i].price == $scope.prices[j]){
-					found = true;
-					break;
-				}
-			}
-
-			if (!found) {
-				datacontext.eventPrice.show($stateParams.eventId, $scope.event.prices[i].id)
-				.then(function(data){
-					datacontext.eventPrice.remove(data);
-				});
-				
-			}
-		}
-
-		var alertPopup = $ionicPopup.alert({
-			title: 'Event \'' + $scope.event.name + '\' saved!'
-		});
-		alertPopup.then(function(res) {
+			$ionicLoading.hide();
 			$window.history.back();
-		});
-	}	
+		}
 
-})
+		function confirmDelete() {
+			var msg = "This will delete '" + vm.event.name + "' event";
+			actionSheet.confirmDelete(deleteEvent, msg);
+		}
+
+		function deleteEvent() {
+			$ionicLoading.show();
+			datacontext.event.remove(vm.event).then(function(res){
+				$ionicLoading.hide();
+				$state.go('app.events');
+			});
+		}
+
+	}
+})();

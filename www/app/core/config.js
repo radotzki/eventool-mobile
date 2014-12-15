@@ -4,7 +4,7 @@
 	angular
 	.module('eventool.core')
 	.config(restangularConfig)
-	.config(stateConfig)
+	.config(stateConfig);
 
 	/* @ngInject */
 	function restangularConfig(RestangularProvider, HOST) {

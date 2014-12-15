@@ -5,22 +5,28 @@
 	<div class="list">
 		<label class="item item-input item-stacked-label">
 			<span class="input-label">Name</span>
-			<input type="text" placeholder="awesome event" ng-model="event.name" name="name" required>
+			<input type="text" placeholder="awesome event" ng-model="vm.event.name" name="name" required>
 			<p style="color: pink" ng-show="myForm.name.$invalid && !myForm.name.$pristine">name is required</p>
 		</label>
 		<label class="item item-input" >
 			<span class="input-label">When</span>
-			<my-date-time-picker placeholder="{{event.when | date:'dd/MM/yyyy HH:mm'}}" title="Select Date" ng-model="event.when"></my-date-time-picker>
+			<my-date-time-picker placeholder="{{vm.event.when | date:'dd/MM/yyyy HH:mm'}}" title="Select Date" ng-model="vm.event.when"></my-date-time-picker>
 		</label>
-
-		<event-price-list prices="prices"> </event-price-list>	
 	</div>
 </form>
 
+<et-price-list prices="vm.event.prices" edit-event="{{true}}"> </et-price-list>
 
-<button class="button button-block button-outline button-positive" ng-click="updateEvent()" ng-disabled="myForm.$invalid">
+
+
+<div class="text-center m-t-large">
+<button class="button button-outline button-positive" ng-click="vm.updateEvent()" ng-disabled="myForm.$invalid">
 	Save
 </button>
+<button class="button button-outline button-assertive" ng-click="vm.confirmDelete()">
+	Delete event
+</button>
+</div>
 
 
 </ion-content>

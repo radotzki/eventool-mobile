@@ -41,7 +41,7 @@
 			url: "/events/create",
 			views: {
 				'tab-events' :{
-					controller:  "EventCreateCtrl",
+					controller:  "CreateEvent as vm",
 					templateUrl: "app/events/createEvent.html",
 					resolve: {
 						user: ['auth', function(auth) {
@@ -55,22 +55,8 @@
 			url: "/event/update/:eventId",
 			views: {
 				'tab-events' :{
-					controller:  "EventUpdateCtrl",
+					controller:  "EditEvent as vm",
 					templateUrl: "app/events/editEvent.html",
-					resolve: {
-						user: ['auth', function(auth) {
-							return auth.stateAuth(['producer']);
-						}]
-					}              
-				}
-			}          
-		}) 
-		.state('app.eventDelete', {
-			url: "/event/delete/:eventId",
-			views: {
-				'tab-events' :{
-					controller:  "EventDeleteCtrl",
-					templateUrl: "app/events/delete.html",
 					resolve: {
 						user: ['auth', function(auth) {
 							return auth.stateAuth(['producer']);

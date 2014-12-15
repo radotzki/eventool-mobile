@@ -1,0 +1,17 @@
+<form name="priceListForm" novalidate>
+	<div class="item item-input-inset">
+		<label class="item-input-wrapper">		
+			<input type="number" placeholder="Price" min="0" ng-model="vm.newPrice" name="price" required>
+		</label>
+		<button class="button button-small" ng-click="vm.addPrice()" ng-disabled="priceListForm.$invalid">
+			Add
+		</button>
+	</div>
+</form>
+
+<div class="list">
+	<div class="item item-icon-right" ng-repeat="price in vm.prices">
+		{{price.price | currency}}
+		<i ng-show="!vm.editEvent" class="icon ion-close-round" ng-click="vm.removePrice($index)"></i>
+	</div>
+</div>
