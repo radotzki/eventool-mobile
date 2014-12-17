@@ -10,23 +10,13 @@
 		$stateProvider
 
 		.state('login', {
-			url: "/login",
+			url: "/login/{msg}",
 			controller: "Login as vm",
 			templateUrl: "app/session/login.html"
 		})
 		.state('logout', {
 			url: "/logout",
 			controller: "Logout"
-		})
-		.state('createUser', {
-			url: "/users/create",
-			controller:  "UserCreateCtrl",
-			templateUrl: "app/session/userSignup.html"                     
-		})
-		.state('createProduction', {
-			url: "/productions/create",
-			controller:  "ProductionCreateCtrl",
-			templateUrl: "app/session/productionSignup.html"                     
 		});
 		
 	}

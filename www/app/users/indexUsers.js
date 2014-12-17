@@ -1,3 +1,39 @@
+(function() {
+	'use strict';
+
+	angular
+	.module('eventool.users')
+	.controller('IndexUsers', IndexUsers);
+
+	/* @ngInject */
+	function IndexUsers(datacontext) {
+		/*jshint validthis: true */
+		var vm = this;
+
+		vm.users;
+		vm.unlockUser = unlockUser;
+
+		activate();
+
+		function activate() {
+			getUsers();
+		}
+
+		function getUsers () {
+			return datacontext.user.index().then(function(resp) {
+				vm.users = resp;
+				return resp;
+			});
+		}
+
+		function unlockUser () {
+
+		}
+
+	}
+})();
+
+
 angular.module('eventool.users')
 
 .controller('UserIndexCtrl', function($scope, $ionicPopup, $state, datacontext) {

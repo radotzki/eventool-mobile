@@ -13,7 +13,6 @@
 			url: "/app",
 			abstract: true,
 			templateUrl: "app/layout/shell.html"
-			// controller: 'Shell'
 		});
 		
 	}

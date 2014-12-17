@@ -16,7 +16,7 @@
         activate();
 
         function activate() {
-            vm.message = exception.getErrorMsg() || '';
+            vm.message = exception.getErrorMsg() || $stateParams.msg || '';
         }
 
         function login(){

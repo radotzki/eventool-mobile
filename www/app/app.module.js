@@ -21,7 +21,8 @@
          'eventool.events',
          'eventool.tickets',
          'eventool.friendship',
-         'eventool.comments'
+         'eventool.comments',
+         'eventool.registration'
          ]);
 
 })();
