@@ -1,27 +1,54 @@
-angular.module('eventool.users')
+(function() {
+	'use strict';
 
-.controller('UserUpdateCtrl', function($scope, $ionicPopup, $window, $stateParams, datacontext) {
-	datacontext.user.show($stateParams.userId).then(function(responseData) {
-		$scope.user = responseData;
-	});
+	angular
+	.module('eventool.users')
+	.controller('EditUser', EditUser);
 
-	$scope.update = function(){
-		datacontext.user.update($scope.user);
-		$window.history.back();
-	};
+	/* @ngInject */
+	function EditUser($ionicLoading, $state, $stateParams, datacontext, actionSheet) {
+		/*jshint validthis: true */
+		var vm = this;
 
-	$scope.lockUser = function(){
-		var confirmPopup = $ionicPopup.confirm({
-			title: 'Lock User',
-			template: 'Are you sure you want to lock ' + $scope.user.name + '?',
-			okText: 'Yes'
-		});
-		confirmPopup.then(function(res) {
-			if(res) {
-				datacontext.user.lock($scope.user);
-				$window.history.back();
-			}
-		});
-	};
-	
-})
+		vm.user;
+		vm.update = update;
+		vm.confirmLock = confirmLock;
+
+		activate();
+
+		function activate() {
+			getUser();
+		}
+
+		function getUser () {
+			$ionicLoading.show();
+			return datacontext.user.show($stateParams.userId).then(function(resp) {
+				vm.user = resp;
+				$ionicLoading.hide();
+				return resp;
+			});
+		}
+
+		function update () {
+			$ionicLoading.show();
+			datacontext.user.update(vm.user).then(function() {
+				$ionicLoading.hide();
+				$state.go('app.showUser', {userId: vm.user.id});
+			})
+		}
+
+		function confirmLock () {
+			var msg = 'Are you sure you want to lock ' + vm.user.name + '?';
+			actionSheet.confirm(lockUser, msg);
+		}
+
+		function lockUser () {
+			$ionicLoading.show();
+			datacontext.user.lock(vm.user).then(function() {
+				$ionicLoading.hide();
+				$state.go('app.users');
+			})
+		}
+
+	}
+})();

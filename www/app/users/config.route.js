@@ -13,7 +13,7 @@
 			url: "/users",
 			views: {
 				'tab-workers' :{
-					controller:  "UserIndexCtrl",
+					controller:  "IndexUsers as vm",
 					templateUrl: "app/users/indexUsers.html",
 					resolve: {
 						user: ['auth', function(auth) {
@@ -27,7 +27,7 @@
 			url: "/user/:userId",
 			views: {
 				'tab-workers' :{
-					controller:  "UserShowCtrl as vm",
+					controller:  "ShowUser as vm",
 					templateUrl: "app/users/showUser.html",
 					resolve: {
 						user: ['auth', function(auth) {
@@ -41,7 +41,7 @@
 			url: "/user/update/:userId",
 			views: {
 				'tab-workers' :{
-					controller:  "UserUpdateCtrl",
+					controller:  "EditUser as vm",
 					templateUrl: "app/users/editUser.html",
 					resolve: {
 						user: ['auth', function(auth) {

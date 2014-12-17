@@ -8,7 +8,8 @@
 	/* @ngInject */
 	function actionSheet($ionicActionSheet) {
 		var service = {
-			confirmDelete: confirmDelete
+			confirmDelete: confirmDelete,
+			confirm: confirm
 		};
 		return service;
 
@@ -18,6 +19,16 @@
 				destructiveText: 'Delete',
 				cancelText: 'Cancel',
 				destructiveButtonClicked: callback
+			});
+			return hideSheet;
+		}
+
+		function confirm (callback, title) {
+			var hideSheet = $ionicActionSheet.show({
+				titleText: title || 'Are you sure?',
+				buttons: [ { text: 'Yes' } ],
+				cancelText: 'Cancel',
+				buttonClicked: callback
 			});
 			return hideSheet;
 		}

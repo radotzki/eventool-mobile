@@ -13,7 +13,7 @@
 			templateUrl: 'app/tickets/indexTickets.html',
 			scope: {
 				'tickets': '=',
-				'collapsBy': '@'
+				'target': '@'
 			},
 			restrict: 'EA'
 		};
@@ -24,7 +24,7 @@
 	function IndexTickets($scope) {
 		/*jshint validthis: true */
 		var vm = this;
-		vm.collapsBy = $scope.collapsBy;
+		vm.target = $scope.target;
 		vm.tickets;
 		vm.separatedTickets = [];
 
@@ -34,9 +34,9 @@
 
 		function activate() {
 			vm.tickets = $scope.tickets; 
-			if ( vm.collapsBy == 'event' ) {
+			if ( vm.target == 'user' || vm.target == 'client' ) {
 				seperateByEvent();
-			} else if ( vm.collapsBy == 'client' ) {
+			} else if ( vm.target == 'event' ) {
 				seperateByClient();
 			}
 		}
@@ -46,17 +46,25 @@
 				var eventIndex = findEventByName(vm.tickets[i].event.name);
 				if ( eventIndex > -1 ){
 					vm.separatedTickets[eventIndex].tickets.push(vm.tickets[i]);
-					vm.separatedTickets[eventIndex].arriveCount += vm.tickets[i].arrived;	
+					vm.separatedTickets[eventIndex].income += vm.tickets[i].price.price;	
+					if ( vm.tickets[i].arrived ){
+						vm.separatedTickets[eventIndex].arriveCount += vm.tickets[i].arrived;	
+					} 
 				}
 				else {
-					vm.separatedTickets.push({
-						tickets: [vm.tickets[i]],
-						arriveCount: vm.tickets[i].arrived,
-						when: vm.tickets[i].event.when,
-						eventName: vm.tickets[i].event.name
-					});	
+					vm.separatedTickets.push(ticketAdapter(vm.tickets[i]));	
 				}
 			}
+		}
+
+		function ticketAdapter (ticket) {
+			return {
+				tickets: [ticket],
+				arriveCount: ticket.arrived,
+				when: ticket.event.when,
+				eventName: ticket.event.name,
+				income: ticket.arrived ? ticket.price.price : 0
+			};
 		}
 
 		function findEventByName(name){

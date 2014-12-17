@@ -56,7 +56,7 @@
 	<a class="button button-block button-outline button-positive" ui-sref="app.createTicket({clientId: vm.client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
 		Add Ticket
 	</a>
-	<et-tickets tickets="vm.tickets" collaps-by="event"> </et-tickets>
+	<et-tickets tickets="vm.tickets" target="client"> </et-tickets>
 </div>
 <div ng-switch-when="comments">
 	<et-comments client-id="{{vm.client.id}}" user="vm.user"> </et-comments>

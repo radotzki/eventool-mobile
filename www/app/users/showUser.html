@@ -19,7 +19,7 @@
 			<div class="col" style="border-right:white solid thin">
 				<h4 style="color:#fff">
 					Tickets
-					<br> {{vm.ticketsAmount}}
+					<br> {{vm.tickets.length}}
 				</h4>
 			</div>
 			<div class="col" style="border-right:white solid thin">
@@ -39,18 +39,7 @@
 	</div>
 </div>
 
-<div class="list" ng-if="vm.user.role != 'cashier'">
-	<div class="item item-divider" ng-repeat-start="value in vm.ticketsByEvents | orderBy: '-when'" ng-click="show=!show;" style="margin-bottom: 10px; text-align: center">
-		<span> {{value.eventName}} </span>
-		<span style="float: right"> {{value.arriveCount}} / {{value.tickets.length}} </span>
-	</div>
-	<div ng-show="show" class="item" ng-repeat="ticket in value.tickets | orderBy: 'client.first_name'" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
-		<span> {{ticket.price.price | currency}} to {{ticket.client.first_name + " " + ticket.client.last_name}}</span>
-		<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
-		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
-	</div>
-	<div ng-repeat-end></div>
-</div>
+<et-tickets tickets="vm.tickets" target="user" ng-if="vm.user.role != 'cashier'"> </et-tickets>
 
 </ion-content>
 </ion-view>

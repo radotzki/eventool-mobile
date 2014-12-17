@@ -1,13 +1,13 @@
-<ion-view title="{{user.name}}">
+<ion-view title="{{vm.user.name}}">
 <ion-content class="has-header">    
 <div class="list card">
 	<div class="item">
-		<h2>{{user.name}}</h2>
-		<p>{{user.role}}</p>
+		<h2>{{vm.user.name}}</h2>
+		<p>{{vm.user.role}}</p>
 	</div>
 	<label class="item item-input item-select">
 		<div class="input-label">Role </div>
-		<select ng-model="user.role">
+		<select ng-model="vm.user.role">
 			<option value="producer">Producer</option>
 			<option value="promoter">Promoter</option>
 			<option value="cashier">Cashier</option>
@@ -16,10 +16,10 @@
 
 	
 	<div class="text-center m-t-large">
-		<button class="button button-outline button-positive" ng-click="update()">
+		<button class="button button-outline button-positive" ng-click="vm.update()">
 		Update
 	</button>
-	<button class="button button-outline button-assertive" ng-click="lockUser()">
+	<button class="button button-outline button-assertive" ng-click="vm.confirmLock()">
 		Lock User
 	</button>
 	</div>

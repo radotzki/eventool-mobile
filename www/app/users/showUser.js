@@ -3,23 +3,21 @@
 
 	angular
 	.module('eventool.users')
-	.controller('UserShowCtrl', UserShowCtrl);
+	.controller('ShowUser', ShowUser);
 
-	function UserShowCtrl($stateParams, datacontext) {
+	function ShowUser($stateParams, $ionicLoading, datacontext) {
 		var vm = this;
 
 		vm.arrivedAmount = 0;
 		vm.income = 0;
-		vm.user = {};
-		vm.ticketsAmount = 0;
-		vm.ticketsByEvents = [];
+		vm.user;
+		vm.tickets;
 
 		activate();
 
 		function activate() {
-			return getUser().then(function(user) {
-				getUserTickets(user);
-			})
+			$ionicLoading.show();
+			return getUser().then(getUserTickets).then(anlyzeTickets).then(stopLoading);
 		}
 
 		function getUser() {
@@ -30,38 +28,23 @@
 		}
 
 		function getUserTickets(user) {
-			datacontext.user.getTickets(user).then(function(tickets){
-				vm.ticketsAmount = tickets.length;
-
-				for(var i=0; i<tickets.length;i++){
-					if(tickets[i].arrived){
-						vm.arrivedAmount++;
-					}
-
-					var event = findEventByName(tickets[i].event.name);
-					if ( event != -1 ){
-						vm.ticketsByEvents[event].tickets.push(tickets[i]);
-						vm.ticketsByEvents[event].arriveCount += tickets[i].arrived;	
-					}
-					else {
-						vm.ticketsByEvents.push({
-							tickets: [tickets[i]],
-							arriveCount: tickets[i].arrived,
-							when: tickets[i].event.when,
-							eventName: tickets[i].event.name
-						});	
-					}
-				}
+			return datacontext.user.getTickets(user).then(function(tickets){
+				vm.tickets = tickets;
+				return tickets;
 			})
 		}
 
-		function findEventByName(name){
-			var res = -1;
-			for(var i=0; i < vm.ticketsByEvents.length; i++){
-				if ( vm.ticketsByEvents[i].eventName == name )
-					return i;
+		function anlyzeTickets (tickets) {
+			for(var i=0; i < tickets.length; i++){
+				if(tickets[i].arrived){
+					vm.arrivedAmount++;
+					vm.income += tickets[i].price.price;
+				}
 			}
-			return res;
+		}
+
+		function stopLoading () {
+			$ionicLoading.hide();
 		}
 
 	}
