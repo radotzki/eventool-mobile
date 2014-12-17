@@ -9,14 +9,6 @@
 	z-index: 5;
 }
 
-.list .my-item.item {
-	left: 0;
-	right: 0;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-
 /* CLIENT PROFILE */
 .client-profile-nav {
 	text-align: center;	
@@ -32,3 +24,31 @@
 	font-weight: bold;
 }
 /* END CLIENT PROFILE */
+
+/* DATE TIME PICKER */
+.datetimepicker, .datetimepicker table {
+	width: 100%;
+}
+
+.glyphicon, .glyphicon-arrow-left:before, .glyphicon-arrow-right {
+	display: inline-block;
+	font-family: "Ionicons";
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	text-rendering: auto;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale; 
+}
+
+.glyphicon-arrow-left:before {
+	content: "\f108"; 
+}
+
+.glyphicon-arrow-right:before {
+	content: "\f10b"; 
+}
+/* END DATE TIME PICKER */
