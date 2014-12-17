@@ -21,5 +21,5 @@ gulp.task('wiredep', function () {
 		directory: 'www/lib',
 		exclude: exclude
 	}))
-	.pipe(gulp.dest('www'));
+	.pipe(gulp.dest('www/'));
 });

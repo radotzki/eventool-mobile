@@ -22,7 +22,8 @@
 		</label>
 		<label class="item item-input" >
 			<span class="input-label">Birthdate</span>
-			<my-date-picker placeholder="Enter a date" title="Select Date" ng-model="vm.client.birthdate" ></my-date-picker>
+			<et-date-picker start-view="year" min-view="day" date-format="MMM d, y" 
+			ng-model="vm.client.birthdate" placeholder="Select Date"> </et-date-picker>
 		</label>
 		<label class="item item-input item-stacked-label">
 			<span class="input-label">City</span>
@@ -39,6 +40,7 @@
 <button class="button button-block button-outline button-positive" ng-click="vm.createClient()" ng-disabled="myForm.$invalid">
 	Create client
 </button>
+
 
 </ion-content>
 </ion-view>

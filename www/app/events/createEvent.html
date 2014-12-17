@@ -10,7 +10,8 @@
 		</label>
 		<label class="item item-input" >
 			<span class="input-label">When</span>
-			<my-date-time-picker placeholder="{{vm.event.when | date:'dd/MM/yyyy HH:mm'}}" title="Select Date" ng-model="vm.event.when" ></my-date-time-picker>
+			<et-date-picker start-view="year" min-view="minute" date-format="MMM d, y HH:mm" 
+			ng-model="vm.event.when" placeholder="Select Date & Time" title="Select Date & Time"> </et-date-picker>
 		</label>
 	</div>
 </form>

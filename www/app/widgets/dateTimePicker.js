@@ -1,38 +1,79 @@
-angular.module('eventool.widgets')
+(function() {
+  'use strict';
 
-.directive('myDateTimePicker', function ($ionicPopup) {
-  return {
-    restrict: 'E',
-    template: '<input class="my-date-time-picker" type="text" readonly="readonly" ng-model="formatted_datetime" ng-click="popup()" placeholder="{{placeholder}}">',
-    scope: {
-      'title': '@',
-      'dateModel': '=ngModel',
-      'placeholder': '@'
-    },
-    controller : function($scope, $filter, $ionicPopup) {
-      $scope.tmp = {};
-      $scope.tmp.newDate = $scope.dateModel || Date.now();
- 
-      $scope.popup = function() {
-        $ionicPopup.show({
-          template: '<div class="my-date-time-picker"><datetimepicker data-ng-model="tmp.newDate"></datetimepicker></div>',
-          title: $scope.title,
-          scope: $scope,
-          buttons: [
-            {text: 'Cancel'},
-            {
-              text: '<b>Choose</b>',
-              type: 'button-positive',
-              onTap: function(e) {
-                //$scope.$apply(function() { //error: apply already in progress
-                  $scope.dateModel = $scope.tmp.newDate;
-                  $scope.formatted_datetime = $filter('date')($scope.tmp.newDate, 'dd/MM/yyyy HH:mm');
-                //});
-              }
-            } 
-          ] 
-        }); 
-      }; 
+  angular
+  .module('eventool.widgets')
+  .directive('etDatePicker', etDatePicker);
+
+  /* @ngInject */
+  function etDatePicker () {
+    var template = [
+    '<input type="text" readonly="readonly" ng-model="formatted"',
+    'ng-click="popup()" placeholder="{{placeholder}}">'
+    ].join('');
+
+    var directive = {
+      controller: DatePicker,
+      template: template,
+      scope: {
+        'title': '@',
+        'dateModel': '=ngModel',
+        'placeholder': '@',
+        'startView': '@',
+        'minView': '@',
+        'dateFormat': '@',
+        'minuteStep': '@'
+      },
+      restrict: 'E'
+    };
+    return directive;
+  }
+
+  /* @ngInject */
+  function DatePicker($scope, $ionicPopup, $filter) {
+    /*jshint validthis: true */
+
+    $scope.dateModel = Date.now();
+    var minuteStep = $scope.minuteStep ? Number($scope.minuteStep) : 15;
+    $scope.config = { startView: $scope.startView, minView: $scope.minView, minuteStep: minuteStep };
+    $scope.formatted;
+
+    $scope.popup = popup;
+    $scope.onTimeSet = onTimeSet;
+
+    var myPopup;
+    var template = [
+    '<datetimepicker ng-model="dateModel"',
+    'on-set-time="onTimeSet(newDate, oldDate)"',
+    'datetimepicker-config="config">',
+    '</datetimepicker>'].join('');
+    var buttons = [
+    {text: 'Cancel'},
+    {
+      text: '<b>Choose</b>',
+      type: 'button-positive',
+      onTap: onTimeSet
+    } 
+    ];
+
+    function onTimeSet (newDate, oldDate) {
+      $scope.formatted = $filter('date')(newDate, $scope.dateFormat || 'mediumDate');
+      $scope.dateModel = newDate
+      if ( $scope.minView == 'day') {
+        $scope.dateModel.setHours(10);
+      } 
+      
+      myPopup.close();
     }
-  };
-})
+
+    function popup () {
+      myPopup = $ionicPopup.show({
+        template: template,
+        title: $scope.title || 'Select Date',
+        scope: $scope,
+        buttons: buttons
+      }); 
+    }
+
+  }
+})();

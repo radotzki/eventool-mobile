@@ -37,6 +37,5 @@
   },
   "_source": "git://github.com/dalelotts/angular-bootstrap-datetimepicker.git",
   "_target": "~0.3.7",
-  "_originalSource": "angular-bootstrap-datetimepicker",
-  "_direct": true
+  "_originalSource": "angular-bootstrap-datetimepicker"
 }
