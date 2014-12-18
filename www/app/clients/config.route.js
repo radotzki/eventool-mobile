@@ -11,62 +11,105 @@
 		$stateProvider
 
 		.state('app.clients', {
+			abstract: true,
 			url: "/clients",
 			views: {
-				'tab-clients' :{
-					controller:  "IndexClients as vm",
-					templateUrl: "app/clients/indexClients.html",
-					resolve: {
-						user: ['auth', function(auth) {
-							return auth.stateAuth(['producer', 'promoter', 'cashier']);
-						}]
-					}             
-				}
+				'tab-clients': { template: '<ion-nav-view></ion-nav-view>' }
+			},
+			resolve: {
+				user: ['auth', function(auth) {
+					return auth.stateAuth(['producer', 'promoter', 'cashier']);
+				}]
 			}         
 		})
-		.state('app.showClient', {
-			url: "/client/:clientId",
-			views: {
-				'tab-clients' :{
-					controller:  "ShowClient as vm",
-					templateUrl: "app/clients/showClient.html",
-					resolve: {
-						user: ['auth', function(auth) {
-							return auth.stateAuth(['producer', 'promoter', 'cashier']);
-						}]
-					}              
-				}
-			}         
+
+		.state('app.clients.index', {
+			url: "",
+			controller:  "IndexClients as vm",
+			templateUrl: "app/clients/indexClients.html"
 		})
-		.state('app.createClient', {
-			url: "/clients/create",
-			views: {
-				'tab-clients' :{
-					controller:  "CreateClient as vm",
-					templateUrl: "app/clients/createClient.html",
-					resolve: {
-						user: ['auth', function(auth) {
-							return auth.stateAuth(['producer', 'promoter', 'cashier']);
-						}]
-					}              
-				}
-			}         
+
+		.state('app.clients.detail', {
+			url: "/:clientId",
+			controller:  "ShowClient as vm",
+			templateUrl: "app/clients/showClient.html",
+			data: { name: null },
+			resolve: {
+				ticketsPrepSvc: getTickets,
+				clientPrepSvc: getClient,
+				friendsCountPrepSvc: getFriendsCount
+			}
 		})
-		.state('app.updateClient', {
-			url: "/clients/update/:clientId",
-			views: {
-				'tab-clients' :{
-					controller:  "EditClient as vm",
-					templateUrl: "app/clients/editClient.html",
-					resolve: {
-						user: ['auth', function(auth) {
-							return auth.stateAuth(['producer', 'promoter']);
-						}]
-					}              
-				}
-			}         
+
+		.state('app.clients.detail.tickets', {
+			url: "/tickets",
+			controller: "IndexTickets as vm",
+			templateUrl: "app/tickets/indexTickets.html",
+			data: { target: "client", name: "tickets" }
+		})
+
+		.state('app.clients.detail.comments', {
+			url: "/comments",
+			controller: "IndexComments as vm",
+			templateUrl: "app/comments/indexComments.html",
+			data: { name: "comments" },
+			resolve: {
+				commentsPrepSvc: getComments
+			}
+		})
+
+		.state('app.clients.detail.friends', {
+			url: "/friends",
+			controller: "IndexFriends as vm",
+			templateUrl: 'app/friendships/indexFriends.html',
+			data: { name: "friends" },
+			resolve: {
+				friendsPrepSvc: getFriends
+			}
+		})
+
+		.state('app.clients.create', {
+			url: "",
+			controller:  "CreateClient as vm",
+			templateUrl: "app/clients/createClient.html"
+		})
+
+		.state('app.clients.update', {
+			url: "/update/:clientId",
+			controller:  "EditClient as vm",
+			templateUrl: "app/clients/editClient.html",
+			resolve: {
+				user: ['auth', function(auth) {
+					return auth.stateAuth(['producer', 'promoter']);
+				}]
+			}
 		});
 		
+	}
+
+	/* @ngInject */
+	function getTickets ($stateParams, datacontext) {
+		return datacontext.ticket.index($stateParams.clientId);
+	}
+
+	/* @ngInject */
+	function getClient ($stateParams, datacontext) {
+		return datacontext.client.show($stateParams.clientId);
+	}
+
+	/* @ngInject */
+	function getFriendsCount ($stateParams, datacontext) {
+		return datacontext.friendship.count($stateParams.clientId);
+	}
+
+	/* @ngInject */
+	function getComments ($stateParams, datacontext) {
+		return datacontext.clientComment.index($stateParams.clientId);
+	}
+
+	/* @ngInject */
+	function getFriends ($stateParams, datacontext) {
+		return datacontext.friendship.index($stateParams.clientId);
 	}
 
 })();

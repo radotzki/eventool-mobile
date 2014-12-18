@@ -7,14 +7,11 @@
 
   /* @ngInject */
   function etDatePicker () {
-    var template = [
-    '<input type="text" readonly="readonly" ng-model="formatted"',
-    'ng-click="popup()" placeholder="{{placeholder}}">'
-    ].join('');
+    var tmp = '<input type="text" readonly="readonly" ng-model="formatted" ng-click="popup()" placeholder="{{placeholder}}">';
 
     var directive = {
       controller: DatePicker,
-      template: template,
+      template: tmp,
       scope: {
         'title': '@',
         'dateModel': '=ngModel',
@@ -42,18 +39,13 @@
     $scope.onTimeSet = onTimeSet;
 
     var myPopup;
-    var template = [
-    '<datetimepicker ng-model="dateModel"',
-    'on-set-time="onTimeSet(newDate, oldDate)"',
-    'datetimepicker-config="config">',
-    '</datetimepicker>'].join('');
     var buttons = [
     {text: 'Cancel'},
     {
       text: '<b>Choose</b>',
       type: 'button-positive',
       onTap: onTimeSet
-    } 
+    }
     ];
 
     function onTimeSet (newDate, oldDate) {
@@ -68,11 +60,20 @@
 
     function popup () {
       myPopup = $ionicPopup.show({
-        template: template,
+        template: getTemplate(),
         title: $scope.title || 'Select Date',
         scope: $scope,
         buttons: buttons
       }); 
+    }
+
+    function getTemplate () {
+      return [
+      '<datetimepicker ng-model="dateModel"',
+      'on-set-time="onTimeSet(newDate, oldDate)"',
+      'datetimepicker-config="config">',
+      '</datetimepicker>'
+      ].join('');
     }
 
   }

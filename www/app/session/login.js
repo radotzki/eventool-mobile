@@ -22,7 +22,7 @@
         function login(){
             auth.login(vm.user)
             .then(function(){
-                $state.go('app.clients');    
+                $state.go('app.clients.index');    
             });
         }
 

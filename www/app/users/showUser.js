@@ -5,48 +5,30 @@
 	.module('eventool.users')
 	.controller('ShowUser', ShowUser);
 
-	function ShowUser($stateParams, $ionicLoading, datacontext) {
+	function ShowUser($stateParams, $state, userPrepSvc, ticketsPrepSvc) {
 		var vm = this;
 
+		vm.state = $state;
 		vm.arrivedAmount = 0;
 		vm.income = 0;
-		vm.user;
-		vm.tickets;
+		vm.user = userPrepSvc;
+		vm.tickets = ticketsPrepSvc;
 
 		activate();
 
 		function activate() {
-			$ionicLoading.show();
-			return getUser().then(getUserTickets).then(anlyzeTickets).then(stopLoading);
+			!!(!vm.state.current.data.name) && $state.go('.tickets');
+			anlyzeTickets();
 		}
 
-		function getUser() {
-			return datacontext.user.show($stateParams.userId).then(function(user) {
-				vm.user = user;		
-				return user;
-			})
-		}
-
-		function getUserTickets(user) {
-			return datacontext.user.getTickets(user).then(function(tickets){
-				vm.tickets = tickets;
-				return tickets;
-			})
-		}
-
-		function anlyzeTickets (tickets) {
-			for(var i=0; i < tickets.length; i++){
-				if(tickets[i].arrived){
+		function anlyzeTickets () {
+			for(var i=0; i < vm.tickets.length; i++){
+				if(vm.tickets[i].arrived){
 					vm.arrivedAmount++;
-					vm.income += tickets[i].price.price;
+					vm.income += vm.tickets[i].price.price;
 				}
 			}
 		}
 
-		function stopLoading () {
-			$ionicLoading.hide();
-		}
-
 	}
-
 })();

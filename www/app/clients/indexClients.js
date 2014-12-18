@@ -13,7 +13,7 @@
 		vm.clientClicked = clientClicked;
 
 		function clientClicked (clientId) {
-			$state.go('app.showClient', {clientId: clientId});
+			$state.go('app.clients.detail', {clientId: clientId});
 		}
 
 	}

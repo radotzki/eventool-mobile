@@ -31,7 +31,7 @@ angular.module('eventool.tickets')
 		confirmPopup.then(function(res) {
 			if(res) {
 				datacontext.ticket.remove($scope.ticket);
-				$state.go('app.showClient', { clientId: $stateParams.clientId } );
+				$state.go('app.clients.detail', { clientId: $stateParams.clientId } );
 			}
 		});
 	};

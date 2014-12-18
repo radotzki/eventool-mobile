@@ -49,8 +49,8 @@
 			.then(abstract.querySucceed, abstract.queryFailed);
 		}
 
-		function getTickets (entity) {
-			return entity.getList('tickets')
+		function getTickets (id) {
+			return Restangular.one('users', id).getList('tickets')
 			.then(abstract.querySucceed, abstract.queryFailed);
 		}
 

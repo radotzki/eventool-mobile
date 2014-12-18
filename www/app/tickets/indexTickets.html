@@ -1,3 +1,4 @@
+
 <div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;"
 ng-show="vm.separatedTickets.length==0">
 Have no tickets 
@@ -17,6 +18,11 @@ Have no tickets
 </div>
 
 <div class="list" ng-if="vm.target=='client'">
+
+	<a class="button button-block button-outline button-positive" ui-sref="app.createTicket({clientId: vm.client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
+		Add Ticket
+	</a>
+
 	<div class="item item-divider" ng-repeat-start="separator in vm.separatedTickets | orderBy: '-when'" ng-click="show=!show;" style="margin-bottom: 10px; text-align: center">
 		<p style="color:{{separator.arriveCount?'green':'red'}}"> {{separator.eventName}} </p>
 	</div>
@@ -26,5 +32,6 @@ Have no tickets
 		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
 	</div>
 	<div ng-repeat-end></div>
+	
 </div>
 

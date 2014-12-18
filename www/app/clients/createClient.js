@@ -25,7 +25,7 @@
 			$ionicLoading.show();
 			datacontext.client.create(newClient).then(function(res){
 				$ionicLoading.hide();
-				$state.go('app.showClient', {clientId: res.id});
+				$state.go('app.clients.detail', {clientId: res.id});
 			});
 		}
 

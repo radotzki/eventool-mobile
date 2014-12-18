@@ -1,6 +1,6 @@
 <ion-view title="Profile">
 <ion-nav-buttons side="right">
-<button class="button button-clear right" ui-sref="app.updateClient({ clientId: vm.client.id })" ng-if="vm.user.role!='cashier'">EDIT</button>
+<button class="button button-clear right" ui-sref="app.clients.update({ clientId: vm.client.id })" ng-if="vm.user.role!='cashier'">EDIT</button>
 </ion-nav-buttons>
 <ion-content class="has-header"> 
 
@@ -45,32 +45,15 @@
 	</div>
 </div>
 
-<div class="client-profile-nav" ng-init="section='tickets'">
-	<p ng-class="{active: section=='tickets'}" ng-click="section='tickets'"> TICKETS </p>
-	<p ng-class="{active: section=='comments'}" ng-click="section='comments'"> COMMENTS </p>
-	<p ng-class="{active: section=='friends'}" ng-click="section='friends'"> FRIENDS </p>
+<div class="client-profile-nav">
+	<p ui-sref=".tickets" ng-class="{active: vm.state.current.data.name=='tickets'}"> TICKETS </p>
+	<p ui-sref=".comments" ng-class="{active: vm.state.current.data.name=='comments'}"> COMMENTS </p>
+	<p ui-sref=".friends" ng-class="{active: vm.state.current.data.name=='friends'}"> FRIENDS </p>
 </div>
 
-<ng-switch on="section">
-<div ng-switch-when="tickets">
-	<a class="button button-block button-outline button-positive" ui-sref="app.createTicket({clientId: vm.client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
-		Add Ticket
-	</a>
-	<et-tickets tickets="vm.tickets" target="client"> </et-tickets>
-</div>
-<div ng-switch-when="comments">
-	<et-comments client-id="{{vm.client.id}}" user="vm.user"> </et-comments>
-</div>
-<div ng-switch-when="friends">
-	<a class="button button-block button-outline button-positive" ui-sref="app.addFriend({clientId: vm.client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
-		Add Friend
-	</a>
-	<et-friends client-id="{{vm.client.id}}"> </et-friends>
-</div>
-</ng-switch>
+<div ui-view></div>
 
-
-<div ng-if="user.role=='cashier'">
+<!-- <div ng-if="user.role=='cashier'">
 	<div class="list" ng-show="!clientArrived">
 		<a class="item"
 		ng-repeat="ticket in tickets | orderBy:'price.price'" 
@@ -89,7 +72,7 @@
 	<span ng-show="clientArrived"> {{client.name}} has already take his ticket for this event </span>
 	<span ng-show="tickets.length==0"> {{client.name}} has no tickets for this event </span>
 </div>
-</div>
+</div> -->
 
 </ion-content>
 </ion-view>

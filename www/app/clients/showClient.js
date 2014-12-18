@@ -6,51 +6,27 @@
 	.controller('ShowClient', ShowClient);
 
 	/* @ngInject */
-	function ShowClient($stateParams, $ionicLoading, user, datacontext) {
+	function ShowClient($stateParams, $state, user, ticketsPrepSvc, clientPrepSvc, friendsCountPrepSvc) {
 		/*jshint validthis: true */
 		var vm = this;
-		
+		vm.state = $state;
 		vm.user = user;
-		vm.client;
-		vm.tickets;
+		vm.client = clientPrepSvc;
+		vm.tickets = ticketsPrepSvc;
 		vm.arrivedCount = 0;
-		vm.friendsCount = 0;
+		vm.friendsCount = friendsCountPrepSvc;
 
 		activate();
 
 		function activate() {
-			getClient();
-			getTickets().then(analyzeTickets);
-			getFriendsCount();
-		}
-
-		function getClient() {
-			$ionicLoading.show();
-			return datacontext.client.show($stateParams.clientId).then(function(data){
-				vm.client = data;
-				$ionicLoading.hide();
-				return data;
-			});
-		}
-
-		function getTickets() {
-			return datacontext.ticket.index($stateParams.clientId).then(function(tickets) {
-				vm.tickets = tickets;
-				return tickets;
-			});
+			!!(!vm.state.current.data.name) && $state.go('.tickets');
+			analyzeTickets();
 		}
 
 		function analyzeTickets() {
 			for (var i=0; i < vm.tickets.length; i++) {
 				vm.arrivedCount += vm.tickets[i].arrived;
 			}
-		}
-
-		function getFriendsCount() {
-			return datacontext.friendship.count($stateParams.clientId).then(function(data){
-				vm.friendsCount = data;
-				return data;
-			});
 		}
 
 	}

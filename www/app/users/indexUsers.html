@@ -4,13 +4,13 @@
 <div class="list">
 
 	<div class="item item-divider"> Producers</div>
-	<div class="item" ui-sref="app.showUser({ userId:user.id })" ng-repeat="user in vm.users | filter:{lock: false, role:'producer'} | orderBy:'first_name'"> {{user.name}} </div>
+	<div class="item" ui-sref="app.users.detail({ userId:user.id })" ng-repeat="user in vm.users | filter:{lock: false, role:'producer'} | orderBy:'first_name'"> {{user.name}} </div>
 
 	<div class="item item-divider"> Promoters</div>
-	<div class="item" ui-sref="app.showUser({ userId:user.id })" ng-repeat="user in vm.users | filter:{lock: false, role:'promoter'} | orderBy:'first_name'"> {{user.name}} </div>
+	<div class="item" ui-sref="app.users.detail({ userId:user.id })" ng-repeat="user in vm.users | filter:{lock: false, role:'promoter'} | orderBy:'first_name'"> {{user.name}} </div>
 
 	<div class="item item-divider"> Cashiers</div>
-	<div class="item" ui-sref="app.showUser({ userId:user.id })" ng-repeat="user in vm.users | filter:{lock: false, role:'cashier'} | orderBy:'first_name'"> {{user.name}} </div>
+	<div class="item" ui-sref="app.users.detail({ userId:user.id })" ng-repeat="user in vm.users | filter:{lock: false, role:'cashier'} | orderBy:'first_name'"> {{user.name}} </div>
 
 	<div class="item item-divider"> Lock Workers</div>
 	<div class="item item-icon-right" ng-repeat="user in vm.users | filter:{lock: true} | orderBy:'-role'"> 

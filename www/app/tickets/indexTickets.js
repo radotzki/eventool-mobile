@@ -3,37 +3,19 @@
 
 	angular
 	.module('eventool.tickets')
-	.directive('etTickets', etTickets);
+	.controller('IndexTickets', IndexTickets);
 
 	/* @ngInject */
-	function etTickets () {
-		var directive = {
-			controller: IndexTickets,
-			controllerAs: 'vm',
-			templateUrl: 'app/tickets/indexTickets.html',
-			scope: {
-				'tickets': '=',
-				'target': '@'
-			},
-			restrict: 'EA'
-		};
-		return directive;
-	}
-
-	/* @ngInject */
-	function IndexTickets($scope) {
+	function IndexTickets($state, ticketsPrepSvc) {
 		/*jshint validthis: true */
 		var vm = this;
-		vm.target = $scope.target;
-		vm.tickets;
+		vm.target = $state.current.data.target;
+		vm.tickets = ticketsPrepSvc;
 		vm.separatedTickets = [];
 
-		$scope.$watch('tickets', function(newVal) {
-			if($scope.tickets) { activate(); }
-		}, true);
+		activate();
 
 		function activate() {
-			vm.tickets = $scope.tickets; 
 			if ( vm.target == 'user' || vm.target == 'client' ) {
 				seperateByEvent();
 			} else if ( vm.target == 'event' ) {
@@ -77,5 +59,4 @@
 		}
 
 	}
-
 })();

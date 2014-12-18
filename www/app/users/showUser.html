@@ -1,6 +1,6 @@
 <ion-view title="{{vm.user.name}}">
 <ion-nav-buttons side="right">
-<button class="button button-clear right" ui-sref="app.updateUser({ userId:vm.user.id })">EDIT</button>
+<button class="button button-clear right" ui-sref="app.users.update({ userId:vm.user.id })">EDIT</button>
 </ion-nav-buttons>
 <ion-content class="has-header">    
 
@@ -39,7 +39,8 @@
 	</div>
 </div>
 
-<et-tickets tickets="vm.tickets" target="user" ng-if="vm.user.role != 'cashier'"> </et-tickets>
+<!-- <et-tickets tickets="vm.tickets" target="user" ng-if="vm.user.role != 'cashier'"> </et-tickets> -->
+<div ui-view></div>
 
 </ion-content>
 </ion-view>
