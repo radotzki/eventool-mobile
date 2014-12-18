@@ -1,4 +1,17 @@
-<ion-view title="Ticket">
+<ion-modal-view ng-controller="ShowTicket as vm">
+<ion-header-bar>
+<h1 class="title">My Modal title</h1>
+</ion-header-bar>
+<ion-content>
+
+<a ng-click="vm.closeModal()"> CLOSE</a>
+Hello!
+{{vm.ticket}}
+
+</ion-content>
+</ion-modal-view>
+
+<!-- <ion-view title="Ticket">
 <ion-nav-buttons side="right">
 <button class="button button-clear right" ui-sref="app.updateTicket({ clientId:ticket.client.id, ticketId:ticket.id })" ng-if="canEdit">EDIT</button>
 </ion-nav-buttons>
@@ -21,7 +34,7 @@
 			<p> DID NOT ARRIVED</p>
 		</div>
 	</div>
-</article>
+</article> -->
 
 <!-- <div class="list card">
 

@@ -9,12 +9,13 @@ Have no tickets
 		<span> {{separator.eventName}} </span>
 		<span style="float: right"> {{separator.arriveCount}} / {{separator.tickets.length}} {{separator.income | currency}} </span>
 	</div>
-	<div ng-show="show" class="item" ng-repeat="ticket in separator.tickets | orderBy: 'client.first_name'" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
-		<span> {{ticket.price.price | currency}} to {{ticket.client.first_name + " " + ticket.client.last_name}}</span>
-		<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
-		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
-	</div>
-	<div ng-repeat-end></div>
+	<div ng-show="show" class="item" ng-repeat="ticket in separator.tickets | orderBy: 'client.first_name'" 
+	ng-click="vm.showTicket(ticket.client.id, ticket.id)">
+	<span> {{ticket.price.price | currency}} to {{ticket.client.first_name + " " + ticket.client.last_name}}</span>
+	<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
+	<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
+</div>
+<div ng-repeat-end></div>
 </div>
 
 <div class="list" ng-if="vm.target=='client'">
@@ -26,12 +27,13 @@ Have no tickets
 	<div class="item item-divider" ng-repeat-start="separator in vm.separatedTickets | orderBy: '-when'" ng-click="show=!show;" style="margin-bottom: 10px; text-align: center">
 		<p style="color:{{separator.arriveCount?'green':'red'}}"> {{separator.eventName}} </p>
 	</div>
-	<div ng-show="show" class="item" ng-repeat="ticket in separator.tickets" ui-sref="app.showTicket({ ticketId:ticket.id, clientId:ticket.client.id })">
-		<span> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</span>
-		<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
-		<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
-	</div>
-	<div ng-repeat-end></div>
-	
+	<div ng-show="show" class="item" ng-repeat="ticket in separator.tickets"
+	ng-click="vm.showTicket(ticket.client.id, ticket.id)"> 
+	<span> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</span>
+	<p style="color:red; float:right" ng-show="!ticket.arrived"> Not arrived </p>
+	<p style="color:green; float:right" ng-show="ticket.arrived"> Arrived </p>
+</div>
+<div ng-repeat-end></div>
+
 </div>
 

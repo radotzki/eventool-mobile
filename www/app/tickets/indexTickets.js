@@ -6,12 +6,15 @@
 	.controller('IndexTickets', IndexTickets);
 
 	/* @ngInject */
-	function IndexTickets($state, ticketsPrepSvc) {
+	function IndexTickets($rootScope, $state, $ionicModal, ticketsPrepSvc) {
 		/*jshint validthis: true */
 		var vm = this;
 		vm.target = $state.current.data.target;
 		vm.tickets = ticketsPrepSvc;
 		vm.separatedTickets = [];
+		vm.ticketModal;
+
+		vm.showTicket = showTicket;
 
 		activate();
 
@@ -21,6 +24,25 @@
 			} else if ( vm.target == 'event' ) {
 				seperateByClient();
 			}
+		}
+
+		function showTicket (clientId, ticketId) {
+			var modalScope = $rootScope.$new();
+			modalScope.clientId = clientId;
+			modalScope.ticketId = ticketId;
+			modalScope.closeModal = closeModal;
+			
+			$ionicModal.fromTemplateUrl('app/tickets/showTicket.html', {
+				animation: 'slide-in-up',
+				scope: modalScope
+			}).then(function(modal) {
+				vm.ticketModal = modal;
+				modal.show();
+			});
+		}
+
+		function closeModal () {
+			vm.ticketModal.remove();
 		}
 
 		function seperateByEvent() {
