@@ -9,36 +9,31 @@
 	function stateConfig($stateProvider){
 		$stateProvider
 
-
-    .state('app.createTicket', {
+    .state('app.clients.createTicket', {
       url: "/ticket/create/:clientId/",
-      views: {
-        'tab-clients' :{
-          controller:  "TicketCreateCtrl",
-          templateUrl: "app/tickets/createTicket.html",
-          resolve: {
-            user: ['auth', function(auth) {
-              return auth.stateAuth(['producer', 'promoter']);
-            }]
-          }              
-        }
-      }         
-    })
-    .state('app.updateTicket', {
-      url: "/ticket/update/:clientId/:ticketId/",
-      views: {
-        'menuContent' :{
-          controller:  "TicketUpdateCtrl",
-          templateUrl: "app/tickets/editTicket.html",
-          resolve: {
-            user: ['auth', function(auth) {
-              return auth.stateAuth(['producer', 'promoter']);
-            }]
-          }              
-        }
-      }         
+      controller:  "CreateTicket as vm",
+      templateUrl: "app/tickets/createTicket.html",
+      resolve: {
+        user: ['auth', function(auth) {
+          return auth.stateAuth(['producer', 'promoter']);
+        }]
+      }
     });
+    // .state('app.updateTicket', {
+    //   url: "/ticket/update/:clientId/:ticketId/",
+    //   views: {
+    //     'menuContent' :{
+    //       controller:  "TicketUpdateCtrl",
+    //       templateUrl: "app/tickets/editTicket.html",
+    //       resolve: {
+    //         user: ['auth', function(auth) {
+    //           return auth.stateAuth(['producer', 'promoter']);
+    //         }]
+    //       }              
+    //     }
+    //   }         
+    // });
 
-  }
+}
 
 })();

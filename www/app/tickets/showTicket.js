@@ -6,14 +6,17 @@
 	.controller('ShowTicket', ShowTicket);
 
 	/* @ngInject */
-	function ShowTicket($scope, datacontext) {
+	function ShowTicket($scope, $state, datacontext, actionSheet) {
 		/*jshint validthis: true */
 		var vm = this;
+		var deleteActionSheet;
 
 		vm.clientId = $scope.clientId;
 		vm.ticketId = $scope.ticketId;
 		vm.closeModal = $scope.closeModal;
 		vm.ticket;
+
+		vm.confirmDelete = confirmDelete;
 
 		activate();
 
@@ -28,24 +31,17 @@
 			});
 		}
 
+		function confirmDelete() {
+			var msg = "This will delete this ticket";
+			deleteActionSheet = actionSheet.confirmDelete(deleteTicket, msg);
+		}
+
+		function deleteTicket() {
+			datacontext.ticket.remove(vm.ticket).then(function(res){
+				vm.closeModal(vm.ticket);
+				deleteActionSheet();
+			});
+		}
+
 	}
 })();
-
-// angular.module('eventool.tickets')
-
-// .controller('TicketShowCtrl', function($scope, $stateParams, $ionicPopup, $state, $window, datacontext, user) {
-
-// 	datacontext.ticket.show($stateParams.clientId, $stateParams.ticketId).then(function(data){
-// 		$scope.ticket = data;
-
-// 		$scope.eventPass = eventPass($scope.ticket.event.when);
-
-// 		$scope.canEdit = !$scope.eventPass && (!$scope.ticket.arrived) &&
-// 		($scope.ticket.promoter.id == user.id || user.role == 'producer');
-// 	});
-
-// 	var eventPass = function(eventDate){
-// 		return (new Date(eventDate)) < Date.now();
-// 	}
-
-// })

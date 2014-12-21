@@ -9,12 +9,14 @@
 	function IndexTickets($rootScope, $state, $ionicModal, ticketsPrepSvc) {
 		/*jshint validthis: true */
 		var vm = this;
+		
+		var tickets = ticketsPrepSvc;
+		var ticketModal;
 		vm.target = $state.current.data.target;
-		vm.tickets = ticketsPrepSvc;
 		vm.separatedTickets = [];
-		vm.ticketModal;
-
+		
 		vm.showTicket = showTicket;
+		vm.createTicket = createTicket;
 
 		activate();
 
@@ -36,27 +38,41 @@
 				animation: 'slide-in-up',
 				scope: modalScope
 			}).then(function(modal) {
-				vm.ticketModal = modal;
+				ticketModal = modal;
 				modal.show();
 			});
 		}
 
-		function closeModal () {
-			vm.ticketModal.remove();
+		function createTicket () {
+			
+		}
+
+		function closeModal (ticket) {
+			!!ticket && removeTicketFromView(ticket);
+			ticketModal.remove();
+		}
+
+		function removeTicketFromView (ticket) {
+			var eventTickets = vm.separatedTickets[findEventByName(ticket.event.name)].tickets;
+			for (var i = eventTickets.length - 1; i >= 0; i--) {
+				if ( eventTickets[i].id == ticket.id ) {
+					eventTickets.splice(i, 1);
+				}
+			};
 		}
 
 		function seperateByEvent() {
-			for(var i=0; i < vm.tickets.length; i++){
-				var eventIndex = findEventByName(vm.tickets[i].event.name);
+			for(var i=0; i < tickets.length; i++){
+				var eventIndex = findEventByName(tickets[i].event.name);
 				if ( eventIndex > -1 ){
-					vm.separatedTickets[eventIndex].tickets.push(vm.tickets[i]);
-					vm.separatedTickets[eventIndex].income += vm.tickets[i].price.price;	
-					if ( vm.tickets[i].arrived ){
-						vm.separatedTickets[eventIndex].arriveCount += vm.tickets[i].arrived;	
+					vm.separatedTickets[eventIndex].tickets.push(tickets[i]);
+					vm.separatedTickets[eventIndex].income += tickets[i].price.price;	
+					if ( tickets[i].arrived ){
+						vm.separatedTickets[eventIndex].arriveCount += tickets[i].arrived;	
 					} 
 				}
 				else {
-					vm.separatedTickets.push(ticketAdapter(vm.tickets[i]));	
+					vm.separatedTickets.push(ticketAdapter(tickets[i]));	
 				}
 			}
 		}

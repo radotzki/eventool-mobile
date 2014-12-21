@@ -20,9 +20,9 @@ Have no tickets
 
 <div class="list" ng-if="vm.target=='client'">
 
-	<a class="button button-block button-outline button-positive" ui-sref="app.createTicket({clientId: vm.client.id})" style="margin-left: auto; margin-right: auto; width: 90%;">
+	<!-- <a class="button button-block button-outline button-positive" ui-sref="app.createTicket({ clientId: ticket.client.id })" style="margin-left: auto; margin-right: auto; width: 90%;">
 		Add Ticket
-	</a>
+	</a> -->
 
 	<div class="item item-divider" ng-repeat-start="separator in vm.separatedTickets | orderBy: '-when'" ng-click="show=!show;" style="margin-bottom: 10px; text-align: center">
 		<p style="color:{{separator.arriveCount?'green':'red'}}"> {{separator.eventName}} </p>

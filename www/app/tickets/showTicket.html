@@ -1,12 +1,42 @@
 <ion-modal-view ng-controller="ShowTicket as vm">
 <ion-header-bar>
 <h1 class="title">My Modal title</h1>
+<span class="left-buttons"> 
+	<a ng-click="vm.closeModal()" class="button-icon ion-arrow-left-c button back-button"> </a>
+</span>
+
+<div class="buttons right-buttons">
+	<button class="button button-clear right" ng-click="vm.confirmDelete()">DELETE</button>
+</div>
+
 </ion-header-bar>
 <ion-content>
 
-<a ng-click="vm.closeModal()"> CLOSE</a>
-Hello!
-{{vm.ticket}}
+<div class="list card">
+
+	<div class="item item-icon-right">
+		<h2>{{vm.ticket.client.first_name}} {{vm.ticket.client.last_name}}</h2>
+		<i class="icon ion-checkmark-round" ng-if="arrived"></i>
+		<i class="icon ion-close-round" ng-if="notArrived"></i>
+	</div>
+
+	<div class="item item-body">
+		<h3> {{vm.ticket.event.name}} at {{vm.ticket.event.when | date }} </h3>
+		<p>
+			{{vm.ticket.price.price | currency}} By {{vm.ticket.promoter.first_name + " " + vm.ticket.promoter.last_name}}
+		</p>
+		<p> Created at {{vm.ticket.created_at | date:'medium' }} </p>
+		<p ng-if="ticket.arrived"> Get in at {{vm.ticket.updated_at | date:'HH:mm:ss' }} by {{vm.ticket.cashier.first_name + " " + vm.ticket.cashier.last_name}} </p>
+	</div>
+
+	<div class="item tabs tabs-secondary tabs-icon-left" >
+		<a class="tab-item" ng-click="deleteTicket()" ng-if="canEdit">
+			<i class="icon ion-trash-b"></i>
+			Delete
+		</a>
+	</div>
+
+</div>
 
 </ion-content>
 </ion-modal-view>
@@ -66,5 +96,3 @@ Hello!
 
 </div>
 -->
-</ion-content>
-</ion-view>

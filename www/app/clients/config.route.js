@@ -43,28 +43,47 @@
 
 		.state('app.clients.detail.tickets', {
 			url: "/tickets",
-			controller: "IndexTickets as vm",
-			templateUrl: "app/tickets/indexTickets.html",
-			data: { target: "client", name: "tickets" }
+			data: { target: "client", name: 'tickets' },
+			views: {
+				'create': {
+					template: '<et-add-ticket> </et-add-ticket>'
+				},
+				'index': {
+					controller: "IndexTickets as vm",
+					templateUrl: "app/tickets/indexTickets.html"
+				}
+			}
 		})
 
 		.state('app.clients.detail.comments', {
 			url: "/comments",
-			controller: "IndexComments as vm",
-			templateUrl: "app/comments/indexComments.html",
 			data: { name: "comments" },
-			resolve: {
-				commentsPrepSvc: getComments
+			views: {
+				'create': {
+				},
+				'index': {
+					controller: "IndexComments as vm",
+					templateUrl: "app/comments/indexComments.html",
+					resolve: {
+						commentsPrepSvc: getComments
+					}
+				}
 			}
 		})
 
 		.state('app.clients.detail.friends', {
 			url: "/friends",
-			controller: "IndexFriends as vm",
-			templateUrl: 'app/friendships/indexFriends.html',
 			data: { name: "friends" },
-			resolve: {
-				friendsPrepSvc: getFriends
+			views: {
+				'create': {
+				},
+				'index': {
+					controller: "IndexFriends as vm",
+					templateUrl: 'app/friendships/indexFriends.html',
+					resolve: {
+						friendsPrepSvc: getFriends
+					}
+				}
 			}
 		})
 

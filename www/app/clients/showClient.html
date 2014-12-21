@@ -37,7 +37,7 @@
 			<div class="col">
 				<h4 style="color:#fff">
 					Friends
-					<br> {{vm.friendsCount}}
+					<br> {{vm.friendsCount || '0'}}
 				</h4>
 			</div>
 		</div>
@@ -46,33 +46,13 @@
 </div>
 
 <div class="client-profile-nav">
-	<p ui-sref=".tickets" ng-class="{active: vm.state.current.data.name=='tickets'}"> TICKETS </p>
-	<p ui-sref=".comments" ng-class="{active: vm.state.current.data.name=='comments'}"> COMMENTS </p>
-	<p ui-sref=".friends" ng-class="{active: vm.state.current.data.name=='friends'}"> FRIENDS </p>
+	<p ui-sref=".tickets" ui-sref-active="active"> TICKETS </p>
+	<p ui-sref=".comments" ui-sref-active="active"> COMMENTS </p>
+	<p ui-sref=".friends" ui-sref-active="active"> FRIENDS </p>
 </div>
 
-<div ui-view></div>
-
-<!-- <div ng-if="user.role=='cashier'">
-	<div class="list" ng-show="!clientArrived">
-		<a class="item"
-		ng-repeat="ticket in tickets | orderBy:'price.price'" 
-		collection-item-width="'100%'"
-		collection-item-height="60"
-		ng-click="checkin(ticket)"
-		style="border: none;">
-		<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
-			{{ticket.event.name}} 
-			<span style="font-size: 12px; color: #666;"> {{ticket.event.when | date:'dd/MM/yy'}} </span>
-			<p style="margin-bottom: 15px"> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
-		</div>
-	</a>
-</div>
-<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;">
-	<span ng-show="clientArrived"> {{client.name}} has already take his ticket for this event </span>
-	<span ng-show="tickets.length==0"> {{client.name}} has no tickets for this event </span>
-</div>
-</div> -->
+<div ui-view="create"></div>
+<div ui-view="index"></div>
 
 </ion-content>
 </ion-view>

@@ -16,7 +16,8 @@
 			create: create,
 			update: update,
 			remove: remove,
-			getTickets: getTickets
+			getTickets: getTickets,
+			upcoming: upcoming
 		};
 		return service;
 
@@ -43,6 +44,10 @@
 
 		function getTickets (entity) {
 			return entity.getList('tickets').then(abstract.querySucceed, abstract.queryFailed);
+		}
+
+		function upcoming () {
+			return Restangular.one('events/upcoming').getList().then(abstract.querySucceed, abstract.queryFailed);
 		}
 
 	}

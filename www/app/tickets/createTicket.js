@@ -1,56 +1,44 @@
-angular.module('eventool.tickets')
+(function() {
+	'use strict';
 
-.controller('TicketCreateCtrl', function($scope, $stateParams, $state, $ionicPopup, $window, orderByFilter, datacontext) {
+	angular
+	.module('eventool.tickets')
+	.controller('CreateTicket', CreateTicket);
 
-	datacontext.event.index().then(function(events){
-		$scope.events = orderByFilter(events, '-when');
+	/* @ngInject */
+	function CreateTicket($state, $stateParams, datacontext) {
+		/*jshint validthis: true */
+		var vm = this;
 
-		if ($scope.events.length > 0){
-			// Delete passed events
-			for(var i=0; i<$scope.events.length; i++) {
-				if($scope.eventPass($scope.events[i])) {
-					$scope.events.splice(i, $scope.events.length - i);
-				}
-			}
+		vm.events;
+		vm.selectedEvent;
+		vm.selectedPrice;
 
-			datacontext.ticket.index($stateParams.clientId).then(function(tickets) {
-				$scope.tickets = tickets;
+		vm.createTicket = createTicket;
 
-				for(var i=0; i<$scope.tickets.length; i++) {
-					for(var j=0; j<$scope.events.length; j++) {
-						if($scope.events[j].id == $scope.tickets[i].event.id)
-							$scope.events.splice(j, 1);
-					}
-				}
+		activate();
 
-				if ($scope.events.length > 0){
-					$scope.selectedEvent = $scope.events[0].id;
-					$scope.getPrices($scope.selectedEvent);
-				}
-			})
-
+		function activate() {
+			getUpcomingEvents();
 		}
-	});
 
-	$scope.getPrices = function(selectedEvent) {
-		datacontext.eventPrice.index(selectedEvent).then(function(prices) {
-			$scope.prices = orderByFilter(prices, 'price');
-		});
-	};
-
-	$scope.eventPass = function(event) {
-		return (new Date(event.when)) < Date.now();
-	};
-
-	$scope.createTicket = function(eventId, priceId) {
-		datacontext.ticket.create($stateParams.clientId, {event_id: eventId, event_price_id: priceId}).then(function(res){
-			var alertPopup = $ionicPopup.alert({
-				title: 'ticket created! '
+		function getUpcomingEvents () {
+			return datacontext.event.upcoming().then(function (data) {
+				vm.events = data;
+				return data;
 			});
-			alertPopup.then(function(res) {
-				$window.history.back();
-			});
-		});
-	};
+		}
 
-})
+		function createTicket () {
+			var param = {
+				event_id: vm.selectedEvent.id,
+				event_price_id: vm.selectedPrice.id
+			};
+
+			datacontext.ticket.create($stateParams.clientId, param).then(function(res){
+				$state.go('app.clients.detail.tickets', {clientId: $stateParams.clientId});
+			});
+		}
+
+	}
+})();
