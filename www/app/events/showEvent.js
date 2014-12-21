@@ -6,11 +6,12 @@
 	.controller('ShowEvent', ShowEvent);
 
 	/* @ngInject */
-	function ShowEvent($ionicLoading, $stateParams, datacontext, user) {
+	function ShowEvent($state, user, eventPrepSvc, ticketsPrepSvc) {
 		/*jshint validthis: true */
 		var vm = this;
-		vm.event;
-		vm.tickets;
+		vm.state = $state;
+		vm.event = eventPrepSvc;
+		vm.tickets = ticketsPrepSvc;
 		vm.user = user;
 		vm.income = 0;
 		vm.femaleArrived = 0;
@@ -20,27 +21,14 @@
 		activate();
 
 		function activate() {
-			$ionicLoading.show();
-			getEvent().then(getTickets).then(analyzeTickets).then(checkCanEditEvent).then(stopLoading);
-		}
-
-		function getEvent() {
-			return datacontext.event.show($stateParams.eventId).then(function(data){
-				vm.event = data;
-				return data;
-			});
+			!!(!vm.state.current.data.name) && $state.go('.tickets');
+			analyzeTickets();
+			checkCanEditEvent();
 		}
 
 		function checkCanEditEvent() {
 			vm.canEditEvent = ((new Date(vm.event.when)) >= Date.now()) && (vm.user.role == 'producer');
 			return vm.canEditEvent;
-		}
-
-		function getTickets() {
-			return datacontext.event.getTickets(vm.event).then(function (tickets) {
-				vm.tickets = tickets;
-				return tickets;
-			});
 		}
 
 		function analyzeTickets() {
@@ -51,10 +39,6 @@
 				}
 			}
 			return true;
-		}
-
-		function stopLoading() {
-			return $ionicLoading.hide();
 		}
 
 	}

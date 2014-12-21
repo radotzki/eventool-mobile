@@ -1,11 +1,11 @@
 <ion-view title="Events">
 <ion-nav-buttons side="left">
-<button class="button button-clear icon ion-plus-round right" ui-sref="app.eventCreate" ng-if="vm.user.role=='producer'"></button>
+<button class="button button-clear icon ion-plus-round right" ui-sref="app.events.create" ng-if="vm.user.role=='producer'"></button>
 </ion-nav-buttons>
 <ion-content padding="true" class="my-content">
 
 <div class="list card" ng-repeat="event in vm.events | orderBy:'-when'">
-  <div class="item" ui-sref="app.eventShow({ eventId:event.id })">
+  <div class="item" ui-sref="app.events.detail({ eventId:event.id })">
     <h2>{{ event.name }}</h2>
     <p>{{ event.when | date }}</p>
   </div>
@@ -16,11 +16,11 @@
 </ion-view>
 
 <!--   <div class="item tabs tabs-secondary tabs-icon-left">
-    <a class="tab-item" ui-sref="app.eventShow({ eventId:event.id })">
+    <a class="tab-item" ui-sref="app.events.detail({ eventId:event.id })">
       <i class="icon ion-information-circled"></i>
       Show
     </a>
-    <a class="tab-item" ui-sref="app.eventUpdate({ eventId:event.id })" ng-if="!eventPass(event) && user.role=='producer'">
+    <a class="tab-item" ui-sref="app.events.update({ eventId:event.id })" ng-if="!eventPass(event) && user.role=='producer'">
       <i class="icon ion-edit"></i>
       Edit
     </a>

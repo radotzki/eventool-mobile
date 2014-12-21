@@ -19,20 +19,6 @@
         }]
       }
     });
-    // .state('app.updateTicket', {
-    //   url: "/ticket/update/:clientId/:ticketId/",
-    //   views: {
-    //     'menuContent' :{
-    //       controller:  "TicketUpdateCtrl",
-    //       templateUrl: "app/tickets/editTicket.html",
-    //       resolve: {
-    //         user: ['auth', function(auth) {
-    //           return auth.stateAuth(['producer', 'promoter']);
-    //         }]
-    //       }              
-    //     }
-    //   }         
-    // });
 
 }
 

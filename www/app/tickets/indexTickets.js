@@ -66,9 +66,10 @@
 				var eventIndex = findEventByName(tickets[i].event.name);
 				if ( eventIndex > -1 ){
 					vm.separatedTickets[eventIndex].tickets.push(tickets[i]);
-					vm.separatedTickets[eventIndex].income += tickets[i].price.price;	
+						
 					if ( tickets[i].arrived ){
 						vm.separatedTickets[eventIndex].arriveCount += tickets[i].arrived;	
+						vm.separatedTickets[eventIndex].income += tickets[i].price.price;
 					} 
 				}
 				else {
@@ -80,7 +81,7 @@
 		function ticketAdapter (ticket) {
 			return {
 				tickets: [ticket],
-				arriveCount: ticket.arrived,
+				arriveCount: ticket.arrived ? 1 : 0,
 				when: ticket.event.when,
 				eventName: ticket.event.name,
 				income: ticket.arrived ? ticket.price.price : 0

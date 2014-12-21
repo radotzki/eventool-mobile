@@ -1,7 +1,7 @@
 <ion-view title="{{vm.event.name}}">
 
 <ion-nav-buttons side="right">
-<button class="button button-clear right" ui-sref="app.eventUpdate({ eventId:vm.event.id })" ng-show="vm.canEditEvent">EDIT</button>
+<button class="button button-clear right" ui-sref="app.events.update({ eventId:vm.event.id })" ng-show="vm.canEditEvent">EDIT</button>
 </ion-nav-buttons>
 
 <ion-content class="has-header">    
@@ -45,7 +45,10 @@
 	</div>
 </div>
 
-<label class="item item-input">
+
+<div ui-view></div>
+
+<!-- <label class="item item-input">
 	<i class="icon ion-search placeholder-icon"></i>
 	<input type="text" placeholder="Search" ng-model="vm.searchParam">
 </label>
@@ -64,7 +67,7 @@
 		<p style="margin-bottom: 15px"> {{ticket.price.price | currency}} By {{ticket.promoter.first_name + " " + ticket.promoter.last_name}}</p>
 	</div>
 </a>
-</div>
+</div> -->
 
 
 </ion-content>
