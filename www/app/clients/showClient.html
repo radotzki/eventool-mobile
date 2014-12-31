@@ -1,58 +1,44 @@
 <ion-view title="Profile">
-<ion-nav-buttons side="right">
-<button class="button button-clear right" ui-sref="app.clients.update({ clientId: vm.client.id })" ng-if="vm.user.role!='cashier'">EDIT</button>
-</ion-nav-buttons>
-<ion-content class="has-header"> 
+    <ion-nav-buttons side="right">
+        <button class="button button-clear right" ui-sref="app.clients.update({ clientId: vm.client.id })" ng-if="vm.user.role!='cashier'">EDIT
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
 
-<div style="position: relative;">
-	<img src="content/img/clientCover.jpg" style="height: 300px;width: 100%; ">   
+        <figure class="profile-cover text-center">
+            <img src="content/img/clientCover.jpg">
+            <figcaption>
+                <h1> {{vm.client.name}} </h1>
+                <div class="h4">
+                    <i ng-class="{'icon ion-male': vm.client.gender == 'male', 'icon ion-female': vm.client.gender == 'female'}"></i>
+                    <span ng-if="vm.client.birthdate"> {{vm.client.birthdate | date}} </span>
+                    <span ng-if="vm.client.city"> from {{vm.client.city}} </span>
+                </div>
+                <div class="row h4 profile-stats">
+                    <div class="col">
+                        <p>Tickets</p>
+                        <p>{{vm.tickets.length || '0'}}</p>
+                    </div>
+                    <div class="col">
+                        <p>Arrived</p>
+                        <p>{{vm.arrivedCount || '0'}}</p>
+                    </div>
+                    <div class="col">
+                        <p>Friends</p>
+                        <p>{{vm.friendsCount || '0'}}</p>
+                    </div>
+                </div>
+            </figcaption>
+        </figure>
 
-	<div class="text-center" style="position: absolute; top: 0px; height: 300px; width: 100%; background: rgba(68, 68, 68, 0.7)">
-		<h1 style="color:#fff; margin-top:20%"> {{vm.client.name}}</h1>
+        <div class="client-profile-nav">
+            <p ui-sref=".tickets" ui-sref-active="active"> TICKETS </p>
+            <p ui-sref=".comments" ui-sref-active="active"> COMMENTS </p>
+            <p ui-sref=".friends" ui-sref-active="active"> FRIENDS </p>
+        </div>
 
-		<h4 style="color:#fff">
-			<i ng-if="vm.client.gender == 'female'" class="icon ion-female"></i>
-			<i ng-if="vm.client.gender == 'male'" class="icon ion-male"></i>
-			<span ng-if="vm.client.birthdate"> {{vm.client.birthdate | date}} </span>
-			<span ng-if="vm.client.city"> from {{vm.client.city}} </span>			
-		</h4>
-		<h4 style="color:#fff">
-			<i class="icon ion-iphone"></i>
-			<span> {{vm.client.phone_number}} </span>
-		</h4>
+        <div ui-view="create"></div>
+        <div ui-view="index"></div>
 
-		<div class="row" style="margin-top:10%" ng-if="user.role!='cashier'">
-			<div class="col" style="border-right:white solid thin">
-				<h4 style="color:#fff">
-					Tickets
-					<br> {{vm.tickets.length}}
-				</h4>
-			</div>
-			<div class="col" style="border-right:white solid thin">
-				<h4 style="color:#fff">
-					Arrived
-					<br> {{vm.arrivedCount}}
-				</h4>
-			</div>
-			<div class="col">
-				<h4 style="color:#fff">
-					Friends
-					<br> {{vm.friendsCount || '0'}}
-				</h4>
-			</div>
-		</div>
-
-	</div>
-</div>
-
-<div class="client-profile-nav">
-	<p ui-sref=".tickets" ui-sref-active="active"> TICKETS </p>
-	<p ui-sref=".comments" ui-sref-active="active"> COMMENTS </p>
-	<p ui-sref=".friends" ui-sref-active="active"> FRIENDS </p>
-</div>
-
-<div ui-view="create"></div>
-<div ui-view="index"></div>
-
-</ion-content>
+    </ion-content>
 </ion-view>

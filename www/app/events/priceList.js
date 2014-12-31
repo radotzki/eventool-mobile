@@ -26,7 +26,7 @@
     var vm = this;
     vm.prices;
     vm.editEvent = $scope.editEvent;
-    
+
     vm.addPrice = addPrice;
     vm.removePrice = removePrice;
 

@@ -19,7 +19,7 @@
 		activate();
 
 		function activate() {
-			!!(vm.state.current.name == 'app.clients.detail') && $state.go('.tickets');
+			!!(!vm.state.current.name) && $state.go('.tickets');
 			analyzeTickets();
 		}
 

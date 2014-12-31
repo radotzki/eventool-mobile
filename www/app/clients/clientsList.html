@@ -8,22 +8,17 @@ on-refresh="vm.refresh()">
 	<input type="text" placeholder="Search" ng-model="vm.searchParam">
 </label>
 
-<div class="list">
-	<div class="item item-avatar"
-	style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;"
-	ng-repeat="client in vm.clients | orderBy:'first_name' | filter:vm.searchParam"
-	collection-item-width="'100%'"
-	collection-item-height="60"
-	ng-click="vm.clickCallback(client.id)">
-	<img src="content/img/avatar.jpg">
-	<div >
-		<h2> {{client.name}}</h2>
-		<p style="margin-bottom: 15px;">
-			<i ng-if="client.gender == 'female'" class="icon ion-female" style="color:red"></i>
-			<i ng-if="client.gender == 'male'" class="icon ion-male" style="color:blue"></i>
-			<span ng-if="client.birthdate"> {{client.birthdate | date}} </span>
-			<span ng-if="client.city"> from {{client.city}} </span>			
-		</p>
-	</div>
-</div>
-</div>
+<ion-list>
+  <ion-item ng-repeat="client in vm.clients | orderBy:'first_name' | filter:vm.searchParam"
+            class="item-avatar" ng-click="vm.clickCallback(client.id)">
+
+    <img ng-src="content/img/avatar.jpg">
+    <h2>{{::client.name}}</h2>
+    <p>
+			<i ng-class="{'icon ion-male': client.gender == 'male', 'icon ion-female': client.gender == 'female'}"></i>
+			<span ng-if="client.birthdate"> {{::client.birthdate | date}} </span>
+			<span ng-if="client.city"> from {{::client.city}} </span>			
+    </p>
+
+  </ion-item>
+</ion-list>

@@ -5,27 +5,11 @@
 <ion-content padding="true" class="my-content">
 
 <div class="list card" ng-repeat="event in vm.events | orderBy:'-when'">
-  <div class="item" ui-sref="app.events.detail({ eventId:event.id })">
+  <div class="item" ui-sref="app.events.detail.tickets({ eventId:event.id })">
     <h2>{{ event.name }}</h2>
     <p>{{ event.when | date }}</p>
   </div>
 </div>
 
-
 </ion-content>
 </ion-view>
-
-<!--   <div class="item tabs tabs-secondary tabs-icon-left">
-    <a class="tab-item" ui-sref="app.events.detail({ eventId:event.id })">
-      <i class="icon ion-information-circled"></i>
-      Show
-    </a>
-    <a class="tab-item" ui-sref="app.events.update({ eventId:event.id })" ng-if="!eventPass(event) && user.role=='producer'">
-      <i class="icon ion-edit"></i>
-      Edit
-    </a>
-    <a class="tab-item" ui-sref="app.eventDelete({ eventId:event.id })" ng-if="user.role=='producer'">
-      <i class="icon ion-trash-b"></i>
-      Delete
-    </a>
-  </div> -->

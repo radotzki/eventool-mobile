@@ -1,20 +1,22 @@
 (function() {
-	'use strict';
+  'use strict';
 
-	angular
-	.module('eventool.clients')
-	.controller('IndexClients', IndexClients);
+  angular
+    .module('eventool.clients')
+    .controller('IndexClients', IndexClients);
 
-	/* @ngInject */
-	function IndexClients($state) {
-		/*jshint validthis: true */
-		var vm = this;
+  /* @ngInject */
+  function IndexClients($state) {
+    /*jshint validthis: true */
+    var vm = this;
 
-		vm.clientClicked = clientClicked;
+    vm.clientClicked = clientClicked;
 
-		function clientClicked (clientId) {
-			$state.go('app.clients.detail', {clientId: clientId});
-		}
+    function clientClicked(clientId) {
+      $state.go('app.clients.detail.tickets', {
+        clientId: clientId
+      });
+    }
 
-	}
+  }
 })();

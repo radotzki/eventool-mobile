@@ -2,8 +2,8 @@
 	'use strict';
 
 	angular
-	.module('eventool.layout')
-	.controller('Shell', Shell);
+		.module('eventool.layout')
+		.controller('Shell', Shell);
 
 	/* @ngInject */
 	function Shell($rootScope, $ionicLoading) {
@@ -12,15 +12,11 @@
 		vm.title = 'Shell';
 
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-			if (toState.resolve) {
-				$ionicLoading.show();
-			}
+			$ionicLoading.show();
 		});
 
 		$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-			if (toState.resolve) {
-				$ionicLoading.hide();
-			}
+			$ionicLoading.hide();
 		});
 
 	}

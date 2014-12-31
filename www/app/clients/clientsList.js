@@ -12,6 +12,7 @@
 			controllerAs: 'vm',
 			templateUrl: 'app/clients/clientsList.html',
 			restrict: 'EA',
+			bindToController: true,
 			scope: {
 				'clickCallback': '='
 			}
@@ -27,8 +28,6 @@
 		vm.clients = [];
 		vm.loading = false;
 		vm.refresh = refresh;
-
-		vm.clickCallback = $scope.clickCallback;
 
 		activate();
 		

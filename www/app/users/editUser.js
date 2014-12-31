@@ -33,7 +33,7 @@
 			$ionicLoading.show();
 			datacontext.user.update(vm.user).then(function() {
 				$ionicLoading.hide();
-				$state.go('app.users.detail', {userId: vm.user.id});
+				$state.go('app.users.detail.tickets', {userId: vm.user.id});
 			})
 		}
 

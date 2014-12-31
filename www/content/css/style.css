@@ -1,54 +1,80 @@
 .error-msg {
-	position: absolute;
-	bottom: 49px;
-	text-align: center;
-	background-color: rgba(0,0,0,0.5);
-	width: 100%;
-	color: white;
-	padding-top: 6px;
-	z-index: 5;
+    position: absolute;
+    bottom: 49px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    color: white;
+    padding-top: 6px;
+    z-index: 5;
 }
+/* PROFILE COVER */
 
-/* CLIENT PROFILE */
+.profile-cover {
+    position: relative;
+}
+.profile-cover figcaption {
+    position: absolute;
+    top: 0;
+    padding-top: 30px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.profile-cover figcaption * {
+    color: white;
+}
+.profile-cover img {
+    height: 50%;
+    width: 100%;
+}
+.profile-stats {
+    position: absolute;
+    bottom: 0px;
+}
+/* END PROFILE COVER */
+/* CLIENT PROFILE  */
+
 .client-profile-nav {
-	text-align: center;	
-	margin: 15px 0px;
+    text-align: center;
+    margin: 15px 0px;
 }
-
 .client-profile-nav p {
-	display: inline;
-	margin: 0 10px;
+    display: inline;
+    margin: 0 10px;
 }
-
 .client-profile-nav .active {
-	font-weight: bold;
+    font-weight: bold;
 }
 /* END CLIENT PROFILE */
-
 /* DATE TIME PICKER */
+
 .datetimepicker, .datetimepicker table {
-	width: 100%;
+    width: 100%;
 }
-
+.datetimepicker span.hour {
+    font-size: 10px;
+}
+.datetimepicker span.minute {
+    width: 40%;
+}
 .glyphicon, .glyphicon-arrow-left:before, .glyphicon-arrow-right {
-	display: inline-block;
-	font-family: "Ionicons";
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	text-rendering: auto;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale; 
+    display: inline-block;
+    font-family: "Ionicons";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-
 .glyphicon-arrow-left:before {
-	content: "\f108"; 
+    content: "\f108";
 }
-
 .glyphicon-arrow-right:before {
-	content: "\f10b"; 
+    content: "\f10b";
 }
 /* END DATE TIME PICKER */

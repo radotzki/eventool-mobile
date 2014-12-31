@@ -27,7 +27,7 @@
 
 		function showNewEvent(eventId) {
 			$ionicLoading.hide();
-			$state.go('app.events.detail', {eventId: eventId});
+			$state.go('app.events.detail.tickets', {eventId: eventId});
 		}
 
 	}
