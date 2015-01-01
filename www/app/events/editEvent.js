@@ -55,7 +55,7 @@
       $ionicLoading.show();
       datacontext.event.remove(vm.event).then(function(res) {
         $ionicLoading.hide();
-        $state.go('app.events');
+        $state.go('app.events.index');
       });
     }
 

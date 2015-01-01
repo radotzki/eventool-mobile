@@ -8,6 +8,12 @@
     padding-top: 6px;
     z-index: 5;
 }
+/* COMMON */
+
+.m-t-l {
+    margin-top: 20px;
+}
+/* END COMMON */
 /* PROFILE COVER */
 
 .profile-cover {
@@ -32,6 +38,10 @@
     position: absolute;
     bottom: 0px;
 }
+.profile-stats div:nth-child(2) {
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
 /* END PROFILE COVER */
 /* CLIENT PROFILE  */
 
@@ -47,9 +57,25 @@
     font-weight: bold;
 }
 /* END CLIENT PROFILE */
+/* TICKET LIST */
+
+.ticket-list.arrived {
+    border-bottom: 3px solid #8CD787;
+}
+.ticket-list.arrived i {
+    color: #8CD787;
+}
+.ticket-list.not-arrived {
+    border-bottom: 3px solid #C7705B;
+}
+.ticket-list.not-arrived i {
+    color: #C7705B;
+}
+/* END TICKET LIST */
 /* DATE TIME PICKER */
 
-.datetimepicker, .datetimepicker table {
+.datetimepicker,
+.datetimepicker table {
     width: 100%;
 }
 .datetimepicker span.hour {
@@ -58,7 +84,9 @@
 .datetimepicker span.minute {
     width: 40%;
 }
-.glyphicon, .glyphicon-arrow-left:before, .glyphicon-arrow-right {
+.glyphicon,
+.glyphicon-arrow-left:before,
+.glyphicon-arrow-right {
     display: inline-block;
     font-family: "Ionicons";
     speak: none;
@@ -78,3 +106,4 @@
     content: "\f10b";
 }
 /* END DATE TIME PICKER */
+

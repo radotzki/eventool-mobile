@@ -1,101 +1,100 @@
-(function() {
-	'use strict';
+( function () {
+    'use strict';
 
-	angular
-	.module('eventool.tickets')
-	.controller('IndexTickets', IndexTickets);
+    angular
+        .module( 'eventool.tickets' )
+        .controller( 'IndexTickets', IndexTickets );
 
-	/* @ngInject */
-	function IndexTickets($rootScope, $state, $ionicModal, ticketsPrepSvc) {
-		/*jshint validthis: true */
-		var vm = this;
-		
-		var tickets = ticketsPrepSvc;
-		var ticketModal;
-		vm.target = $state.current.data.target;
-		vm.separatedTickets = [];
-		
-		vm.showTicket = showTicket;
-		vm.createTicket = createTicket;
+    /* @ngInject */
+    function IndexTickets( $rootScope, $state, $ionicModal, ticketsPrepSvc ) {
+        /*jshint validthis: true */
+        var vm = this;
 
-		activate();
+        var tickets = ticketsPrepSvc;
+        var ticketModal;
+        vm.target = $state.current.data.target;
+        vm.separatedTickets = [];
+        vm.separatorOrderBy;
+        vm.ticketsOrderBy = '-arrived';
 
-		function activate() {
-			if ( vm.target == 'user' || vm.target == 'client' ) {
-				seperateByEvent();
-			} else if ( vm.target == 'event' ) {
-				seperateByClient();
-			}
-		}
+        vm.showTicket = showTicket;
 
-		function showTicket (clientId, ticketId) {
-			var modalScope = $rootScope.$new();
-			modalScope.clientId = clientId;
-			modalScope.ticketId = ticketId;
-			modalScope.closeModal = closeModal;
-			
-			$ionicModal.fromTemplateUrl('app/tickets/showTicket.html', {
-				animation: 'slide-in-up',
-				scope: modalScope
-			}).then(function(modal) {
-				ticketModal = modal;
-				modal.show();
-			});
-		}
+        activate();
 
-		function createTicket () {
-			
-		}
+        function activate() {
+            console.log( tickets );
+            if ( vm.target == 'user' || vm.target == 'client' ) {
+                vm.separatorOrderBy = '-when';
+                seperateByEvent();
+            } else if ( vm.target == 'event' ) {
+                seperateByClient();
+            }
+        }
 
-		function closeModal (ticket) {
-			!!ticket && removeTicketFromView(ticket);
-			ticketModal.remove();
-		}
+        function showTicket( clientId, ticketId ) {
+            var modalScope = $rootScope.$new();
+            modalScope.clientId = clientId;
+            modalScope.ticketId = ticketId;
+            modalScope.closeModal = closeModal;
 
-		function removeTicketFromView (ticket) {
-			var eventTickets = vm.separatedTickets[findEventByName(ticket.event.name)].tickets;
-			for (var i = eventTickets.length - 1; i >= 0; i--) {
-				if ( eventTickets[i].id == ticket.id ) {
-					eventTickets.splice(i, 1);
-				}
-			};
-		}
+            $ionicModal.fromTemplateUrl( 'app/tickets/showTicket.html', {
+                animation: 'slide-in-up',
+                scope: modalScope
+            } ).then( function ( modal ) {
+                ticketModal = modal;
+                modal.show();
+            } );
+        }
 
-		function seperateByEvent() {
-			for(var i=0; i < tickets.length; i++){
-				var eventIndex = findEventByName(tickets[i].event.name);
-				if ( eventIndex > -1 ){
-					vm.separatedTickets[eventIndex].tickets.push(tickets[i]);
-						
-					if ( tickets[i].arrived ){
-						vm.separatedTickets[eventIndex].arriveCount += tickets[i].arrived;	
-						vm.separatedTickets[eventIndex].income += tickets[i].price.price;
-					} 
-				}
-				else {
-					vm.separatedTickets.push(ticketAdapter(tickets[i]));	
-				}
-			}
-		}
+        function closeModal( ticket ) {
+            !!ticket && removeTicketFromView( ticket );
+            ticketModal.remove();
+        }
 
-		function ticketAdapter (ticket) {
-			return {
-				tickets: [ticket],
-				arriveCount: ticket.arrived ? 1 : 0,
-				when: ticket.event.when,
-				eventName: ticket.event.name,
-				income: ticket.arrived ? ticket.price.price : 0
-			};
-		}
+        function removeTicketFromView( ticket ) {
+            var eventTickets = vm.separatedTickets[ findEventByName( ticket.event.name ) ].tickets;
+            for ( var i = eventTickets.length - 1; i >= 0; i-- ) {
+                if ( eventTickets[ i ].id == ticket.id ) {
+                    eventTickets.splice( i, 1 );
+                }
+            };
+        }
 
-		function findEventByName(name){
-			var res = -1;
-			for(var i=0; i < vm.separatedTickets.length; i++){
-				if ( vm.separatedTickets[i].eventName == name )
-					return i;
-			}
-			return res;
-		}
+        function seperateByEvent() {
+            for ( var i = 0; i < tickets.length; i++ ) {
+                var eventIndex = findEventByName( tickets[ i ].event.name );
+                if ( eventIndex > -1 ) {
+                    vm.separatedTickets[ eventIndex ].tickets.push( tickets[ i ] );
 
-	}
-})();
+                    if ( tickets[ i ].arrived ) {
+                        vm.separatedTickets[ eventIndex ].arriveCount += tickets[ i ].arrived;
+                        vm.separatedTickets[ eventIndex ].income += tickets[ i ].price.price;
+                    }
+                } else {
+                    vm.separatedTickets.push( ticketAdapter( tickets[ i ] ) );
+                }
+            }
+            console.log( vm.separatedTickets );
+        }
+
+        function ticketAdapter( ticket ) {
+            return {
+                tickets: [ ticket ],
+                arriveCount: ticket.arrived ? 1 : 0,
+                when: ticket.event.when,
+                separatorName: ticket.event.name,
+                income: ticket.arrived ? ticket.price.price : 0
+            };
+        }
+
+        function findEventByName( name ) {
+            var res = -1;
+            for ( var i = 0; i < vm.separatedTickets.length; i++ ) {
+                if ( vm.separatedTickets[ i ].separatorName == name )
+                    return i;
+            }
+            return res;
+        }
+
+    }
+} )();
