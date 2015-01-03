@@ -43,7 +43,7 @@
 			url: "/tickets",
 			controller: "IndexTickets as vm",
 			templateUrl: "app/tickets/indexTickets.html",
-			data: { target: "user", name: "tickets" }
+			data: { target: "event", name: "tickets" }
 		})
 
 		.state('app.events.create', {

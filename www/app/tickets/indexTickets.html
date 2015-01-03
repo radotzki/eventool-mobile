@@ -8,22 +8,22 @@
         <div class="col">
             {{separator.separatorName}}
         </div>
-        <div class="col" ng-show="vm.target!=='client'">
+        <div class="col" ng-show="vm.target=='user'">
             {{ separator.arriveCount }} / {{ separator.tickets.length }}
         </div>
-        <div class="col" ng-show="vm.target!=='client'">
+        <div class="col" ng-show="vm.target=='user'">
             {{separator.income | currency}}
         </div>
     </div>
 
-    <a class="item item-icon-right ticket-list" ng-class="{'arrived': ticket.arrived, 'not-arrived': !ticket.arrived}" ng-repeat-end ng-repeat="ticket in separator.tickets | orderBy: vm.ticketsOrderBy" ng-click="vm.showTicket(ticket.client.id, ticket.id)">
+    <a class="item item-icon-right ticket-list" ng-class="{'arrived': ticket.arrived, 'not-arrived': !ticket.arrived}" ng-repeat-end ng-repeat="ticket in separator.tickets | orderBy: '-arrived'" ng-click="vm.showTicket(ticket.client.id, ticket.id)">
         <p>
             Price: {{ ticket.price.price | currency}}
         </p>
-        <p ng-show="vm.target!=='client'">
+        <p ng-show="vm.target==='user'">
             To {{ ticket.client.first_name }} {{ ticket.client.last_name }}
         </p>
-        <p ng-show="vm.target==='client'">
+        <p ng-show="vm.target!=='user'">
             By {{ ticket.promoter.first_name }} {{ ticket.promoter.last_name }}
         </p>
         <p>
