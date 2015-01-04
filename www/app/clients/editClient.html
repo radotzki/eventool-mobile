@@ -1,49 +1,48 @@
 <ion-view title="Update Client">
-<ion-content class="has-header" >
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-positive" ng-click="vm.updateClient()" ng-disabled="vm.editClientForm.$invalid">Done</button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
 
-<form name="myForm" novalidate>
-	<div class="list">
-		<label class="item item-input item-stacked-label">
-			<span class="input-label">First Name</span>
-			<input type="text" placeholder="John" ng-model="vm.client.first_name" name="firstName" required>
-			<p style="color: pink" ng-show="myForm.firstName.$invalid && !myForm.firstName.$pristine">first name is required</p>
-		</label>
-		<label class="item item-input item-stacked-label">
-			<span class="input-label">Last Name</span>
-			<input type="text" placeholder="Doh" ng-model="vm.client.last_name" name="lastName" required>
-			<p style="color: pink" ng-show="myForm.lastName.$invalid && !myForm.lastName.$pristine">last name is required</p>
-		</label>
-		<label class="item item-input item-select">
-			<div class="input-label">Gender </div>
-			<select ng-model="vm.client.gender" required>
-				<option value="female">Female</option>
-				<option value="male">Male</option>
-			</select>
-		</label>
-		<label class="item item-input" >
-			<span class="input-label">Birthdate</span>
-			<et-date-picker start-view="year" min-view="day" date-format="mediumDate" 
-			ng-model="vm.client.birthdate" placeholder="{{vm.client.birthdate | date:'mediumDate'}}"> </et-date-picker>
-		</label>
-		<label class="item item-input item-stacked-label">
-			<span class="input-label">City</span>
-			<input type="text" placeholder="New York" ng-model="vm.client.city">
-		</label>
-		<label class="item item-input item-stacked-label">
-			<span class="input-label">Phone Number</span>
-			<input type="tel" placeholder="0541234567" ng-model="vm.client.phone_number">
-		</label>
-	</div>
-</form>
+        <form name="vm.editClientForm" novalidate>
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">First Name</span>
+                    <input type="text" placeholder="John" ng-model="vm.client.first_name" name="firstName" required>
+                    <p style="color: pink" ng-show="vm.editClientForm.firstName.$invalid && !vm.editClientForm.firstName.$pristine">first name is required</p>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Last Name</span>
+                    <input type="text" placeholder="Doh" ng-model="vm.client.last_name" name="lastName" required>
+                    <p style="color: pink" ng-show="vm.editClientForm.lastName.$invalid && !vm.editClientForm.lastName.$pristine">last name is required</p>
+                </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">Gender </div>
+                    <select ng-model="vm.client.gender" required>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Birthdate</span>
+                    <et-date-picker start-view="year" min-view="day" date-format="mediumDate" ng-model="vm.client.birthdate" placeholder="{{vm.client.birthdate | date:'mediumDate'}}"> </et-date-picker>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">City</span>
+                    <input type="text" placeholder="New York" ng-model="vm.client.city">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Phone Number</span>
+                    <input type="tel" placeholder="0541234567" ng-model="vm.client.phone_number">
+                </label>
+            </div>
+        </form>
 
-<div class="text-center m-t-large">
-	<button class="button button-outline button-positive" ng-click="vm.updateClient()" ng-disabled="myForm.$invalid">
-		Update client
-	</button>
-	<button class="button button-outline button-assertive" ng-click="vm.confirmDelete()" ng-disabled="myForm.$invalid">
-		Delete client
-	</button>
-</div>
+        <div class="delete-btn-wrapper">
+            <button class="button button-small button-block button-assertive" ng-click="vm.confirmDelete()">
+                Delete Client
+            </button>
+        </div>
 
-</ion-content>
+    </ion-content>
 </ion-view>
