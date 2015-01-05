@@ -18,7 +18,7 @@
 
 		function saveComment() {
 			datacontext.clientComment.create(vm.clientId, {comment: vm.newComment}).then(function(){
-				vm.comments.push({ comment: vm.newComment, user: vm.user });
+				vm.comments.push({ comment: vm.newComment, user: vm.user, created_at: 'now' });
 			});
 		}
 

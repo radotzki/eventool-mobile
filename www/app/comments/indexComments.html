@@ -1,26 +1,26 @@
 <div class="item item-input-inset">
-	<label class="item-input-wrapper">
-		<input type="text" placeholder="Add a comment" ng-model="vm.newComment">
-	</label>
-	<button class="button button-small" ng-click="vm.saveComment()">
-		add
-	</button>
+    <label class="item-input-wrapper">
+        <input type="text" placeholder="Add a comment" ng-model="vm.newComment">
+    </label>
+    <button class="button button-small" ng-click="vm.saveComment()">
+        add
+    </button>
 </div>
 
-<div class="list">
-	<a class="item item-avatar" ng-repeat="comment in vm.comments | orderBy:'-created_at'" style="border: none;">
-		<img src="content/img/avatar.jpg">
-		<div style="border-bottom: #ddd; border-bottom-style: solid; border-bottom-width: thin;">
-			<h2>{{comment.user.first_name}} {{comment.user.last_name}}</h2>
-			<p style="color: black; margin-bottom: 5px; margin-top: 5px;">{{comment.comment}}</p>
-			<p style="font-size: 12px; margin-bottom: 15px;"> 
-				<i class="icon ion-ios7-clock-outline"></i> {{!comment.created_at ? 'Just now' : comment.created_at | date}} 
-			</p>
-		</div>
-	</a>
-</div>
+<p class="text-center m-t-l" ng-show="vm.comments.length==0">
+    Have no comments
+</p>
 
-<div class="text-center" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 30px;"
-ng-show="vm.comments.length==0">
-Have no comments 
-</div>
+<ion-list>
+    <ion-item ng-repeat="comment in vm.comments | orderBy:'-created_at'" class="item-avatar">
+
+        <img ng-src="content/img/avatar.jpg">
+        <h2>{{::comment.user.first_name}} {{::comment.user.last_name}}</h2>
+        <p> {{::comment.comment}} </p>
+        <h6>
+            <i class="icon ion-ios7-clock-outline"></i> 
+            <span> {{::comment.created_at | date}} </span>
+        </h6>
+
+    </ion-item>
+</ion-list>

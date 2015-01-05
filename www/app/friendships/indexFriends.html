@@ -12,8 +12,10 @@
         <img ng-src="content/img/avatar.jpg">
         <h2>{{::friend.myFriend.first_name}} {{::friend.myFriend.last_name}}</h2>
         <p>
-            <i class="icon ion-ios7-clock-outline"></i> 
-            <span> since {{::friend.created_at | date}} </span>
+            <small>
+            	<i class="icon ion-ios7-clock-outline"></i>
+            	<span>  since {{::friend.created_at | date}} </span>
+            </small>
         </p>
 
     </ion-item>
