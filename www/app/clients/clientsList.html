@@ -1,24 +1,21 @@
-<ion-refresher
-pulling-text="Pull to refresh..."
-on-refresh="vm.refresh()">
+<ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.refresh()">
 </ion-refresher>
 
 <label class="item item-input">
-	<i class="icon ion-search placeholder-icon"></i>
-	<input type="text" placeholder="Search" ng-model="vm.searchParam">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="Search" ng-model="vm.searchParam">
 </label>
 
 <ion-list>
-  <ion-item ng-repeat="client in vm.clients | orderBy:'first_name' | filter:vm.searchParam"
-            class="item-avatar" ng-click="vm.clickCallback(client.id)">
+    <ion-item ng-repeat="client in vm.clients | orderBy:'first_name' | filter:vm.searchParam" class="item-avatar" ng-click="vm.clickCallback(client.id)">
 
-    <img ng-src="content/img/avatar.jpg">
-    <h2>{{::client.name}}</h2>
-    <p>
-			<i ng-class="{'icon ion-male': client.gender == 'male', 'icon ion-female': client.gender == 'female'}"></i>
-			<span ng-if="client.birthdate"> {{::client.birthdate | date}} </span>
-			<span ng-if="client.city"> from {{::client.city}} </span>			
-    </p>
+        <img ng-src="content/img/avatar.jpg">
+        <h2>{{::client.name}}</h2>
+        <p>
+            <i ng-class="{'icon ion-male': client.gender == 'male', 'icon ion-female': client.gender == 'female'}"></i>
+            <span ng-if="client.birthdate"> {{::client.birthdate | date}} </span>
+            <span ng-if="client.city"> from {{::client.city}} </span>
+        </p>
 
-  </ion-item>
+    </ion-item>
 </ion-list>
