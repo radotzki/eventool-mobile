@@ -16,6 +16,14 @@
 .delete-btn-wrapper {
     margin: 20px 10px;
 }
+
+.add-btn {
+    margin: 15px 0;
+}
+
+.add-btn a {
+    color: #387ef5;
+}
 /* END COMMON */
 /* PROFILE COVER */
 

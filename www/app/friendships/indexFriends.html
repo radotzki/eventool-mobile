@@ -1,6 +1,6 @@
-<a class="button button-block button-outline button-positive" ui-sref="app.addFriend({clientId: vm.clientId})" style="margin-left: auto; margin-right: auto; width: 90%;">
-	Add Friend
-</a>
+<div class="text-center add-btn">
+    <a class="button button-icon icon ion-plus-circled" ui-sref="app.addFriend({clientId: vm.clientId})"></a>
+</div>
 
 <p class="text-center m-t-l" ng-show="vm.friends.length==0">
     Have no friends
@@ -13,8 +13,8 @@
         <h2>{{::friend.myFriend.first_name}} {{::friend.myFriend.last_name}}</h2>
         <p>
             <small>
-            	<i class="icon ion-ios7-clock-outline"></i>
-            	<span>  since {{::friend.created_at | date}} </span>
+                <i class="icon ion-ios7-clock-outline"></i>
+                <span>  since {{::friend.created_at | date}} </span>
             </small>
         </p>
 

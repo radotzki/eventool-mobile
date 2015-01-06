@@ -9,11 +9,10 @@
 	function etAddTicket () {
 		function getTemplate () {
 			return [
-			'<a class="button button-block button-outline button-positive"',
-			'ui-sref="app.clients.createTicket({ clientId: vm.clientId })"',
-			'style="margin-left: auto; margin-right: auto; width: 90%;">',
-			'Add Ticket',
-			'</a>'
+			'<div class="text-center add-btn">',
+    		'<a class="button button-icon icon ion-plus-circled"',
+    		'ui-sref="app.clients.createTicket({ clientId: vm.clientId })"></a>',
+			'</div>'
 			].join('');
 		}
 
