@@ -16,13 +16,17 @@
                     <input type="text" placeholder="Doh" ng-model="vm.client.last_name" name="lastName" required>
                     <p style="color: pink" ng-show="vm.editClientForm.lastName.$invalid && !vm.editClientForm.lastName.$pristine">last name is required</p>
                 </label>
-                <label class="item item-input item-select">
-                    <div class="input-label">Gender </div>
-                    <select ng-model="vm.client.gender" required>
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                    </select>
-                </label>
+                <div class="gender-item">
+                    <div class="gender-label">Gender</div>
+                    <div class="gender-btns">
+                        <button class="button button-clear button-positive" ng-class="{'not-selected': vm.client.gender!='male'}" ng-click="vm.client.gender='male'">
+                            Male
+                        </button>
+                        <button class="button button-clear button-positive" ng-class="{'not-selected': vm.client.gender!='female'}" ng-click="vm.client.gender='female'">
+                            Female
+                        </button>
+                    </div>
+                </div>
                 <label class="item item-input">
                     <span class="input-label">Birthdate</span>
                     <et-date-picker start-view="year" min-view="day" date-format="mediumDate" ng-model="vm.client.birthdate" placeholder="{{vm.client.birthdate | date:'mediumDate'}}"> </et-date-picker>
