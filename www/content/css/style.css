@@ -75,6 +75,17 @@
     color: #C7705B;
 }
 /* END TICKET LIST */
+/* COMMENT */
+
+.add-comment input {
+    width: 80%;
+    display: inline-block;
+}
+
+.add-comment button {
+    float: right;
+}
+/* END COMMENT */
 /* DATE TIME PICKER */
 
 .datetimepicker,

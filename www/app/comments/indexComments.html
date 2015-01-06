@@ -1,17 +1,17 @@
-<div class="item item-input-inset">
-    <label class="item-input-wrapper">
-        <input type="text" placeholder="Add a comment" ng-model="vm.newComment">
-    </label>
-    <button class="button button-small" ng-click="vm.saveComment()">
-        add
-    </button>
-</div>
+<form name="addCommentForm" novalidate>
+    <div class="item item-input item-stacked-label add-comment">
+        <input type="text" placeholder="New comment" ng-model="vm.newComment" name="newComment" required>
+        <button class="button button-clear button-positive button-small" ng-click="vm.saveComment()" ng-disabled="addCommentForm.$invalid">
+            Send
+        </button>
+    </div>
+</form>
 
 <p class="text-center m-t-l" ng-show="vm.comments.length==0">
     Have no comments
 </p>
 
-<ion-list>
+<ion-list can-swipe="true">
     <ion-item ng-repeat="comment in vm.comments | orderBy:'-created_at'" class="item-avatar">
 
         <img ng-src="content/img/avatar.jpg">
@@ -21,6 +21,10 @@
             <i class="icon ion-ios7-clock-outline"></i> 
             <span> {{::comment.created_at | date}} </span>
         </h6>
+
+        <ion-option-button class="button-assertive" ng-click="vm.deleteComment(comment)" ng-show="vm.canDelete(comment)">
+            Delete
+        </ion-option-button>
 
     </ion-item>
 </ion-list>
