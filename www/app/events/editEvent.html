@@ -1,31 +1,32 @@
 <ion-view title="Update Event">
-<ion-content class="has-header" padding="true">    
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-positive" ng-click="vm.updateEvent()" ng-disabled="myForm.$invalid">
+            Done
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
 
-<form name="myForm" novalidate>
-	<div class="list">
-		<label class="item item-input item-stacked-label">
-			<span class="input-label">Name</span>
-			<input type="text" placeholder="awesome event" ng-model="vm.event.name" name="name" required>
-			<p style="color: pink" ng-show="myForm.name.$invalid && !myForm.name.$pristine">name is required</p>
-		</label>
-		<label class="item item-input" >
-			<span class="input-label">When</span>
-			<et-date-picker start-view="year" min-view="minute" date-format="MMM d, y HH:mm" 
-			ng-model="vm.event.when" placeholder="{{vm.event.when | date:'MMM d, y HH:mm'}}"> </et-date-picker>
-		</label>
-	</div>
-</form>
+        <form name="myForm" novalidate>
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Name</span>
+                    <input type="text" placeholder="awesome event" ng-model="vm.event.name" name="name" required>
+                    <p style="color: pink" ng-show="myForm.name.$invalid && !myForm.name.$pristine">name is required</p>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">When</span>
+                    <et-date-picker start-view="year" min-view="minute" date-format="MMM d, y HH:mm" ng-model="vm.event.when" placeholder="{{vm.event.when | date:'MMM d, y HH:mm'}}"> </et-date-picker>
+                </label>
+            </div>
+        </form>
 
-<et-price-list prices="vm.event.prices" edit-event="{{true}}"> </et-price-list>
+        <et-price-list prices="vm.event.prices" edit-event="{{true}}"> </et-price-list>
 
-<div class="text-center m-t-large">
-<button class="button button-outline button-positive" ng-click="vm.updateEvent()" ng-disabled="myForm.$invalid">
-	Save
-</button>
-<button class="button button-outline button-assertive" ng-click="vm.confirmDelete()">
-	Delete event
-</button>
-</div>
+        <div class="delete-btn-wrapper">
+            <button class="button button-small button-block button-assertive" ng-click="vm.confirmDelete()">
+                Delete Client
+            </button>
+        </div>
 
-</ion-content>
+    </ion-content>
 </ion-view>

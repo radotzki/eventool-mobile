@@ -1,26 +1,25 @@
 <ion-view title="New Event">
-<ion-content class="has-header" padding="true">
+    <ion-content class="has-header">
 
-<form name="myForm" novalidate>
-	<div class="list">
-		<label class="item item-input item-stacked-label">
-			<span class="input-label">Name</span>
-			<input type="text" placeholder="awesome event" ng-model="vm.event.name" name="name" required>
-			<p style="color: pink" ng-show="myForm.name.$invalid && !myForm.name.$pristine">name is required</p>
-		</label>
-		<label class="item item-input" >
-			<span class="input-label">When</span>
-			<et-date-picker start-view="year" min-view="minute" date-format="MMM d, y HH:mm" 
-			ng-model="vm.event.when" placeholder="Select Date & Time" title="Select Date & Time"> </et-date-picker>
-		</label>
-	</div>
-</form>
+        <form name="myForm" novalidate>
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Name</span>
+                    <input type="text" placeholder="awesome event" ng-model="vm.event.name" name="name" required>
+                    <p style="color: pink" ng-show="myForm.name.$invalid && !myForm.name.$pristine">name is required</p>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">When</span>
+                    <et-date-picker start-view="year" min-view="minute" date-format="MMM d, y HH:mm" ng-model="vm.event.when" placeholder="Select Date & Time" title="Select Date & Time"> </et-date-picker>
+                </label>
+            </div>
+        </form>
 
-<et-price-list prices="vm.event.prices"> </et-price-list>
+        <et-price-list prices="vm.event.prices"> </et-price-list>
 
-<button class="button button-block button-outline button-positive" ng-click="vm.createEvent()" ng-disabled="myForm.$invalid">
-	Create event
-</button>
+        <button class="button button-block button-outline button-positive" ng-click="vm.createEvent()" ng-disabled="myForm.$invalid">
+            Create event
+        </button>
 
-</ion-content>
+    </ion-content>
 </ion-view>

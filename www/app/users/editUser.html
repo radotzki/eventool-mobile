@@ -1,29 +1,28 @@
 <ion-view title="{{vm.user.name}}">
-<ion-content class="has-header">    
-<div class="list card">
-	<div class="item">
-		<h2>{{vm.user.name}}</h2>
-		<p>{{vm.user.role}}</p>
-	</div>
-	<label class="item item-input item-select">
-		<div class="input-label">Role </div>
-		<select ng-model="vm.user.role">
-			<option value="producer">Producer</option>
-			<option value="promoter">Promoter</option>
-			<option value="cashier">Cashier</option>
-		</select>
-	</label>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-positive" ng-click="vm.update()">
+            Done
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <form name="myForm" novalidate>
+            <div class="list">
+                <label class="item item-input item-select">
+                    <div class="input-label">Role </div>
+                    <select ng-model="vm.user.role">
+                        <option value="producer">Producer</option>
+                        <option value="promoter">Promoter</option>
+                        <option value="cashier">Cashier</option>
+                    </select>
+                </label>
+            </div>
+        </form>
 
-	<div class="text-center m-t-large">
-		<button class="button button-outline button-positive" ng-click="vm.update()">
-		Update
-	</button>
-	<button class="button button-outline button-assertive" ng-click="vm.confirmLock()">
-		Lock User
-	</button>
-	</div>
+        <div class="delete-btn-wrapper">
+            <button class="button button-small button-block button-assertive" ng-click="vm.confirmLock()">
+                Lock User
+            </button>
+        </div>
 
-</div>
-
-</ion-content>
+    </ion-content>
 </ion-view>
