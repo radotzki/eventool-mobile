@@ -54,10 +54,15 @@
         }
 
         function removeTicketFromView(ticket) {
-            var eventTickets = vm.separatedTickets[findEventByName(ticket.event.name)].tickets;
-            for (var i = eventTickets.length - 1; i >= 0; i--) {
-                if (eventTickets[i].id == ticket.id) {
-                    eventTickets.splice(i, 1);
+            var deleted = false;
+            for (var i = vm.separatedTickets.length - 1; i >= 0 && !deleted; i--) {
+                if (vm.separatedTickets[i].separatorName === ticket.event.name) {
+                    for (var j = vm.separatedTickets[i].tickets.length - 1; j >= 0 && !deleted; j--) {
+                        if (vm.separatedTickets[i].tickets[j].id === ticket.id) {
+                            vm.separatedTickets[i].tickets.splice(i, 1);
+                            deleted = true;
+                        }
+                    };
                 }
             };
         }
