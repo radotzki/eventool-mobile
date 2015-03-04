@@ -13,12 +13,12 @@
   </ion-tab>
 
   <!-- Events Tab -->
-  <ion-tab title="Events" icon="icon ion-headphone" ui-sref="app.events">
+  <ion-tab title="Events" icon="icon ion-headphone" ui-sref="app.events" ng-if="vm.canView()">
     <ion-nav-view name="tab-events"></ion-nav-view>
   </ion-tab>
 
   <!-- Workers Tab -->
-  <ion-tab title="Workers" icon="icon ion-person-stalker" ui-sref="app.users">
+  <ion-tab title="Workers" icon="icon ion-person-stalker" ui-sref="app.users" ng-if="vm.canView()">
     <ion-nav-view name="tab-workers"></ion-nav-view>
   </ion-tab>
 

@@ -14,6 +14,7 @@
 		vm.productionName;
 
 		vm.register = register;
+		vm.back = back;
 
 		function register () {
 			$localStorage.$reset();
@@ -27,6 +28,10 @@
 				name: vm.productionName, first_name: vm.user.firstName, last_name: vm.user.lastName,
 				email: vm.user.email, password: vm.user.password, phone_number: vm.user.phone
 			};
+		}
+
+		function back () {
+			$state.go('login');
 		}
 
 	}

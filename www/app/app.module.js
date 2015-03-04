@@ -22,7 +22,8 @@
          'eventool.tickets',
          'eventool.friendship',
          'eventool.comments',
-         'eventool.registration'
+         'eventool.registration',
+         'eventool.cashierMode'
          ]);
 
 })();
