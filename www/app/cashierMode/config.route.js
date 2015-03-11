@@ -23,10 +23,10 @@
                     }]
                 }
             })
-            .state('app.cashier.index', {
-                url: "",
-                controller: "CashierIndexClients as vm",
-                templateUrl: "app/cashierMode/indexClients.html"
+            .state('app.cashier.client-ticket', {
+                url: "/:clientId",
+                controller: "CashierClientTicket as vm",
+                templateUrl: "app/cashierMode/clientTicket.html"
             });
 
     }

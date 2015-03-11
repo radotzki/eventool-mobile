@@ -1,0 +1,40 @@
+<ion-view title="{{vm.client.name}}">
+    <ion-content class="has-header">
+
+        <figure class="profile-cover text-center">
+            <img src="content/img/clientCover.jpg">
+            <figcaption>
+                <h1> {{vm.client.name}} </h1>
+                <div class="h4">
+                    <i ng-class="{'icon ion-male': vm.client.gender == 'male', 'icon ion-female': vm.client.gender == 'female'}"></i>
+                    <span ng-if="vm.client.birthdate"> {{vm.client.birthdate | date}} </span>
+                    <span ng-if="vm.client.city"> from {{vm.client.city}} </span>
+                </div>
+            </figcaption>
+        </figure>
+
+        <p class="text-center m-t-l" ng-show="!vm.hasArrived && vm.tickets.length==0">
+            {{vm.client.name}} has no tickets
+        </p>
+        <p class="text-center m-t-l" ng-show="vm.hasArrived">
+            {{vm.client.name}} took his ticket
+        </p>
+
+        <div class="list">
+
+            <a class="item item-icon-right ticket-list" ng-repeat="ticket in vm.tickets | orderBy: '-price.price'" ng-click="vm.selectTicket(ticket.id)">
+                <p>
+                    Price: {{ ticket.price.price | currency}}
+                </p>
+                <p>
+                    By {{ ticket.promoter.first_name }} {{ ticket.promoter.last_name }}
+                </p>
+                <p>
+                    Created at: {{ ticket.created_at | date: 'medium'}}
+                </p>
+            </a>
+
+        </div>
+
+    </ion-content>
+</ion-view>

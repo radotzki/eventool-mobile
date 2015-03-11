@@ -21,11 +21,8 @@
 
         function login() {
             auth.login(vm.user).then(function(resp) {
-                if (resp.user.role === 'cashier') {
-                    $state.go('app.cashier.index');
-                } else {
-                    $state.go('app.clients.index');
-                }
+                $state.go('app.clients.index');
+
             });
         }
 

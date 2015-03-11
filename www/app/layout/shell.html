@@ -1,10 +1,10 @@
-<ion-nav-bar class="bar-stable nav-title-slide-ios7" ng-controller="Shell as vm">
+<ion-nav-bar class="bar-stable nav-title-slide-ios7">
   <ion-nav-back-button class="button-icon ion-arrow-left-c">
   </ion-nav-back-button>
 </ion-nav-bar>
 
 
-<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+<ion-tabs class="tabs-icon-top tabs-color-active-positive" ng-controller="Shell as vm">
 
 
   <!-- Clients Tab -->
@@ -13,12 +13,12 @@
   </ion-tab>
 
   <!-- Events Tab -->
-  <ion-tab title="Events" icon="icon ion-headphone" ui-sref="app.events" ng-if="vm.canView()">
+  <ion-tab title="Events" icon="icon ion-headphone" ui-sref="app.events" ng-if="vm.canView">
     <ion-nav-view name="tab-events"></ion-nav-view>
   </ion-tab>
 
   <!-- Workers Tab -->
-  <ion-tab title="Workers" icon="icon ion-person-stalker" ui-sref="app.users" ng-if="vm.canView()">
+  <ion-tab title="Workers" icon="icon ion-person-stalker" ui-sref="app.users" ng-if="vm.canView">
     <ion-nav-view name="tab-workers"></ion-nav-view>
   </ion-tab>
 
