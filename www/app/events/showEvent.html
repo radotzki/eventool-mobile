@@ -6,45 +6,33 @@
 
     <ion-content class="has-header">
 
-        <div style="position: relative;">
-            <img src="content/img/clientCover.jpg" style="height: 300px;width: 100%; ">
-
-            <div class="text-center" style="position: absolute; top: 0px; height: 300px; width: 100%; background: rgba(68, 68, 68, 0.7)">
-                <h1 style="color:#fff; margin-top:20%"> {{vm.event.name}}</h1>
-                <h4 style="color:#fff">
-			<span> <i class="icon ion-ios7-calendar-outline"></i> {{vm.event.when | date:'MMM d, y HH:mm'}} </span>
-		</h4>
-                <h5 style="color:#fff">
-			<span> 
-				<i class="icon ion-ios7-pricetags-outline"></i>
-				<span ng-repeat="price in vm.event.prices"> {{price.price | currency}} </span> 
-			</span>	
-		</h5>
-
-                <div class="row" style="margin-top:10%">
-                    <div class="col" style="border-right:white solid thin">
-                        <h4 style="color:#fff">
-					Male
-					<br> {{vm.maleArrived}}
-				</h4>
-                    </div>
-                    <div class="col" style="border-right:white solid thin">
-                        <h4 style="color:#fff">
-					Female
-					<br> {{vm.femaleArrived}}
-				</h4>
+        <figure class="profile-cover text-center">
+            <img src="content/img/clientCover.jpg">
+            <figcaption>
+                <h1> {{vm.event.name}} </h1>
+                <div class="h4">
+                    <span> <i class="icon ion-ios7-calendar-outline"></i> {{vm.event.when | date:'MMM d, y HH:mm'}} </span>
+                </div>
+                <div class="h5">
+                    <i class="icon ion-ios7-pricetags-outline"></i>
+                    <span ng-repeat="price in vm.event.prices"> {{price.price | currency}} </span>
+                </div>
+                <div class="row h4 profile-stats">
+                    <div class="col">
+                        <p>Male</p>
+                        <p>{{vm.maleArrived || '0'}}</p>
                     </div>
                     <div class="col">
-                        <h4 style="color:#fff">
-					Income
-					<br> {{vm.income | currency}}
-				</h4>
+                        <p>Female</p>
+                        <p>{{vm.femaleArrived || '0'}}</p>
+                    </div>
+                    <div class="col">
+                        <p>Income</p>
+                        <p>{{vm.income | currency}}</p>
                     </div>
                 </div>
-
-            </div>
-        </div>
-
+            </figcaption>
+        </figure>
 
         <div ui-view></div>
 

@@ -7,9 +7,8 @@
 </label>
 
 <ion-list>
-    <ion-item ng-repeat="client in vm.clients | orderBy:'first_name' | filter:vm.searchParam" class="item-avatar" ng-click="vm.clickCallback(client.id)">
+    <ion-item ng-repeat="client in vm.clients | orderBy:'first_name' | filter:vm.searchParam"  ng-click="vm.clickCallback(client.id)">
 
-        <img ng-src="content/img/avatar.jpg">
         <h2>{{::client.name}}</h2>
         <p>
             <i ng-class="{'icon ion-male': client.gender == 'male', 'icon ion-female': client.gender == 'female'}"></i>

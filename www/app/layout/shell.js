@@ -1,30 +1,33 @@
 (function() {
-	'use strict';
+    'use strict';
 
-	angular
-		.module('eventool.layout')
-		.controller('Shell', Shell);
+    angular
+        .module('eventool.layout')
+        .controller('Shell', Shell);
 
-	/* @ngInject */
-	function Shell($rootScope, $ionicLoading, auth) {
-		/*jshint validthis: true */
-		var vm = this;
-		vm.canView = false;
+    /* @ngInject */
+    function Shell($rootScope, $ionicLoading, auth) {
+        /*jshint validthis: true */
+        var vm = this;
+        vm.canView = canView;
 
-		activate();
+        function canView(what) {
+            if (what === 'events') {
+                return auth.getUser().user.role !== 'cashier';
+            } else if (what === 'workers') {
+                return auth.getUser().user.role === 'producer';
+            } else {
+            	return true;
+            }
+        }
 
-		function activate () {
-			console.log(auth.getUser().user.role !== 'cashier');
-			vm.canView = auth.getUser().user.role !== 'cashier';
-		}
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            $ionicLoading.show();
+        });
 
-		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-			$ionicLoading.show();
-		});
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+            $ionicLoading.hide();
+        });
 
-		$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-			$ionicLoading.hide();
-		});
-
-	}
+    }
 })();

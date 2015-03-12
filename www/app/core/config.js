@@ -13,7 +13,7 @@
 
 	/* @ngInject */
 	function stateConfig($urlRouterProvider){
-		// $urlRouterProvider.otherwise("/app/clients");
+		$urlRouterProvider.otherwise("/app/clients");
 	}
 
 })();
