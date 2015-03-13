@@ -43,7 +43,7 @@
     {text: 'Cancel'},
     {
       text: '<b>Choose</b>',
-      type: 'button-positive',
+      type: 'button-calm',
       onTap: onTimeSet
     }
     ];

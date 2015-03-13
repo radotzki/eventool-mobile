@@ -1,6 +1,6 @@
 <ion-view title="Update Client">
     <ion-nav-buttons side="right">
-        <button class="button button-clear button-positive" ng-click="vm.updateClient()" ng-disabled="vm.editClientForm.$invalid">Done</button>
+        <button class="button button-clear button-calm" ng-click="vm.updateClient()" ng-disabled="vm.editClientForm.$invalid">Done</button>
     </ion-nav-buttons>
     <ion-content class="has-header">
 
@@ -19,10 +19,10 @@
                 <div class="gender-item">
                     <div class="gender-label">Gender</div>
                     <div class="gender-btns">
-                        <button class="button button-clear button-positive" ng-class="{'not-selected': vm.client.gender!='male'}" ng-click="vm.client.gender='male'">
+                        <button class="button button-clear button-calm" ng-class="{'not-selected': vm.client.gender!='male'}" ng-click="vm.client.gender='male'">
                             Male
                         </button>
-                        <button class="button button-clear button-positive" ng-class="{'not-selected': vm.client.gender!='female'}" ng-click="vm.client.gender='female'">
+                        <button class="button button-clear button-calm" ng-class="{'not-selected': vm.client.gender!='female'}" ng-click="vm.client.gender='female'">
                             Female
                         </button>
                     </div>

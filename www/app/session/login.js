@@ -22,7 +22,8 @@
         function login() {
             auth.login(vm.user).then(function(resp) {
                 $state.go('app.clients.index');
-
+            }, function (err) {
+                vm.message = err.data.message;
             });
         }
 

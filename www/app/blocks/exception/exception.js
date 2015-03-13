@@ -29,10 +29,10 @@
                 errorMsg = 'You need to login first.';
                 $state.go('login', null, {reload: true});
             } else if ( error.status === 403 ) {
-                errorMsg = 'You are not allowed to see this.';
+                // errorMsg = 'You are not allowed to see this.';
                 $state.go('login', null, {reload: true});
             } else if ( error.status === 499 ) {
-                errorMsg = error.data;
+                errorMsg = error.data.message;
                 $state.go('login', null, {reload: true});
             } else if ( error.status === 500 ) {
                 errorMsg = 'Opps. something went wrong.';

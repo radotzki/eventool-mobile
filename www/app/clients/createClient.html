@@ -16,10 +16,10 @@
                 <div class="gender-item">
                     <div class="gender-label">Gender</div>
                     <div class="gender-btns">
-                        <button class="button button-clear button-positive" ng-class="{'not-selected': vm.client.gender!='male'}" ng-click="vm.client.gender='male'">
+                        <button class="button button-clear button-calm" ng-class="{'not-selected': vm.client.gender!='male'}" ng-click="vm.client.gender='male'">
                             Male
                         </button>
-                        <button class="button button-clear button-positive" ng-class="{'not-selected': vm.client.gender!='female'}" ng-click="vm.client.gender='female'">
+                        <button class="button button-clear button-calm" ng-class="{'not-selected': vm.client.gender!='female'}" ng-click="vm.client.gender='female'">
                             Female
                         </button>
                     </div>
@@ -40,7 +40,7 @@
         </form>
 
 
-        <button class="button button-block button-outline button-positive" ng-click="vm.createClient()" ng-disabled="myForm.$invalid">
+        <button class="button button-block button-outline button-calm" ng-click="vm.createClient()" ng-disabled="myForm.$invalid">
             Create client
         </button>
 
