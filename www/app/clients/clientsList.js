@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -14,7 +14,8 @@
             restrict: 'EA',
             bindToController: true,
             scope: {
-                'clickCallback': '='
+                'clickCallback': '=',
+                'removeClients': '='
             }
         };
         return directive;
@@ -34,20 +35,27 @@
 
         function activate() {
             $ionicLoading.show();
-            getClients().then(function () {
+            getClients().then(function() {
                 $ionicLoading.hide();
             });
         }
 
         function getClients() {
-            return datacontext.client.index().then(function (data) {
+            return datacontext.client.index().then(function(data) {
                 vm.clients = data;
-                return data;
+
+                _.remove(vm.clients, function(c) {
+                    return _.findIndex(vm.removeClients, function(r) {
+                        return c.id === r.id;
+                    }) !== -1;
+                });
+                
+                return vm.clients;
             });
         }
 
         function refresh() {
-            return getClients().then(function () {
+            return getClients().then(function() {
                 common.$broadcast('scroll.refreshComplete');
             });
         }

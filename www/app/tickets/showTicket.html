@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="delete-btn-wrapper">
+        <div class="delete-btn-wrapper" ng-if="vm.canDelete()">
             <button class="button button-small button-block button-assertive" ng-click="vm.confirmDelete()">
                 Delete ticket
             </button>

@@ -21,7 +21,7 @@
                 } else {
                     vm.friends[i].myFriend = vm.friends[i].client_two;
                 }
-            };
+            }
         }
 
     }
