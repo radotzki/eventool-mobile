@@ -12,8 +12,9 @@
 	}
 
 	/* @ngInject */
-	function stateConfig($urlRouterProvider){
+	function stateConfig($urlRouterProvider, $ionicConfigProvider){
 		$urlRouterProvider.otherwise("/app/clients");
+		$ionicConfigProvider.views.maxCache(0);
 	}
 
 })();

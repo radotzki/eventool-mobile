@@ -13,10 +13,6 @@
 			url: "/login/{msg}",
 			controller: "Login as vm",
 			templateUrl: "app/session/login.html"
-		})
-		.state('logout', {
-			url: "/logout",
-			controller: "Logout"
 		});
 		
 	}

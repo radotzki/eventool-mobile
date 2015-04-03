@@ -1,5 +1,5 @@
-<ion-nav-bar class="bar bar-calm nav-title-slide-ios7">
-  <ion-nav-back-button class="button-icon ion-arrow-left-c">
+<ion-nav-bar class="bar bar-calm">
+  <ion-nav-back-button>
   </ion-nav-back-button>
 </ion-nav-bar>
 
@@ -8,22 +8,23 @@
 
 
   <!-- Clients Tab -->
-  <ion-tab title="Clients" icon="icon ion-home" ui-sref="app.clients" ng-if="vm.canView('clients')">
+  <ion-tab title="Clients" icon="icon ion-home" ui-sref="app.clients">
     <ion-nav-view name="tab-clients"></ion-nav-view>
   </ion-tab>
 
   <!-- Events Tab -->
-  <ion-tab title="Events" icon="icon ion-headphone" ui-sref="app.events" ng-if="vm.canView('events')">
+  <ion-tab hidden="{{vm.user.role === 'cashier'}}" title="Events" icon="icon ion-headphone" ui-sref="app.events">
     <ion-nav-view name="tab-events"></ion-nav-view>
   </ion-tab>
+  </div>
 
   <!-- Workers Tab -->
-  <ion-tab title="Workers" icon="icon ion-person-stalker" ui-sref="app.users" ng-if="vm.canView('workers')">
+  <ion-tab hidden="{{vm.user.role !== 'producer'}}" title="Workers" icon="icon ion-person-stalker" ui-sref="app.users" >
     <ion-nav-view name="tab-workers"></ion-nav-view>
   </ion-tab>
 
   <!-- Logout Tab -->
-  <ion-tab title="Logout" icon="icon ion-log-out" ui-sref="logout" ng-if="vm.canView('logout')">
+  <ion-tab title="Logout" icon="icon ion-log-out" ng-click="vm.logout()">
     <ion-nav-view name="tab-more"></ion-nav-view>
   </ion-tab>
 

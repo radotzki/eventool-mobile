@@ -11,10 +11,9 @@
             <figcaption>
                 <h1> {{vm.event.name}} </h1>
                 <div class="h4">
-                    <span> <i class="icon ion-ios7-calendar-outline"></i> {{vm.event.when | date:'MMM d, y HH:mm'}} </span>
+                    <span> {{vm.event.when | date:'MMM d, y HH:mm'}} </span>
                 </div>
                 <div class="h5">
-                    <i class="icon ion-ios7-pricetags-outline"></i>
                     <span ng-repeat="price in vm.event.prices"> {{price.price | currency}} </span>
                 </div>
                 <div class="row h4 profile-stats">

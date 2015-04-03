@@ -9,16 +9,18 @@
     function Shell($rootScope, $ionicLoading, auth) {
         /*jshint validthis: true */
         var vm = this;
-        vm.canView = canView;
 
-        function canView(what) {
-            if (what === 'events') {
-                return auth.getUser().user.role !== 'cashier';
-            } else if (what === 'workers') {
-                return auth.getUser().user.role === 'producer';
-            } else {
-            	return true;
-            }
+        vm.user = {};
+        vm.logout = logout;
+
+        activate();
+
+        function activate() {
+            vm.user = auth.getUser().user;
+        }
+
+        function logout () {
+            auth.logout();
         }
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {

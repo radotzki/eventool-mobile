@@ -23,7 +23,7 @@
             auth.login(vm.user).then(function(resp) {
                 $state.go('app.clients.index');
             }, function (err) {
-                vm.message = err.data.message;
+                vm.message = err.data ? err.data.message : 'An error occured';
             });
         }
 
