@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -42,7 +42,7 @@
             $ionicModal.fromTemplateUrl('app/tickets/showTicket.html', {
                 animation: 'slide-in-up',
                 scope: modalScope
-            }).then(function (modal) {
+            }).then(function(modal) {
                 ticketModal = modal;
                 modal.show();
             });
@@ -56,15 +56,16 @@
         function removeTicketFromView(ticket) {
             var deleted = false;
             for (var i = vm.separatedTickets.length - 1; i >= 0 && !deleted; i--) {
-                if (vm.separatedTickets[i].separatorName === ticket.event.name) {
-                    for (var j = vm.separatedTickets[i].tickets.length - 1; j >= 0 && !deleted; j--) {
-                        if (vm.separatedTickets[i].tickets[j].id === ticket.id) {
-                            vm.separatedTickets[i].tickets.splice(i, 1);
-                            deleted = true;
+                for (var j = vm.separatedTickets[i].tickets.length - 1; j >= 0 && !deleted; j--) {
+                    if (vm.separatedTickets[i].tickets[j].id === ticket.id) {
+                        deleted = true;
+                        vm.separatedTickets[i].tickets.splice(j, 1);
+                        if (vm.separatedTickets[i].tickets.length === 0) {
+                            vm.separatedTickets.splice(i, 1);
                         }
-                    };
+                    }
                 }
-            };
+            }
         }
 
     }

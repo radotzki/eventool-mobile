@@ -6,7 +6,7 @@
         .controller('CashierClientTicket', CashierClientTicket);
 
     /* @ngInject */
-    function CashierClientTicket($state, $stateParams, datacontext, actionSheet) {
+    function CashierClientTicket($state, $stateParams, $ionicPopup, datacontext, actionSheet) {
         /*jshint validthis: true */
         var vm = this;
         vm.clientId = $stateParams.clientId;
@@ -44,9 +44,21 @@
         function selectTicket(ticketId) {
             actionSheet.confirm(function() {
                 datacontext.ticket.checkin(vm.clientId, ticketId).then(function() {
-                    $state.go('app.cashier.index');
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'All good',
+                        template: 'The ticket registered in the system.'
+                    });
+                    alertPopup.then(function(res) {
+                        $state.go('app.clients.index');
+                    });
                 }, function(err) {
-                    console.log(err);
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Error',
+                        template: 'Please try again'
+                    });
+                    alertPopup.then(function(res) {
+                        $state.go('app.clients.index');
+                    });
                 });
             });
 
