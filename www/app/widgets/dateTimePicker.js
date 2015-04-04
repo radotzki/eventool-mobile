@@ -30,7 +30,7 @@
   function DatePicker($scope, $ionicPopup, $filter) {
     /*jshint validthis: true */
 
-    $scope.dateModel = Date.now();
+    $scope.dateModel = new Date();
     var minuteStep = $scope.minuteStep ? Number($scope.minuteStep) : 15;
     $scope.config = { startView: $scope.startView, minView: $scope.minView, minuteStep: minuteStep };
     $scope.formatted;

@@ -9,7 +9,7 @@
 	function CreateEvent($ionicLoading, $state, $ionicHistory, datacontext) {
 		/*jshint validthis: true */
 		var vm = this;
-		vm.event = {prices: [], when: new Date()};
+		vm.event = {prices: []};
 		vm.createEvent = createEvent;
 
 		function createEvent() {
