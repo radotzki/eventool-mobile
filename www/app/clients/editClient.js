@@ -43,7 +43,7 @@
             $ionicLoading.show();
             datacontext.client.remove(vm.client).then(function(res) {
                 $ionicLoading.hide();
-                $ionicHistory.currentView($ionicHistory.backView());
+                $ionicHistory.nextViewOptions({disableBack: true});
                 $state.go('app.clients.index');
             });
         }

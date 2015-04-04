@@ -55,7 +55,7 @@
             $ionicLoading.show();
             datacontext.event.remove(vm.event).then(function(res) {
                 $ionicLoading.hide();
-                $ionicHistory.currentView($ionicHistory.backView());
+                $ionicHistory.nextViewOptions({disableBack: true});
                 $state.go('app.events.index');
             });
         }
