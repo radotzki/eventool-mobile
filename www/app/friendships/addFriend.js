@@ -6,7 +6,7 @@
         .controller('AddFriend', AddFriend);
 
     /* @ngInject */
-    function AddFriend($state, $stateParams, datacontext) {
+    function AddFriend($state, $stateParams, $ionicHistory, datacontext) {
         /*jshint validthis: true */
         var vm = this;
 
@@ -40,9 +40,7 @@
 
         function clientClicked(clientId) {
             datacontext.friendship.create($stateParams.clientId, clientId).then(function() {
-                $state.go('app.clients.detail.friends', {
-                    clientId: $stateParams.clientId
-                });
+                $ionicHistory.goBack();
             });
         }
 

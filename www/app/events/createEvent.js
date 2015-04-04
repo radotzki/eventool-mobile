@@ -6,7 +6,7 @@
 	.controller('CreateEvent', CreateEvent);
 
 	/* @ngInject */
-	function CreateEvent($ionicLoading, $state, datacontext) {
+	function CreateEvent($ionicLoading, $state, $ionicHistory, datacontext) {
 		/*jshint validthis: true */
 		var vm = this;
 		vm.event = {prices: [], when: new Date()};
@@ -27,6 +27,7 @@
 
 		function showNewEvent(eventId) {
 			$ionicLoading.hide();
+			$ionicHistory.currentView($ionicHistory.backView());
 			$state.go('app.events.detail.tickets', {eventId: eventId});
 		}
 

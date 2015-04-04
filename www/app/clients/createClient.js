@@ -1,14 +1,15 @@
-( function () {
+(function() {
     'use strict';
 
     angular
-        .module( 'eventool.clients' )
-        .controller( 'CreateClient', CreateClient );
+        .module('eventool.clients')
+        .controller('CreateClient', CreateClient);
 
     /* @ngInject */
-    function CreateClient( $state, $ionicLoading, datacontext ) {
+    function CreateClient($state, $ionicHistory, $ionicLoading, datacontext, auth) {
         /*jshint validthis: true */
         var vm = this;
+        var user = auth.getUser().user;
         vm.client = {};
         vm.createClient = createClient;
 
@@ -23,13 +24,19 @@
             };
 
             $ionicLoading.show();
-            datacontext.client.create( newClient ).then( function ( res ) {
+            datacontext.client.create(newClient).then(function(res) {
                 $ionicLoading.hide();
-                $state.go( 'app.clients.detail.tickets', {
-                    clientId: res.id
-                } );
-            } );
+                $ionicHistory.currentView($ionicHistory.backView());
+                if (user.role !== 'cashier') {
+                    $state.go('app.clients.detail.tickets', {
+                        clientId: res.id
+                    });
+                } else {
+                    $state.go('app.clients.index');
+                }
+
+            });
         }
 
     }
-} )();
+})();
