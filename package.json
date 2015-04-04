@@ -1,7 +1,7 @@
 {
-  "name": "myapp",
+  "name": "Eventool",
   "version": "1.0.0",
-  "description": "myApp: An Ionic project",
+  "description": "Events Management Application",
   "dependencies": {
     "ansi-regex": "^1.1.1",
     "ansi-styles": "^2.0.1",

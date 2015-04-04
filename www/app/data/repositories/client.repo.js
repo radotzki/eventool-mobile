@@ -17,7 +17,8 @@
 			update: update,
 			remove: remove,
 			search: search,
-			inEvent: inEvent
+			inEvent: inEvent,
+			freindsTicketsCount: freindsTicketsCount
 		};
 		return service;
 
@@ -47,6 +48,10 @@
 
 		function inEvent (clientId, eventId) {
 			return Restangular.one("clients", clientId).one("in_event", eventId).get().then(abstract.querySucceed, abstract.queryFailed);
+		}
+
+		function freindsTicketsCount (clientId, eventId) {
+			return Restangular.one("clients", clientId).one("events", eventId).one('count_friends_tickets').get().then(abstract.querySucceed, abstract.queryFailed);
 		}
 
 	}

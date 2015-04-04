@@ -13,12 +13,15 @@
 .m-t-l {
     margin-top: 20px;
 }
+
 .delete-btn-wrapper {
     margin: 20px 10px;
 }
+
 .add-btn {
     margin: 15px 0;
 }
+
 .add-btn a {
     color: #45D1C1;
 }
@@ -28,6 +31,7 @@
 .profile-cover {
     position: relative;
 }
+
 .profile-cover figcaption {
     position: absolute;
     top: 0;
@@ -36,17 +40,21 @@
     width: 100%;
     background-color: rgba(0, 0, 0, 0.3);
 }
+
 .profile-cover figcaption * {
     color: white;
 }
+
 .profile-cover img {
     height: 50%;
     width: 100%;
 }
+
 .profile-stats {
     position: absolute;
     bottom: 0px;
 }
+
 .profile-stats div:nth-child(2) {
     border-right: 1px solid white;
     border-left: 1px solid white;
@@ -58,21 +66,26 @@
     text-align: center;
     margin: 15px 0px;
 }
+
 .client-profile-nav p {
     display: inline;
     margin: 0 10px;
 }
+
 .client-profile-nav .active {
     font-weight: bold;
 }
+
 .gender-btns {
     position: absolute;
     top: 0px;
     right: 16px;
 }
+
 .gender-btns button.not-selected {
     opacity: 0.3;
 }
+
 .gender-item > .gender-label {
     display: inline-block;
     -webkit-box-flex: 1;
@@ -88,6 +101,7 @@
     color: #444;
     font-size: 16px;
 }
+
 .gender-item {
     display: -webkit-box;
     display: -webkit-flex;
@@ -110,12 +124,15 @@
 .ticket-list.arrived {
     border-bottom: 3px solid #8CD787;
 }
+
 .ticket-list.arrived i {
     color: #8CD787;
 }
+
 .ticket-list.not-arrived {
     border-bottom: 3px solid #C7705B;
 }
+
 .ticket-list.not-arrived i {
     color: #C7705B;
 }
@@ -126,6 +143,7 @@
     width: 80%;
     display: inline-block;
 }
+
 .add-comment button {
     float: right;
 }
@@ -136,12 +154,15 @@
 .datetimepicker table {
     width: 100%;
 }
+
 .datetimepicker span.hour {
     font-size: 10px;
 }
+
 .datetimepicker span.minute {
     width: 40%;
 }
+
 .glyphicon,
 .glyphicon-arrow-left:before,
 .glyphicon-arrow-right {
@@ -157,11 +178,19 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 .glyphicon-arrow-left:before {
     content: "\f108";
 }
+
 .glyphicon-arrow-right:before {
     content: "\f10b";
 }
 /* END DATE TIME PICKER */
 
+.recommend-ticket-price {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 14px 18px 16px 16px;
+}
