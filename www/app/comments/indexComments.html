@@ -12,9 +12,8 @@
 </p>
 
 <ion-list can-swipe="true">
-    <ion-item ng-repeat="comment in vm.comments | orderBy:'-created_at'" class="item-avatar">
+    <ion-item ng-repeat="comment in vm.comments | orderBy:'-created_at'">
 
-        <img ng-src="content/img/avatar.jpg">
         <h2>{{::comment.user.first_name}} {{::comment.user.last_name}}</h2>
         <p> {{::comment.comment}} </p>
         <h6>

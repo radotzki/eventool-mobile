@@ -7,9 +7,8 @@
 </p>
 
 <ion-list>
-    <ion-item ng-repeat="friend in vm.friends | orderBy:'first_name'" class="item-avatar" ui-sref="app.clients.detail.tickets({ clientId:friend.myFriend.id })">
+    <ion-item ng-repeat="friend in vm.friends | orderBy:'first_name'" ui-sref="app.clients.detail.tickets({ clientId:friend.myFriend.id })">
 
-        <img ng-src="content/img/avatar.jpg">
         <h2>{{::friend.myFriend.first_name}} {{::friend.myFriend.last_name}}</h2>
         <p>
             <small>
