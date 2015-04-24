@@ -15,7 +15,8 @@
             bindToController: true,
             scope: {
                 'clickCallback': '=',
-                'removeClients': '='
+                'removeClients': '=',
+                'clientsSource': '='
             }
         };
         return directive;
@@ -34,10 +35,14 @@
 
 
         function activate() {
-            $ionicLoading.show();
-            getClients().then(function() {
-                $ionicLoading.hide();
-            });
+            if (vm.clientsSource) {
+                vm.clients = vm.clientsSource;
+            } else {
+                $ionicLoading.show();
+                getClients().then(function() {
+                    $ionicLoading.hide();
+                });
+            }
         }
 
         function getClients() {
@@ -59,6 +64,10 @@
                 common.$broadcast('scroll.refreshComplete');
             });
         }
+
+        $scope.$watch('vm.clientsSource', function () {
+            vm.clients = vm.clientsSource;
+        });
 
     }
 })();

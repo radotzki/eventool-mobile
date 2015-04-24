@@ -17,7 +17,8 @@
 			update: update,
 			remove: remove,
 			getTickets: getTickets,
-			upcoming: upcoming
+			upcoming: upcoming,
+			suggestion: suggestion
 		};
 		return service;
 
@@ -49,6 +50,11 @@
 
 		function upcoming () {
 			return Restangular.one('events/upcoming').getList().then(abstract.querySucceed, abstract.queryFailed);
+		}
+
+		function suggestion (id) {
+			return Restangular.one('events', id).getList('apriori')
+			.then(abstract.querySucceed, abstract.queryFailed);
 		}
 
 	}

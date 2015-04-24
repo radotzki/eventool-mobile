@@ -46,6 +46,13 @@
 			data: { target: "event", name: "tickets" }
 		})
 
+		.state('app.events.detail.suggestion', {
+			url: "/suggestion",
+			controller: "SuggestTickets as vm",
+			templateUrl: "app/events/suggestTickets.html",
+			data: { target: "event", name: "suggestion" }
+		})
+
 		.state('app.events.create', {
 			url: "",
 			controller:  "CreateEvent as vm",

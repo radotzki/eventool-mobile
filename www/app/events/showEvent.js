@@ -18,12 +18,18 @@
 		vm.maleArrived = 0;
 		vm.canEditEvent = false;
 
+		vm.eventPassed = eventPassed;
+
 		activate();
 
 		function activate() {
 			!!(!vm.state.current.data.name) && $state.go('.tickets');
 			analyzeTickets();
 			checkCanEditEvent();
+		}
+
+		function eventPassed () {
+			return ((new Date(vm.event.when)) <= Date.now());
 		}
 
 		function checkCanEditEvent() {
@@ -35,7 +41,7 @@
 			for (var i=0; i < vm.tickets.length; i++) {
 				if(vm.tickets[i].arrived){
 					vm.income += vm.tickets[i].price.price;	
-					vm.tickets[i].client.gender == "male" ? vm.maleArrived++ : vm.femaleArrived++;				
+					vm.tickets[i].client.gender == "male" ? vm.maleArrived++ : vm.femaleArrived++;
 				}
 			}
 			return true;

@@ -33,6 +33,11 @@
             </figcaption>
         </figure>
 
+        <div class="client-profile-nav" ng-if="!vm.eventPassed()">
+            <p ui-sref=".tickets" ui-sref-active="active"> TICKETS </p>
+            <p ui-sref=".suggestion" ui-sref-active="active"> SUGGESTION </p>
+        </div>
+
         <div ui-view></div>
 
     </ion-content>
