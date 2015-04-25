@@ -1,8 +1,10 @@
-<ion-view title="New Ticket">
+<ion-modal-view ng-controller="CreateTicket as vm">
 
-    <ion-nav-buttons side="right">
+    <ion-header-bar>
+        <a ng-click="vm.closeModal()" class="button-icon ion-arrow-left-c button back-button"> </a>
+        <h2 class="title">New Ticket</h2>
         <button class="button button-clear" ng-click="vm.createTicket()" ng-disabled="vm.myForm.$invalid">Create</button>
-    </ion-nav-buttons>
+    </ion-header-bar>
 
     <ion-content class="has-header">
         <form name="vm.myForm" novalidate>
@@ -25,4 +27,4 @@
         </form>
 
     </ion-content>
-</ion-view>
+</ion-modal-view>

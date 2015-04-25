@@ -6,16 +6,17 @@
         .controller('CreateTicket', CreateTicket);
 
     /* @ngInject */
-    function CreateTicket($state, $stateParams, datacontext) {
+    function CreateTicket($state, $scope, datacontext) {
         /*jshint validthis: true */
         var vm = this;
 
         var MIDDLE_AVG = 1.5;
         var tickets, avgTicketsPrice;
-        var clientId = $stateParams.clientId;
+        var clientId = $scope.clientId;
 
         vm.createTicket = createTicket;
         vm.calcBestPrice = calcBestPrice;
+        vm.closeModal = $scope.closeModal;
 
         activate();
 
@@ -31,6 +32,12 @@
             });
         }
 
+        function getTickets() {
+            return datacontext.ticket.index(clientId).then(function(resp) {
+                tickets = resp;
+            });
+        }
+
         function createTicket() {
             var param = {
                 event_id: vm.selectedEvent.id,
@@ -38,9 +45,7 @@
             };
 
             datacontext.ticket.create(clientId, param).then(function(res) {
-                $state.go('app.clients.detail.tickets', {
-                    clientId: clientId
-                });
+                vm.closeModal(clientId);
             });
         }
 
@@ -66,12 +71,6 @@
                     }
                 });
             }
-        }
-
-        function getTickets() {
-            return datacontext.ticket.index(clientId).then(function(resp) {
-                tickets = resp;
-            });
         }
 
         function calcAvgTicketsPrice() {

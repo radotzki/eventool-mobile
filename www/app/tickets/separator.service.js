@@ -17,10 +17,9 @@
         ////////////////
 
         function separateForEvent(tickets) {
-            console.log(tickets);
             return _.chain(tickets)
                 .groupBy(function (item) {
-                    return item.client.first_name + ' ' + item.client.last_name;
+                    return item.client ? item.client.first_name + ' ' + item.client.last_name : null;
                 })
                 .transform(function (result, tickets, key) {
                     result[key] = {
