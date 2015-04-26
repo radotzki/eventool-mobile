@@ -1,6 +1,6 @@
 {
   "name": "Eventool",
-  "app_id": "8a43daac",
+  "app_id": "",
   "gulpStartupTasks": [
     "watch"
   ]
