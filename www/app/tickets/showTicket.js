@@ -47,8 +47,9 @@
         }
 
         function canDelete() {
-            return currentUser.role === 'producer' ||
-                (currentUser.role === 'promoter' && vm.ticket && currentUser.id === vm.ticket.promoter.id);
+            return vm.ticket && new Date(vm.ticket.event.when) >= new Date() &&
+                (currentUser.role === 'producer' ||
+                    (currentUser.role === 'promoter' && vm.ticket && currentUser.id === vm.ticket.promoter.id));
         }
 
     }

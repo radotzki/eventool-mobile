@@ -8,7 +8,7 @@
 
 	/* @ngInject */
 	function restangularConfig(RestangularProvider, HOST) {
-		RestangularProvider.setBaseUrl(HOST.DEV);
+		RestangularProvider.setBaseUrl(HOST.PROD);
 	}
 
 	/* @ngInject */
