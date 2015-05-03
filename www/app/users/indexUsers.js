@@ -32,7 +32,8 @@
 		}
 
 		function confirmUnlock () {
-			hideSheet = actionSheet.confirm(unlockUser);
+			var msg = 'Are you sure you want to unlock this user?';
+			hideSheet = actionSheet.confirm(unlockUser, msg);
 		}
 
 		function unlockUser () {

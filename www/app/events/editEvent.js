@@ -47,7 +47,7 @@
         }
 
         function confirmDelete() {
-            var msg = "This will delete '" + vm.event.name + "' event";
+            var msg = "Are you sure you want to delete this event?";
             actionSheet.confirmDelete(deleteEvent, msg);
         }
 

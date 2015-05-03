@@ -60,7 +60,7 @@
                         $state.go('app.clients.index');
                     });
                 });
-            });
+            }, 'Are you sure about this?');
 
         }
 

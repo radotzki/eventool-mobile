@@ -35,7 +35,7 @@
         }
 
         function confirmDelete() {
-            var msg = "This will delete this ticket";
+            var msg = "Are you sure you want to delete this ticket";
             deleteActionSheet = actionSheet.confirmDelete(deleteTicket, msg);
         }
 

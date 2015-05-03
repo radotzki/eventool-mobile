@@ -35,7 +35,8 @@
         }
 
         function confirmDelete() {
-            var msg = "This will delete " + vm.client.first_name + " " + vm.client.last_name;
+            var msg = "Are you sure you want to delete " + 
+                vm.client.first_name + " " + vm.client.last_name + "?";
             actionSheet.confirmDelete(deleteClient, msg);
         }
 
