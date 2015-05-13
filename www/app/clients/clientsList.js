@@ -16,7 +16,8 @@
             scope: {
                 'clickCallback': '=',
                 'removeClients': '=',
-                'clientsSource': '='
+                'clientsSource': '=',
+                'refreshService': '='
             }
         };
         return directive;
@@ -32,7 +33,6 @@
         vm.refresh = refresh;
 
         activate();
-
 
         function activate() {
             if (vm.clientsSource) {

@@ -1,4 +1,4 @@
-<ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.refresh()">
+<ion-refresher ng-if="vm.refreshService" pulling-text="Pull to refresh..." on-refresh="vm.refresh()">
 </ion-refresher>
 
 <label class="item item-input">
