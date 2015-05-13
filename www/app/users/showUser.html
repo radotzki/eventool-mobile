@@ -1,47 +1,37 @@
 <ion-view title="{{vm.user.name}}">
-<ion-nav-buttons side="right">
-<button class="button button-clear right" ui-sref="app.users.update({ userId:vm.user.id })">EDIT</button>
-</ion-nav-buttons>
-<ion-content class="has-header">    
+	<ion-nav-buttons side="right">
+		<button class="button button-clear right" ui-sref="app.users.update({ userId:vm.user.id })">
+			EDIT
+		</button>
+	</ion-nav-buttons>
+	<ion-content class="has-header">  
 
-<div style="position: relative;">
-	<img src="content/img/clientCover.jpg" style="height: 300px;width: 100%; ">   
+		<figure class="profile-cover text-center">
+	        <img src="content/img/clientCover.jpg">
+	        <figcaption>
+	            <h1> {{vm.user.name}} </h1>
+	            <div class="h4">
+	                <span> {{vm.user.role}} </span>
+					<span ng-if="vm.client.city"> from {{vm.client.city}} </span>
+	            </div>
+	            <div class="row h4 profile-stats" ng-if="vm.user.role != 'cashier'">
+	                <div class="col">
+	                    <p>Tickets</p>
+	                    <p>{{vm.tickets.length || '0'}}</p>
+	                </div>
+	                <div class="col">
+	                    <p>Arrived</p>
+	                    <p>{{vm.arrivedAmount || '0'}}</p>
+	                </div>
+	                <div class="col">
+	                    <p>Income</p>
+	                    <p>{{vm.income | currency}}</p>
+	                </div>
+	            </div>
+	        </figcaption>
+	    </figure>
 
-	<div class="text-center" style="position: absolute; top: 0px; height: 300px; width: 100%; background: rgba(68, 68, 68, 0.7)">
-		<h1 style="color:#fff; margin-top:20%"> {{vm.user.name}}</h1>
+		<div ui-view></div>
 
-		<h4 style="color:#fff">
-			<span> {{vm.user.role}} </span>
-			<span ng-if="vm.client.city"> from {{vm.client.city}} </span>			
-		</h4>
-
-		<div class="row" style="margin-top:10%" ng-if="vm.user.role != 'cashier'">
-			<div class="col" style="border-right:white solid thin">
-				<h4 style="color:#fff">
-					Tickets
-					<br> {{vm.tickets.length}}
-				</h4>
-			</div>
-			<div class="col" style="border-right:white solid thin">
-				<h4 style="color:#fff">
-					Arrived
-					<br> {{vm.arrivedAmount}}
-				</h4>
-			</div>
-			<div class="col">
-				<h4 style="color:#fff">
-					Income
-					<br> {{vm.income | currency}}
-				</h4>
-			</div>
-		</div>
-
-	</div>
-</div>
-
-<!-- <et-tickets tickets="vm.tickets" target="user" ng-if="vm.user.role != 'cashier'"> </et-tickets> -->
-<div ui-view></div>
-<!-- <ion-view> </ion-view> -->
-
-</ion-content>
+	</ion-content>
 </ion-view>
