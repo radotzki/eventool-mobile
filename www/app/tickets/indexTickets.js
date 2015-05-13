@@ -74,7 +74,7 @@
 
         $scope.$on('ticket-created', function(event, args) {
             getTickets(args.clientId).then(function(resp){
-                vm.tickets = resp;
+                tickets = resp;
                 activate();
             });
         });
