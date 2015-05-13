@@ -50,9 +50,11 @@
             });
         }
 
-        function closeModal(ticket) {
+        function closeModal(clientId) {
+            if (clientId) {
+                $rootScope.$broadcast('ticket-created', {clientId: clientId});
+            }
             ticketModal.remove();
-            $state.go($state.current, {}, {reload: true});
         }
     }
 

@@ -6,7 +6,7 @@
         .controller('IndexTickets', IndexTickets);
 
     /* @ngInject */
-    function IndexTickets($rootScope, $state, $ionicModal, ticketsPrepSvc, separatorTickets) {
+    function IndexTickets($scope, $rootScope, $state, $ionicModal, ticketsPrepSvc, separatorTickets, datacontext) {
         /*jshint validthis: true */
         var vm = this;
 
@@ -67,6 +67,17 @@
                 }
             }
         }
+
+        function getTickets(clientId) {
+            return datacontext.ticket.index(clientId);
+        }
+
+        $scope.$on('ticket-created', function(event, args) {
+            getTickets(args.clientId).then(function(resp){
+                vm.tickets = resp;
+                activate();
+            });
+        });
 
     }
 })();
