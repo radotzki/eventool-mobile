@@ -1,1 +1,6 @@
-<et-clients-list click-callback="vm.clientClicked" clients-source="vm.clients"> </et-clients-list>
+<et-clients-list ng-if="vm.clients.length" click-callback="vm.clientClicked" clients-source="vm.clients">
+</et-clients-list>
+
+<p class="text-center m-t-l" ng-show="!vm.clients.length">
+    Have no suggestions yet
+</p>
