@@ -11,17 +11,13 @@
             <div class="list">
                 <label class="item item-input item-select">
                     <div class="input-label">Event </div>
-                    <select ng-model="vm.selectedEvent" ng-options="event as event.name for event in vm.events" ng-change="vm.calcBestPrice(selectedEvent)" required>
+                    <select ng-model="vm.selectedEvent" ng-options="event as event.name for event in vm.events" required>
                     </select>
                 </label>
                 <label class="item item-input item-select">
                     <div class="input-label">Price </div>
                     <select ng-model="vm.selectedPrice" ng-options="price as (price.price | currency) for price in vm.selectedEvent.prices" required>
                     </select>
-                </label>
-                <label class="item item-input" ng-show="vm.recommendTicket">
-                    <div class="input-label">Recommended price </div>
-                    <span class="recommend-ticket-price"> {{vm.recommendTicket.price | currency}} </span>
                 </label>
             </div>
         </form>
